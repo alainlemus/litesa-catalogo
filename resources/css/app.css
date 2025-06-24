@@ -1,0 +1,6 @@
+@import "tailwindcss";
+@source "../views";
+
+:root {
+    --color-primary: #196BAC;
+  }

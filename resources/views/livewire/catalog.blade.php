@@ -52,7 +52,7 @@
                     <div class="flex flex-col items-start justify-between">
                         <div class="w-full">
                             @if ($product->photos->count() > 0)
-                                <img src="{{ App::environment('local') ? asset('storage/' . $product->photos->first()->path) : storage::disk('s3')->url($product->photos->first()->path) }}" alt="{{ $product->name }}" class="object-contain w-full h-48 rounded">
+                                <img src="{{ App::environment('local') ? asset('storage/' . $product->photos->first()->path) : \Illuminate\Support\Facades\Storage::disk('s3')->url($product->photos->first()->path) }}" alt="{{ $product->name }}" class="object-contain w-full h-48 rounded">
                             @else
                                 <div class="flex items-center justify-center w-full h-48 bg-gray-200">Sin imagen</div>
                             @endif

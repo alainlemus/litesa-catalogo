@@ -4,7 +4,7 @@
         <div class="container flex flex-col items-center px-4 py-3 mx-auto space-y-3 lg:justify-center md:flex-row md:space-y-0">
             <!-- Logo -->
             <a href="https://grupolitesa.com.mx" target="_blank" class="p-2 bg-white rounded lg:mr-6">
-                <img src="{{ asset('storage/litesa.png') }}" alt="Litesa Logo" class="h-10">
+                <img src="https://grupolitesa.com.mx/img/litesa.png" alt="Litesa Logo" class="h-10">
             </a>
 
             <!-- Buscador -->

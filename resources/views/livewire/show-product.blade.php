@@ -24,7 +24,7 @@
                     <!-- Main Image -->
                     <div class="relative overflow-hidden bg-white shadow-lg rounded-2xl">
                         <div class="flex items-center justify-center p-8 aspect-square">
-                            <img id="mainImage" src="{{ env("APP_ENV", "local") ? asset('storage/' . $product->photos->first()->path) : storage::disk('s3')->url($product->photos->first()->path) }}" alt="LÁMPARA MR 16 Y GU10 - Vista 1" class="object-fill max-w-full max-h-full"/>
+                            <img id="mainImage" src="{{ App::environment('local') ? asset('storage/' . $product->photos->first()->path) : storage::disk('s3')->url($product->photos->first()->path) }}" alt="LÁMPARA MR 16 Y GU10 - Vista 1" class="object-fill max-w-full max-h-full"/>
                         </div>
                     </div>
                 </div>

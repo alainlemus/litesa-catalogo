@@ -1,6 +1,6 @@
 <div>
 
-    <div class="w-full bg-center bg-cover h-[38rem]" style="background-image: url('{{ asset('storage/barco.jpg') }}');">
+    <div class="w-full bg-center bg-cover h-[38rem]" style="background-image: url('https://grupolitesa.com.mx/img/barco2.jpg');">
 
     </div>
 

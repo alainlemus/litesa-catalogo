@@ -59,7 +59,7 @@
     <div class="container px-6 py-8 mx-auto">
         <div class="flex flex-col items-center text-center">
             <a href="{{ route('home') }}">
-                <img class="w-auto h-7" src="{{ asset('storage/litesa-logo.png') }}" alt="">
+                <img class="w-auto h-7" src="https://grupolitesa.com.mx/img/barco2.jpg" alt="">
             </a>
 
             <div class="flex flex-wrap justify-center mt-6 -mx-4">

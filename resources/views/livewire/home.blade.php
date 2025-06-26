@@ -1,5 +1,13 @@
 <div>
 
+    <div
+        class="w-full bg-center bg-cover h-[38rem]"
+        style="background-image: url('{{ App::environment('local')
+                    ? asset('storage/' . ltrim($headerImage->path, '/'))
+                    : Storage::disk('s3')->url($headerImage->path) }}')"
+        aria-label="Imagen de fondo {{ $headerImage->name }}"
+    ></div>
+
     <section class="bg-white dark:bg-gray-900">
         <div class="container flex flex-col items-center px-4 py-12 mx-auto text-center">
             <h2 class="max-w-2xl mx-auto text-2xl font-semibold tracking-tight text-gray-800 xl:text-3xl dark:text-white">

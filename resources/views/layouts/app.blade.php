@@ -52,19 +52,6 @@
 
     </header>
 
-    @php
-        $banner = \App\Models\MediaFile::where('name', 'Banner')->first();
-        $backgroundUrl = App::environment('local')
-            ? asset('storage/' . ltrim($banner->path, '/'))
-            : Storage::disk('s3')->url($banner->path);
-    @endphp
-
-    <div
-        class="w-full bg-center bg-cover h-[38rem]"
-        style="background-image: url('{{ $backgroundUrl }}')"
-        aria-label="Imagen de fondo {{ $banner->name }}"
-    ></div>
-
     <div class="flex-grow">
         {{ $slot }}
     </div>

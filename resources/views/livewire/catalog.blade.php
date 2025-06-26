@@ -1,11 +1,7 @@
 <div>
 
-    <header class="sticky top-0 z-10 w-full bg-[var(--color-primary)] text-white shadow">
+    <div class="sticky top-15 z-10 w-full bg-[var(--color-primary)] text-white shadow">
         <div class="container flex flex-col items-center px-4 py-3 mx-auto space-y-3 lg:justify-center md:flex-row md:space-y-0">
-            <!-- Logo -->
-            <a href="https://grupolitesa.com.mx" target="_blank" class="p-2 bg-white rounded lg:mr-6">
-                <img src="https://grupolitesa.com.mx/img/litesa.png" alt="Litesa Logo" class="h-10">
-            </a>
 
             <!-- Buscador -->
             <div class="relative w-full mt-2 md:mt-0 md:w-1/2">
@@ -38,7 +34,7 @@
                 @endif
             </div>
         </div>
-    </header>
+    </div>
 
     <!-- Main Content -->
     <main class="container relative p-6 mx-auto pt-18 mb-14">

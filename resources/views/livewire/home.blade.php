@@ -1,9 +1,5 @@
 <div>
 
-    <div class="w-full bg-center bg-cover h-[38rem]" style="background-image: url('https://grupolitesa.com.mx/img/barco2.jpg');">
-
-    </div>
-
     <section class="bg-white dark:bg-gray-900">
         <div class="container flex flex-col items-center px-4 py-12 mx-auto text-center">
             <h2 class="max-w-2xl mx-auto text-2xl font-semibold tracking-tight text-gray-800 xl:text-3xl dark:text-white">
@@ -21,7 +17,9 @@
         <div
             class="overflow-hidden bg-white dark:bg-gray-900 lg:mx-8 lg:flex lg:max-w-6xl lg:w-full lg:shadow-md lg:rounded-xl">
             <div class="lg:w-1/2">
-                <div class="h-64 bg-cover lg:h-full" style="background-image:url('{{ asset('storage/grua.jpg') }}')"></div>
+
+                <div class="h-64 bg-cover lg:h-full" style="background-image: url('{{ $cardImage->path }}')" aria-label="Imagen de fondo {{ $cardImage->name }}"></div>
+
             </div>
 
             <div class="max-w-xl px-6 py-12 lg:max-w-5xl lg:w-1/2">

@@ -17,7 +17,9 @@
                 <div class="lg:flex lg:items-center lg:justify-between">
                     <div class="flex items-center justify-between">
                         <a href="{{ route('home') }}" class="mx-auto ">
-                            <img class="w-auto h-6 sm:h-7" src="{{ asset('storage/litesa-logo.png') }}" alt="">
+                            @if ($setting = \App\Models\SiteSetting::first())
+                                <img src="{{ Storage::disk('public')->url($setting->logo) }}" alt="{{ $setting->title }} logo" class="h-10">
+                            @endif
                         </a>
 
                         <!-- Mobile menu button -->
@@ -50,6 +52,19 @@
 
     </header>
 
+    @php
+        $footer = \App\Models\MediaFile::where('name', 'Banner')->first();
+        $backgroundUrl = App::environment('local')
+            ? asset('storage/' . ltrim($footer->path, '/'))
+            : Storage::disk('s3')->url($footer->path);
+    @endphp
+
+    <div
+        class="w-full bg-center bg-cover h-[38rem]"
+        style="background-image: url('{{ $backgroundUrl }}')"
+        aria-label="Imagen de fondo {{ $footer->name }}"
+    ></div>
+
     <div class="flex-grow">
         {{ $slot }}
     </div>
@@ -59,7 +74,9 @@
     <div class="container px-6 py-8 mx-auto">
         <div class="flex flex-col items-center text-center">
             <a href="{{ route('home') }}">
-                <img class="w-auto h-7" src="https://grupolitesa.com.mx/img/barco2.jpg" alt="">
+                @if ($setting = \App\Models\SiteSetting::first())
+                    <img src="{{ Storage::disk('public')->url($setting->logo) }}" alt="{{ $setting->title }} logo" class="h-7">
+                @endif
             </a>
 
             <div class="flex flex-wrap justify-center mt-6 -mx-4">

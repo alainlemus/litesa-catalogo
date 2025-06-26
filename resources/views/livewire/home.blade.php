@@ -227,39 +227,50 @@
         </div>
     </section>
 
-    <!--<section class="bg-white dark:bg-gray-900">
-        <div class="relative flex">
-            <div class="min-h-screen lg:w-1/3"></div>
-            <div class="hidden w-3/4 bg-grascreen00 min-h-1/4 dark:bg-gray-800 lg:block"></div>
+    <section class="bg-white dark:bg-gray-900">
+        <div class="container px-6 py-10 mx-auto">
+            <h1 class="text-2xl font-semibold text-gray-800 capitalize lg:text-3xl dark:text-white">From the blog</h1>
 
-            <div
-                class="container flex flex-col justify-center w-full px-6 mx-auto pscreen0 min-h-1/3 lg:absolute lg:inset-x-0">
-                <h1 class="text-2xl font-semibold text-gray-800 capitalize lg:text-3xl dark:text-white">
-                    What our <span class="text-blue-500">customers</span> <br> are saying
-                </h1>
+            <div class="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2">
+                <div class="lg:flex">
+                    <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="https://images.unsplash.com/photo-1515378960530-7c0da6231fb1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="">
 
-                <div class="mt-10 lg:mt-20 lg:flex lg:items-center">
-                    <img class="object-cover object-center w-full lg:w-[32rem] rounded-lg h-96" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80" alt="">
+                    <div class="flex flex-col justify-between py-6 lg:mx-6">
+                        <a href="#" class="text-xl font-semibold text-gray-800 hover:underline dark:text-white ">
+                            How to use sticky note for problem solving
+                        </a>
 
-                    <div class="mt-8 lg:px-10 lg:mt-0">
-                        <h1 class="text-2xl font-semibold text-gray-800 dark:text-white lg:w-72">
-                            Help us improve our productivity
-                        </h1>
+                        <span class="text-sm text-gray-500 dark:text-gray-300">On: 20 October 2019</span>
+                    </div>
+                </div>
 
-                        <p class="max-w-lg mt-6 text-gray-500 dark:text-gray-400">
-                            “ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore quibusdam ducimus libero ad
-                            tempora doloribus expedita laborum saepe voluptas perferendis delectus assumenda rerum, culpa
-                            aperiam dolorum, obcaecati corrupti aspernatur a. ”
-                        </p>
+                <div class="lg:flex">
+                    <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="">
 
-                        <h3 class="mt-6 text-lg font-medium text-blue-500">Ronik Ederson</h3>
-                        <p class="text-gray-600 dark:text-gray-300">Marketing Manager at Stech</p>
+                    <div class="flex flex-col justify-between py-6 lg:mx-6">
+                        <a href="#" class="text-xl font-semibold text-gray-800 hover:underline dark:text-white ">
+                            How to use sticky note for problem solving
+                        </a>
+
+                        <span class="text-sm text-gray-500 dark:text-gray-300">On: 20 October 2019</span>
+                    </div>
+                </div>
+
+                <div class="lg:flex">
+                    <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="https://images.unsplash.com/photo-1544654803-b69140b285a1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="">
+
+                    <div class="flex flex-col justify-between py-6 lg:mx-6">
+                        <a href="#" class="text-xl font-semibold text-gray-800 hover:underline dark:text-white ">
+                            Morning routine to boost your mood
+                        </a>
+
+                        <span class="text-sm text-gray-500 dark:text-gray-300">On: 25 November 2020</span>
                     </div>
                 </div>
 
             </div>
         </div>
-    </section>-->
+    </section>
 
     <section class="bg-white dark:bg-gray-900">
         <div class="container px-6 py-12 mx-auto">

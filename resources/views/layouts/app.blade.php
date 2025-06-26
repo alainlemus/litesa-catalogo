@@ -41,6 +41,7 @@
                         <div class="-mx-4 lg:flex lg:items-center">
                             <a href="{{ route('home') }}" class="block mx-4 text-gray-700 capitalize dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400">Nosotros</a>
                             <a href="{{ route('catalog') }}" class="block mx-4 mt-4 text-gray-700 capitalize lg:mt-0 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400">Iluminación</a>
+                            <a href="{{ route('blog') }}" class="block mx-4 mt-4 text-gray-700 capitalize lg:mt-0 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400">Blog</a>
                             <a href="{{ route('contact') }}" class="block mx-4 mt-4 text-gray-700 capitalize lg:mt-0 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400">Contacto</a>
                         </div>
                     </div>
@@ -67,7 +68,9 @@
                 <div class="flex flex-wrap justify-center mt-6 -mx-4">
                     <a href="{{ route('home') }}" class="mx-4 text-sm text-gray-600 transition-colors duration-300 hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400" aria-label="Reddit"> Nosotros </a>
 
-                    <a href="{{ route('catalog') }}" class="mx-4 text-sm text-gray-600 transition-colors duration-300 hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400" aria-label="Reddit"> Ilumnición </a>
+                    <a href="{{ route('catalog') }}" class="mx-4 text-sm text-gray-600 transition-colors duration-300 hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400" aria-label="Reddit"> Iluminación </a>
+
+                    <a href="{{ route('blog') }}" class="mx-4 text-sm text-gray-600 transition-colors duration-300 hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400" aria-label="Reddit"> Blog </a>
 
                     <a href="{{ route('contact') }}" class="mx-4 text-sm text-gray-600 transition-colors duration-300 hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400" aria-label="Reddit"> Contacto </a>
                 </div>

@@ -18,7 +18,10 @@
             class="overflow-hidden bg-white dark:bg-gray-900 lg:mx-8 lg:flex lg:max-w-6xl lg:w-full lg:shadow-md lg:rounded-xl">
             <div class="lg:w-1/2">
 
-                <div class="h-64 bg-cover lg:h-full" style="background-image: url('{{ $cardImage->path }}')" aria-label="Imagen de fondo {{ $cardImage->name }}"></div>
+                <div class="h-64 bg-cover lg:h-full" style="background-image: url('{{ App::environment('local')
+                    ? asset('storage/' . ltrim($cardImage->path, '/'))
+                    : Storage::disk('s3')->url($cardImage->path) }}')" aria-label="Imagen de fondo {{ $cardImage->name }}">
+                </div>
 
             </div>
 
@@ -153,7 +156,9 @@
         </div>
     </section>
 
-    <section class="min-h-screen bg-cover " style="background-image: url('{{ asset('storage/navio.jpg') }}')">
+    <section class="min-h-screen bg-cover " style="background-image: url('{{ App::environment('local')
+            ? asset('storage/' . ltrim($formImage->path, '/'))
+            : Storage::disk('s3')->url($formImage->path) }}')">
         <div class="flex flex-col min-h-screen bg-black/60">
             <div class="container flex flex-col flex-1 px-6 py-12 mx-auto">
                 <div class="flex-1 lg:flex lg:items-center lg:-mx-6">

@@ -64,4 +64,9 @@ class ProductVariantResource extends Resource
             'edit' => Pages\EditProductVariant::route('/{record}/edit'),
         ];
     }
+
+    public static function getModelLabel(): string
+    {
+        return 'Variante de Producto';
+    }
 }

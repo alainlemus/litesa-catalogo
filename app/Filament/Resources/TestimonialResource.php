@@ -73,4 +73,9 @@ class TestimonialResource extends Resource
             'edit' => Pages\EditTestimonial::route('/{record}/edit'),
         ];
     }
+
+    public static function getModelLabel(): string
+    {
+        return 'Testimonio';
+    }
 }

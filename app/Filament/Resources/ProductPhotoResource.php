@@ -53,4 +53,9 @@ class ProductPhotoResource extends Resource
             'edit' => Pages\EditProductPhoto::route('/{record}/edit'),
         ];
     }
+
+    public static function getModelLabel(): string
+    {
+        return 'Foto de Producto';
+    }
 }

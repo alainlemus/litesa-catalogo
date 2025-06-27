@@ -49,4 +49,9 @@ class ProductUseResource extends Resource
             'edit' => Pages\EditProductUse::route('/{record}/edit'),
         ];
     }
+
+    public static function getModelLabel(): string
+    {
+        return 'Uso';
+    }
 }

@@ -49,4 +49,9 @@ class ColorTemperatureResource extends Resource
             'edit' => Pages\EditColorTemperature::route('/{record}/edit'),
         ];
     }
+
+    public static function getModelLabel(): string
+    {
+        return 'temperatura';
+    }
 }

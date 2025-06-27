@@ -16,7 +16,7 @@ class MediaFileResource extends Resource
 {
     protected static ?string $model = MediaFile::class;
     protected static ?string $navigationIcon = 'heroicon-o-photo';
-    protected static ?string $navigationGroup = 'Media';
+    protected static ?string $navigationGroup = 'Configuración';
     protected static ?string $navigationLabel = 'Imágenes';
 
     public static function form(Form $form): Form
@@ -64,5 +64,10 @@ class MediaFileResource extends Resource
             'create' => Pages\CreateMediaFile::route('/create'),
             'edit' => Pages\EditMediaFile::route('/{record}/edit'),
         ];
+    }
+
+    public static function getModelLabel(): string
+    {
+        return 'Archivo';
     }
 }

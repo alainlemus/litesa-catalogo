@@ -23,16 +23,31 @@ use App\Filament\Resources\ProductUseResource;
 use App\Filament\Resources\ColorTemperatureResource;
 use App\Filament\Resources\ProductVariantResource;
 use App\Filament\Resources\ProductPhotoResource;
+use App\Models\SiteSetting;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Storage;
 
 class AdminPanelProvider extends PanelProvider
 {
+
     public function panel(Panel $panel): Panel
     {
+        $setting = SiteSetting::first();
+
+        $faviconUrl = (App::environment('local') ? asset('storage/' . ltrim($setting->favicon, '/')) : Storage::disk('s3')->url($setting->favicon));
+
+        $logoUrl = (App::environment('local') ? asset('storage/' . ltrim($setting->logo_light, '/')) : Storage::disk('s3')->url($setting->logo_light));
+
         return $panel
             ->default()
             ->id('admin')
             ->path('admin')
             ->login()
+            ->brandName('Grupo Litesa')
+            ->favicon($faviconUrl)
+            ->brandLogo($logoUrl)
+            ->brandLogoHeight('42px')
+            ->darkMode(false)
             ->resources([
                 ProductResource::class,
                 ProductUseResource::class,
@@ -41,7 +56,7 @@ class AdminPanelProvider extends PanelProvider
                 ProductPhotoResource::class,
             ])
             ->colors([
-                'primary' => Color::Amber,
+                'primary' => Color::Blue,
             ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')

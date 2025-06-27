@@ -126,4 +126,9 @@ class SiteSettingResource extends Resource
             'edit' => EditSiteSetting::route('/{record}/edit'),
         ];
     }
+
+    public static function getModelLabel(): string
+    {
+        return 'Configuraciones del sitio';
+    }
 }

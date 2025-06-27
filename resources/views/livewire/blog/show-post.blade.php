@@ -1,9 +1,9 @@
 <div>
 
-    @section('title', '{{ $post->title }} - Grupo Litesa')
-    @section('meta_description', '{{ $post->excerpt }}')
-    @section('og_title', '{{ $post->title }} - Grupo Litesa')
-    @section('og_description', '{{ $post->excerpt }}')
+    @section('title', $post->title . ' - Grupo Litesa')
+    @section('meta_description', $post->excerpt)
+    @section('og_title', $post->title . ' - Grupo Litesa')
+    @section('og_description', $post->excerpt)
     @section('og_image', App::environment('local') ? asset($post->image) : Storage::disk('s3')->url($post->image))
 
     @php

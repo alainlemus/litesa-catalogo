@@ -1,9 +1,9 @@
 <div>
 
     @section('title', 'Nosotros - Grupo Litesa')
-    @section('meta_description', 'Somos una empresa 100% mexicana que nace con un objetivo de comercializar bienes y servicios, mejorando la calidad de vida de los consumidores, a partir de entonces nos dedicamos a crear alianzas estratégicas con las mejores marcas del mundo respaldadas en sus productos.')
+    @section('meta_description', 'Somos una empresa 100% mexicana que nace con un objetivo de comercializar bienes y servicios, mejorando la calidad de vida de los consumidores.')
     @section('og_title', 'Nosotros - Grupo Litesa')
-    @section('og_description', 'Somos una empresa 100% mexicana que nace con un objetivo de comercializar bienes y servicios, mejorando la calidad de vida de los consumidores, a partir de entonces nos dedicamos a crear alianzas estratégicas con las mejores marcas del mundo respaldadas en sus productos.')
+    @section('og_description', 'Somos una empresa 100% mexicana que nace con un objetivo de comercializar bienes y servicios, mejorando la calidad de vida de los consumidores.')
     @section('og_image', App::environment('local') ? asset('uploads/' . ltrim('navio.jpg', '/')) : Storage::disk('s3')->url('uploads/navio.jpg'))
 
     @php

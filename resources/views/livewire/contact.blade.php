@@ -1,4 +1,11 @@
 <div>
+
+    @section('title', 'Contacto - Grupo Litesa')
+    @section('meta_description', 'Contactanos, estamos para escucharte y resolver tus dudas.')
+    @section('og_title', 'Contacto - Grupo Litesa')
+    @section('og_description', 'Contactanos, estamos para escucharte y resolver tus dudas.')
+    @section('og_image', App::environment('local') ? asset('uploads/' . ltrim('navio.jpg', '/')) : Storage::disk('s3')->url('uploads/navio.jpg'))
+
     <section class="min-h-screen bg-cover " style="background-image: url('{{ App::environment('local')
             ? asset('storage/' . ltrim($formImage->path, '/'))
             : Storage::disk('s3')->url($formImage->path) }}')">

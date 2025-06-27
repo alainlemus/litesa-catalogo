@@ -1,5 +1,9 @@
 <div>
 
+    @php
+        use Carbon\Carbon;
+    @endphp
+
     <div
         class="w-full bg-center bg-cover h-[38rem]"
         style="background-image: url('{{ App::environment('local')
@@ -214,7 +218,12 @@
                                 {{ $post->title }}
                             </a>
 
-                            <span class="text-sm text-gray-500 dark:text-gray-300">Publicado: {{ $post->updated_at }}</span>
+                            @php
+                                $fechaFormateada = Carbon::parse($post->updated_at)
+                                ->translatedFormat('d \d\e\l \m\e\s F \d\e\l Y');
+                            @endphp
+
+                            <span class="text-sm text-gray-500 dark:text-gray-300">Publicado: {{ $fechaFormateada }}</span>
                         </div>
                     </div>
                 @endforeach

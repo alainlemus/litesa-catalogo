@@ -1,9 +1,13 @@
 <div>
 
+    @php
+        use Carbon\Carbon;
+    @endphp
+
     <section class="transition-colors duration-300 bg-white dark:bg-gray-900">
         <div class="container px-6 py-10 mx-auto">
             <div class="flex items-center justify-between">
-                <h1 class="text-2xl font-semibold text-gray-800 capitalize lg:text-3xl dark:text-white">recent posts </h1>
+                <h1 class="text-2xl font-semibold text-gray-800 capitalize lg:text-3xl dark:text-white">Entradas recientes </h1>
 
                 <button class="focus:outline-none">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-gray-600 transition-colors duration-300 transform dark:text-gray-400 hover:text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -35,7 +39,11 @@
 
                             <div class="flex items-center justify-between mt-4">
                                 <div>
-                                    <p class="text-sm text-gray-500 dark:text-gray-400">{{ $post->updated_at }}</p>
+                                    @php
+                                        $fechaFormateada = Carbon::parse($post->updated_at)
+                                        ->translatedFormat('d \d\e\l \m\e\s F \d\e\l Y');
+                                    @endphp
+                                    <p class="text-sm text-gray-500 dark:text-gray-400">{{ $fechaFormateada }}</p>
                                 </div>
 
                                 <a href="{{ route('blog.show', $post->slug) }}" class="inline-block text-blue-500 underline hover:text-blue-400">Ves entrada</a>

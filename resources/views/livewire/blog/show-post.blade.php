@@ -1,5 +1,9 @@
 <div>
 
+    @php
+        use Carbon\Carbon;
+    @endphp
+
     <div class="flex justify-center w-full px-4 py-10 mx-auto transition-colors duration-300 dark:bg-gray-900">
 
         <div class="max-w-3xl">
@@ -32,7 +36,7 @@
                 </span>
             </div>
 
-            <h1 class="mb-4 text-3xl font-bold text-white">{{ $post->title }}</h1>
+            <h1 class="mb-4 text-3xl font-bold text-gray-800 dark:text-white">{{ strtoupper($post->title) }}</h1>
 
             @if ($post->image)
                 <img
@@ -42,9 +46,17 @@
                 >
             @endif
 
-            <p class="mb-4 text-sm text-gray-300">Categoría: {{ $post->category }}</p>
+            <div class="flex justify-between mb-4">
 
-            <div class="prose text-white prose-neutral max-w-none">
+                @php
+                    $fechaFormateada = Carbon::parse($post->updated_at)
+                    ->translatedFormat('d \d\e\l \m\e\s F \d\e\l Y');
+                @endphp
+                <p class="mb-4 text-sm text-gray-400 dark:text-gray-500">{{ strtoupper("Categoría: ".$post->category) }}</p>
+                <p class="mb-4 text-sm text-gray-400 dark:text-gray-500">{{ strtoupper($fechaFormateada) }}</p>
+            </div>
+
+            <div class="prose text-gray-700 prose-neutral max-w-none dark:text-white">
                 {!! $post->content !!}
             </div>
 

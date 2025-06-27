@@ -1,6 +1,8 @@
 @import "tailwindcss";
 @source "../views";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
     --color-primary: #196BAC;
   }

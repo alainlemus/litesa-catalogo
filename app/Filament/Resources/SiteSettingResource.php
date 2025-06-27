@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Filament\Resources;
 
 use App\Models\SiteSetting;
@@ -32,13 +33,24 @@ class SiteSettingResource extends Resource
                         ->acceptedFileTypes(['image/png', 'image/svg+xml', 'image/x-icon']),
                 ]),
 
-            Forms\Components\FileUpload::make('logo')
-                ->label('Logo del sitio')
-                ->image()
-                ->disk('public')
-                ->directory('site')
-                ->imagePreviewHeight('80')
-                ->acceptedFileTypes(['image/png', 'image/jpeg', 'image/webp', 'image/svg+xml']),
+            Forms\Components\Section::make('Logos del sitio')
+                ->schema([
+                    Forms\Components\FileUpload::make('logo_light')
+                        ->label('Logo para tema claro')
+                        ->image()
+                        ->disk('public')
+                        ->directory('site')
+                        ->imagePreviewHeight('80')
+                        ->acceptedFileTypes(['image/png', 'image/jpeg', 'image/webp', 'image/svg+xml']),
+
+                    Forms\Components\FileUpload::make('logo_dark')
+                        ->label('Logo para tema oscuro')
+                        ->image()
+                        ->disk('public')
+                        ->directory('site')
+                        ->imagePreviewHeight('80')
+                        ->acceptedFileTypes(['image/png', 'image/jpeg', 'image/webp', 'image/svg+xml']),
+                ]),
 
             Forms\Components\Section::make('Para compartir')
                 ->schema([
@@ -99,12 +111,12 @@ class SiteSettingResource extends Resource
 
     public static function table(Table $table): Table
     {
-        return $table->columns([]); // Lo ocultaremos
+        return $table->columns([]); // Lo ocultamos
     }
 
     public static function shouldRegisterNavigation(): bool
     {
-        return true; // Queremos que aparezca en el panel
+        return true;
     }
 
     public static function getPages(): array

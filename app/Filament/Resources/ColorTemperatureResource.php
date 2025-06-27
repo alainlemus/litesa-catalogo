@@ -14,6 +14,7 @@ class ColorTemperatureResource extends Resource
 {
     protected static ?string $model = ColorTemperature::class;
     protected static ?string $navigationIcon = 'heroicon-o-fire';
+    protected static ?string $navigationGroup = 'Catalogo';
 
     public static function form(Form $form): Form
     {

@@ -7,18 +7,40 @@
     <link rel="icon" type="image/x-icon" href="https://grupolitesa.com.mx/img/favicon.png">
     @livewireStyles
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <script>
+        if (
+            localStorage.theme === 'dark' ||
+            (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+        ) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+
 </head>
-<body class="flex flex-col w-full min-h-screen font-sans bg-gray-100">
+<body class="flex flex-col w-full min-h-screen font-sans transition-colors duration-300 bg-gray-100">
 
     <header class="sticky top-0 z-20">
-        <nav x-data="{ isOpen: false }" class="bg-white shadow dark:bg-gray-900">
+        <nav x-data="{ isOpen: false }" class="transition-colors duration-300 bg-white shadow dark:bg-gray-900">
             <div class="container px-6 py-4 mx-auto">
                 <div class="lg:flex lg:items-center lg:justify-between">
                     <div class="flex items-center justify-between">
-                        <a href="{{ route('home') }}" class="mx-auto ">
+                        <a href="{{ route('home') }}" class="mx-auto transition-opacity duration-300">
                             @if ($setting = \App\Models\SiteSetting::first())
-                                <img src="{{ Storage::disk('public')->url($setting->logo) }}" alt="{{ $setting->title }} logo" class="h-10">
+                                <img
+                                    src="{{ Storage::disk('public')->url($setting->logo_light) }}"
+                                    alt="{{ $setting->title }} logo"
+                                    class="block h-10 dark:hidden"
+                                >
+                                <img
+                                    src="{{ Storage::disk('public')->url($setting->logo_dark) }}"
+                                    alt="{{ $setting->title }} logo"
+                                    class="hidden h-10 dark:block"
+                                >
                             @endif
                         </a>
 
@@ -43,6 +65,15 @@
                             <a href="{{ route('catalog') }}" class="block mx-4 mt-4 text-gray-700 capitalize lg:mt-0 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400">Iluminación</a>
                             <a href="{{ route('blog') }}" class="block mx-4 mt-4 text-gray-700 capitalize lg:mt-0 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400">Blog</a>
                             <a href="{{ route('contact') }}" class="block mx-4 mt-4 text-gray-700 capitalize lg:mt-0 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400">Contacto</a>
+                            <div class="flex items-center space-x-4">
+                                {{-- Botón de tema --}}
+                                <button onclick="toggleTheme()" class="text-gray-700 transition-colors dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400">
+                                    <svg id="theme-icon" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" stroke="currentColor"
+                                         viewBox="0 0 24 24" stroke-width="2">
+                                        <!-- Icono dinámico por JS -->
+                                    </svg>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -56,12 +87,21 @@
     </div>
 
     <!-- Footer -->
-    <footer class="bg-white dark:bg-gray-900">
+    <footer class="transition-colors duration-300 bg-white dark:bg-gray-900">
         <div class="container px-6 py-8 mx-auto">
             <div class="flex flex-col items-center text-center">
                 <a href="{{ route('home') }}">
                     @if ($setting = \App\Models\SiteSetting::first())
-                        <img src="{{ Storage::disk('public')->url($setting->logo) }}" alt="{{ $setting->title }} logo" class="h-7">
+                                <img
+                            src="{{ Storage::disk('public')->url($setting->logo_light) }}"
+                            alt="{{ $setting->title }} logo"
+                            class="block h-7 dark:hidden"
+                        >
+                        <img
+                            src="{{ Storage::disk('public')->url($setting->logo_dark) }}"
+                            alt="{{ $setting->title }} logo"
+                            class="hidden h-7 dark:block"
+                        >
                     @endif
                 </a>
 
@@ -115,6 +155,37 @@
     </footer>
 
     @livewireScripts
+
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const icon = document.getElementById('theme-icon');
+
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+                icon.innerHTML = sunIcon;
+            } else {
+                html.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+                icon.innerHTML = moonIcon;
+            }
+        }
+
+        const sunIcon = `<path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m8-9h1M3 12H2m16.364-6.364l.707.707M4.929 19.071l.707.707M16.364 19.071l.707-.707M4.929 4.929l.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z" />`;
+        const moonIcon = `<path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z" />`;
+
+        // Al cargar, actualizamos el icono
+        document.addEventListener('DOMContentLoaded', () => {
+            const icon = document.getElementById('theme-icon');
+            if (localStorage.theme === 'dark' || (!localStorage.theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                icon.innerHTML = moonIcon;
+            } else {
+                icon.innerHTML = sunIcon;
+            }
+        });
+    </script>
+
 
 </body>
 </html>

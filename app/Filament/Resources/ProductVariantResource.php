@@ -14,6 +14,7 @@ class ProductVariantResource extends Resource
 {
     protected static ?string $model = ProductVariant::class;
     protected static ?string $navigationIcon = 'heroicon-o-cog';
+    protected static ?string $navigationGroup = 'Catalogo';
 
     public static function form(Form $form): Form
     {

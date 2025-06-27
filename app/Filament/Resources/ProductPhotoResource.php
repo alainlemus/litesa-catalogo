@@ -14,6 +14,7 @@ class ProductPhotoResource extends Resource
 {
     protected static ?string $model = ProductPhoto::class;
     protected static ?string $navigationIcon = 'heroicon-o-photo';
+    protected static ?string $navigationGroup = 'Catalogo';
 
     public static function form(Form $form): Form
     {

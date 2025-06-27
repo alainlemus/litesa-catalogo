@@ -6,6 +6,9 @@ use App\Livewire\Home;
 use App\Livewire\ShowProduct;
 use App\Livewire\Contact;
 use App\Livewire\Blog;
+use App\Livewire\Blog\ShowPost;
+
+Route::get('/blog/{slug}', ShowPost::class)->name('blog.show');
 
 Route::get('/', Home::class)->name('home');
 

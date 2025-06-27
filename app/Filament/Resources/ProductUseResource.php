@@ -14,6 +14,7 @@ class ProductUseResource extends Resource
 {
     protected static ?string $model = ProductUse::class;
     protected static ?string $navigationIcon = 'heroicon-o-tag';
+    protected static ?string $navigationGroup = 'Catalogo';
 
     public static function form(Form $form): Form
     {

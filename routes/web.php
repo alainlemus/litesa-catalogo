@@ -7,6 +7,7 @@ use App\Livewire\ShowProduct;
 use App\Livewire\Contact;
 use App\Livewire\Blog;
 use App\Livewire\Blog\ShowPost;
+use App\Livewire\PrivacyPolicyPage;
 
 Route::get('/blog/{slug}', ShowPost::class)->name('blog.show');
 
@@ -19,3 +20,5 @@ Route::get('/blog', Blog::class)->name('blog');
 Route::get('/contact', Contact::class)->name('contact');
 
 Route::get('/product/{id}', ShowProduct::class)->name('product.show');
+
+Route::get('/aviso-de-privacidad', PrivacyPolicyPage::class)->name('privacy.policy');

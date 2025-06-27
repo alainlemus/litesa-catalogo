@@ -84,6 +84,19 @@ class SiteSettingResource extends Resource
                     Forms\Components\ColorPicker::make('secondary_color')->required(),
                     Forms\Components\ColorPicker::make('tertiary_color')->required(),
                 ]),
+
+            Forms\Components\Section::make('Aviso de Privacidad')
+                ->schema([
+                    Forms\Components\RichEditor::make('privacy_policy')
+                        ->label('Contenido del aviso de privacidad')
+                        ->toolbarButtons([
+                            'bold', 'italic', 'underline', 'strike',
+                            'h2', 'h3', 'bulletList', 'orderedList',
+                            'link', 'blockquote', 'codeBlock', 'redo', 'undo',
+                        ])
+                        ->columnSpanFull()
+                        ->nullable(),
+                ]),
         ]);
     }
 

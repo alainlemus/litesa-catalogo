@@ -19,6 +19,7 @@ class SiteSetting extends Model
         'primary_color',
         'secondary_color',
         'tertiary_color',
+        'privacy_policy',
     ];
 
     protected $casts = [

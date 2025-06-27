@@ -3,8 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catálogo de Productos - Litesa</title>
+
+    <title>@yield('title', 'Título por defecto')</title>
+    <meta name="description" content="@yield('meta_description', 'Descripción por defecto')">
+    <meta property="og:title" content="@yield('og_title', 'Título OG por defecto')">
+    <meta property="og:description" content="@yield('og_description', 'Descripción OG por defecto')">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:image" content="@yield('og_image', asset('default-og-image.jpg'))">
     <link rel="icon" type="image/x-icon" href="https://grupolitesa.com.mx/img/favicon.png">
+
     @livewireStyles
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
@@ -120,7 +128,13 @@
             <hr class="my-6 border-gray-200 md:my-10 dark:border-gray-700" />
 
             <div class="flex flex-col items-center sm:flex-row sm:justify-between">
-                <p class="text-sm text-gray-500 dark:text-gray-300">© Copyright {{ date("Y") }}. Todos los derechos reservados.</p>
+                <div class="flex justify-center">
+                    <p class="text-sm text-gray-500 dark:text-gray-300">© Copyright {{ date("Y") }}. Todos los derechos reservados.</p>
+                    <a href="{{ route('privacy.policy') }}" class="pl-6 text-sm text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">
+                        Aviso de Privacidad
+                    </a>
+                </div>
+
 
                 <div class="flex -mx-2">
 

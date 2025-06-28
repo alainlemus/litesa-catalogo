@@ -18,6 +18,8 @@
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <script src="https://unpkg.com/alpinejs" defer></script>
+
     <script>
         if (
             localStorage.theme === 'dark' ||

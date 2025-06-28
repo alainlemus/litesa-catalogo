@@ -20,6 +20,10 @@ class SiteSetting extends Model
         'secondary_color',
         'tertiary_color',
         'privacy_policy',
+        'contact_phone',
+        'contact_email',
+        'contact_address',
+        'contact_hours',
     ];
 
     protected $casts = [

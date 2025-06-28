@@ -248,6 +248,10 @@
                 <p class="mt-3 text-gray-500 dark:text-gray-400">Listos para escuchar su requerimientos y apoyarlos.</p>
             </div>
 
+            @php
+                $siteSetting = \App\Models\SiteSetting::first();
+            @endphp
+
             <div class="grid grid-cols-1 gap-12 mt-10 md:grid-cols-2 lg:grid-cols-3">
                 <div class="flex flex-col items-center justify-center text-center">
                     <span class="p-3 text-blue-500 rounded-full bg-blue-100/80 dark:bg-gray-800">
@@ -258,7 +262,7 @@
 
                     <h2 class="mt-4 text-lg font-medium text-gray-800 dark:text-white">Email</h2>
                     <p class="mt-2 text-gray-500 dark:text-gray-400">Estamos para ayudarle.</p>
-                    <p class="mt-2 text-blue-500 dark:text-blue-400">contacto@grupolitesa.com.mx</p>
+                    <p class="mt-2 text-blue-500 dark:text-blue-400">{{ $siteSetting->contact_email }}</p>
                 </div>
 
                 <div class="flex flex-col items-center justify-center text-center">
@@ -271,7 +275,7 @@
 
                     <h2 class="mt-4 text-lg font-medium text-gray-800 dark:text-white">Oficina</h2>
                     <p class="mt-2 text-gray-500 dark:text-gray-400">Visitanos en </p>
-                    <p class="mt-2 text-blue-500 dark:text-blue-400">Av. Ejercito Nacional 425 Chapultepec Morales, Miguel Hidalgo, CP 1152 Ciudad de México</p>
+                    <p class="mt-2 text-blue-500 dark:text-blue-400">{{ $siteSetting->contact_address }}</p>
                 </div>
 
                 <div class="flex flex-col items-center justify-center text-center">
@@ -282,8 +286,8 @@
                     </span>
 
                     <h2 class="mt-4 text-lg font-medium text-gray-800 dark:text-white">Teléfono</h2>
-                    <p class="mt-2 text-gray-500 dark:text-gray-400">Lun-Vie  9am a 6pm.</p>
-                    <p class="mt-2 text-blue-500 dark:text-blue-400">+52 (55) 66512699</p>
+                    <p class="mt-2 text-gray-500 dark:text-gray-400">{{ $siteSetting->contact_hours }}</p>
+                    <p class="mt-2 text-blue-500 dark:text-blue-400">{{ $siteSetting->contact_phone }}</p>
                 </div>
             </div>
         </div>

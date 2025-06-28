@@ -85,6 +85,15 @@ class SiteSettingResource extends Resource
                     Forms\Components\ColorPicker::make('tertiary_color')->required(),
                 ]),
 
+            Forms\Components\Section::make('Contacto')
+                ->columns(2)
+                ->schema([
+                    Forms\Components\TextInput::make('contact_phone')->label('Teléfono de contacto'),
+                    Forms\Components\TextInput::make('contact_email')->label('Email de contacto')->email(),
+                    Forms\Components\Textarea::make('contact_address')->label('Dirección'),
+                    Forms\Components\TextInput::make('contact_hours')->label('Horario'),
+                ]),
+
             Forms\Components\Section::make('Aviso de Privacidad')
                 ->schema([
                     Forms\Components\RichEditor::make('privacy_policy')

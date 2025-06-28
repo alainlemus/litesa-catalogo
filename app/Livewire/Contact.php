@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\ContactMessage;
 use App\Models\MediaFile;
+use App\Models\SiteSetting;
 use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 
@@ -14,9 +15,11 @@ class Contact extends Component
     public $name;
     public $email;
     public $message;
+    public $emailContactAdmin = null;
 
     public function mount(){
         $this->formImage = MediaFile::where('name', 'Footer')->first();
+        $this->emailContactAdmin = SiteSetting::first()->get('contact_email');
     }
 
     public function sendMessage()
@@ -25,7 +28,7 @@ class Contact extends Component
 
         $this->validate([
             'name' => 'required|string|min:3',
-            'email' => 'required|email',
+            'email' => ['required', 'regex:/^[\w\.\-]+@([\w\-]+\.)+[a-zA-Z]{2,}$/'],
             'message' => 'required|string|min:10',
         ]);
 
@@ -46,8 +49,14 @@ class Contact extends Component
                 messageContent: $this->message
             ));
 
+            // Correo interno al equipo de Litesa
+            Mail::to($this->emailContactAdmin)->send(new \App\Mail\AdminContactNotification(
+                name: $this->name,
+                email: $this->email,
+                messageContent: $this->message
+            ));
+
             logger('📧 Correo enviado');
-            $this->reset(['name', 'email', 'message']);
             session()->flash('success', '¡Mensaje enviado con éxito!');
 
         } catch (\Exception $e) {

@@ -14,4 +14,9 @@ return [
         'email' => 'correo electrónico',
         'message' => 'mensaje',
     ],
+    'custom' => [
+        'g-recaptcha-response' => [
+            'required' => 'Por favor completa el captcha.',
+        ],
+    ],
 ];

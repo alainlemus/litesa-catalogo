@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Models\ContactMessage;
 use App\Models\MediaFile;
 use App\Models\SiteSetting;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 
@@ -16,6 +17,14 @@ class Contact extends Component
     public $email;
     public $message;
     public $emailContactAdmin = null;
+    public $recaptcha;
+
+    protected $listeners = ['captchaVerified'];
+
+    public function captchaVerified($token)
+    {
+        $this->recaptcha = $token;
+    }
 
     public function mount(){
         $this->formImage = MediaFile::where('name', 'Footer')->first();
@@ -30,6 +39,16 @@ class Contact extends Component
             'name' => 'required|string|min:3',
             'email' => ['required', 'regex:/^[\w\.\-]+@([\w\-]+\.)+[a-zA-Z]{2,}$/'],
             'message' => 'required|string|min:10',
+            'recaptcha' => ['required', function ($attribute, $value, $fail) {
+                $response = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
+                    'secret' => env('RECAPTCHA_SECRET_KEY'),
+                    'response' => $value,
+                ]);
+
+                if (! $response->json('success')) {
+                    $fail('Por favor verifica que no eres un robot.');
+                }
+            }],
         ]);
 
         logger('✅ Validación pasada');
@@ -59,12 +78,14 @@ class Contact extends Component
             logger('📧 Correo enviado');
             session()->flash('success', '¡Mensaje enviado con éxito!');
 
+
         } catch (\Exception $e) {
             session()->flash('error', 'Ocurrio un error, por favor vuelve a intentarlo más tarde.');
             logger('Error al enviar el correo: ' . $e->getMessage());
         }
 
-        $this->reset(['name', 'email', 'message']);
+        $this->reset(['name', 'email', 'message', 'recaptcha']);
+        $this->emit('resetRecaptcha');
     }
 
 

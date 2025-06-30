@@ -66,6 +66,14 @@
                                     @error('message') <span class="text-sm text-red-600">{{ $message }}</span> @enderror
                                 </div>
 
+                                <div wire:ignore class="mt-4" id="recaptcha-container"></div>
+
+                                <input type="hidden" id="recaptcha" wire:model.defer="recaptcha">
+
+                                @error('g-recaptcha-response')
+                                    <span class="text-sm text-red-600">{{ $message }}</span>
+                                @enderror
+
                                 <button
                                     class="w-full px-6 py-3 mt-6 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-400 focus:ring-opacity-50 disabled:opacity-50 disabled:cursor-not-allowed"
                                     wire:loading.attr="disabled"
@@ -125,5 +133,36 @@
             </div>
         </div>
     </section>
+
+    <script src="https://www.google.com/recaptcha/api.js?onload=initRecaptcha&render=explicit" async defer></script>
+
+    <script>
+        let recaptchaWidgetId;
+
+        function onCaptchaVerified(token) {
+            Livewire.emit('captchaVerified', token);
+        }
+
+        function initRecaptcha() {
+            if (typeof grecaptcha !== 'undefined') {
+                recaptchaWidgetId = grecaptcha.render('recaptcha-container', {
+                    'sitekey': '{{ env("RECAPTCHA_SITE_KEY") }}',
+                    'callback': onCaptchaVerified,
+                });
+            }
+        }
+
+        document.addEventListener('livewire:load', function () {
+            initRecaptcha();
+
+            Livewire.on('resetRecaptcha', () => {
+                if (typeof grecaptcha !== 'undefined' && recaptchaWidgetId !== undefined) {
+                    grecaptcha.reset(recaptchaWidgetId);
+                }
+            });
+
+        });
+    </script>
+
 
 </div>

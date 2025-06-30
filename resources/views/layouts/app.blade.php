@@ -19,6 +19,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
     <script>
         if (
@@ -94,7 +95,7 @@
                                 Contacto
                             </a>
 
-                            <div class="flex items-center space-x-4">
+                            <div class="flex items-center justify-center py-10 space-x-4 lg:py-0">
                                 <button onclick="toggleTheme()" class="text-gray-700 transition-colors dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-600">
                                     <svg id="theme-icon" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" stroke="currentColor"
                                         viewBox="0 0 24 24" stroke-width="2">

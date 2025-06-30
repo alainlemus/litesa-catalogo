@@ -66,4 +66,9 @@ class ContactMessageResource extends Resource
     {
         return true;
     }
+
+    public static function getModelLabel(): string
+    {
+        return 'Mensajes';
+    }
 }

@@ -140,8 +140,6 @@
         let recaptchaWidgetId;
 
         function onCaptchaVerified(token) {
-            console.log('✅ Token recibido', token);
-
             const el = document.getElementById('recaptcha-token');
             el.value = token;
             el.dispatchEvent(new Event('input', { bubbles: true }));

@@ -151,6 +151,6 @@ class SiteSettingResource extends Resource
 
     public static function getModelLabel(): string
     {
-        return 'Configuraciones del sitio';
+        return 'Configuracion';
     }
 }

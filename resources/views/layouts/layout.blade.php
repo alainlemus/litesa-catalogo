@@ -111,7 +111,7 @@
     </header>
 
     <div class="flex-grow">
-        {{ $slot }}
+        @yield('content')
     </div>
 
     <!-- Footer -->

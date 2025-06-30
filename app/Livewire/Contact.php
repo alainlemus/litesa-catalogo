@@ -23,12 +23,13 @@ class Contact extends Component
 
     public function captchaVerified($token)
     {
+        logger('📥 Recaptcha recibido: ', ['token' => $token]);
         $this->recaptcha = $token;
     }
 
     public function mount(){
         $this->formImage = MediaFile::where('name', 'Footer')->first();
-        $this->emailContactAdmin = SiteSetting::first()->get('contact_email');
+        $this->emailContactAdmin = SiteSetting::first()->contact_email;
     }
 
     public function sendMessage()
@@ -44,6 +45,8 @@ class Contact extends Component
                     'secret' => env('RECAPTCHA_SECRET_KEY'),
                     'response' => $value,
                 ]);
+
+                logger('🔍 Respuesta reCAPTCHA: ', $response->json());
 
                 if (! $response->json('success')) {
                     $fail('Por favor verifica que no eres un robot.');
@@ -84,8 +87,12 @@ class Contact extends Component
             logger('Error al enviar el correo: ' . $e->getMessage());
         }
 
-        $this->reset(['name', 'email', 'message', 'recaptcha']);
-        $this->emit('resetRecaptcha');
+        $this->dispatch('resetRecaptcha');
+        $this->dispatch('formReset');
+
+        $this->reset();
+
+        $this->formImage = MediaFile::where('name', 'Footer')->first();
     }
 
 

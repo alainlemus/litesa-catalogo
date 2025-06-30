@@ -6,7 +6,8 @@
     @section('og_description', 'Contactanos, estamos para escucharte y resolver tus dudas.')
     @section('og_image', App::environment('local') ? asset('uploads/' . ltrim('grua.jpg', '/')) : Storage::disk('s3')->url('uploads/grua.jpg'))
 
-    <section class="min-h-screen bg-cover " style="background-image: url('{{ App::environment('local')
+
+    <section class="min-h-screen bg-cover" style="background-image: url('{{ App::environment('local')
             ? asset('storage/' . ltrim($formImage->path, '/'))
             : Storage::disk('s3')->url($formImage->path) }}')">
 
@@ -67,9 +68,7 @@
                                 </div>
 
                                 <div wire:ignore class="mt-4" id="recaptcha-container"></div>
-
-                                <input type="hidden" id="recaptcha" wire:model.defer="recaptcha">
-
+                                <input type="hidden" wire:model="recaptcha" id="recaptcha-token">
                                 @error('g-recaptcha-response')
                                     <span class="text-sm text-red-600">{{ $message }}</span>
                                 @enderror
@@ -137,9 +136,16 @@
     <script src="https://www.google.com/recaptcha/api.js?onload=initRecaptcha&render=explicit" async defer></script>
 
     <script>
+
         let recaptchaWidgetId;
 
         function onCaptchaVerified(token) {
+            console.log('✅ Token recibido', token);
+
+            const el = document.getElementById('recaptcha-token');
+            el.value = token;
+            el.dispatchEvent(new Event('input', { bubbles: true }));
+
             Livewire.emit('captchaVerified', token);
         }
 

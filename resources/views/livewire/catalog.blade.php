@@ -1,6 +1,6 @@
-<div>
+<div class="bg-transparent dark:bg-gray-700">
 
-    <div class="sticky top-15 z-10 w-full bg-[var(--color-primary)] text-white shadow">
+    <div class="sticky z-10 w-full text-white bg-white shadow top-18 dark:bg-gray-700">
         <div class="container flex flex-col items-center px-4 py-3 mx-auto space-y-3 lg:justify-center md:flex-row md:space-y-0">
 
             <!-- Buscador -->
@@ -14,9 +14,9 @@
         </div>
 
         <!-- Filtro -->
-        <div class="flex justify-center px-4 py-2 bg-blue-100">
+        <div class="flex justify-center px-4 py-2 bg-blue-100 dark:bg-gray-600">
             <div class="flex flex-wrap items-center gap-2">
-                <p class="font-semibold text-purple-600">Filtrar por uso:</p>
+                <p class="font-semibold text-purple-600 dark:text-white">Filtrar por uso:</p>
                 @foreach ($places as $id => $place)
                     <button
                         wire:click="$set('selectedUse', {{ $id }})"
@@ -37,32 +37,38 @@
     </div>
 
     <!-- Main Content -->
-    <main class="container relative p-6 mx-auto pt-18 mb-14">
-        <h2 class="mb-4 text-2xl font-bold">Catálogo de Productos</h2>
-        <p class="mb-6 text-gray-600">Descubre nuestra amplia gama de productos de iluminación LED</p>
+    <main class="container relative p-6 pb-20 mx-auto bg-transparent pt-18">
+        <h2 class="mb-4 text-2xl font-bold dark:text-white">Catálogo de Productos</h2>
+        <p class="mb-6 text-gray-600 dark:text-white">Descubre nuestra amplia gama de productos de iluminación LED</p>
 
         <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
             @foreach ($products as $product)
-                <div class="p-4 bg-white rounded-lg shadow" wire:click="showProductDetails({{ $product->id }})">
-                    <h3 class="mb-2 text-xl font-semibold text-purple-600">{{ $product->name }}</h3>
+                <div class="p-4 bg-white rounded-lg shadow dark:bg-gray-500" wire:click="showProductDetails({{ $product->id }})">
+                    <h3 class="mb-2 text-xl font-semibold text-gray-600 dark:text-white">{{ $product->name }}</h3>
                     <div class="flex flex-col items-start justify-between">
                         <div class="w-full">
                             @if ($product->photos->count() > 0)
-                                <img src="{{ App::environment('local') ? asset('storage/' . $product->photos->first()->path) : \Illuminate\Support\Facades\Storage::disk('s3')->url($product->photos->first()->path) }}" alt="{{ $product->name }}" class="object-contain w-full h-48 rounded">
+                                <img src="{{ App::environment('local') ? asset('storage/' . $product->photos->first()->path) : \Illuminate\Support\Facades\Storage::disk('s3')->url($product->photos->first()->path) }}" alt="{{ $product->name }}" class="object-contain w-full h-48 bg-white rounded">
                             @else
                                 <div class="flex items-center justify-center w-full h-48 bg-gray-200">Sin imagen</div>
                             @endif
                         </div>
                         <div class="w-full pt-4 pl-1">
                             <p class="mb-2 text-green-600">
-                                <span class="p-1 text-yellow-500 border-gray-300 rounded border-1">{{ $product->certification }}</span>
-                                <span class="p-1 border-gray-300 rounded border-1">{{ $product->base }}</span>
-                                <span class="p-1 border-gray-300 rounded border-1">
-                                    {{ $product->power_factor }}
-                                </span>
+                                @if ($product->certification != null)
+                                    <span class="p-1 text-yellow-500 border-gray-300 rounded dark:text-gray-300 border-1">{{ $product->certification }}</span>
+                                @endif
+                                @if ($product->base != null)
+                                    <span class="p-1 border-gray-300 rounded border-1 dark:text-gray-300">{{ $product->base }}</span>
+                                @endif
+                                @if ($product->power_factor != null)
+                                    <span class="p-1 border-gray-300 rounded border-1 dark:text-gray-300">
+                                        {{ $product->power_factor }}
+                                    </span>
+                                @endif
                             </p>
                             <div class="flex items-center mb-2">
-                                <span class="px-2 py-1 text-white bg-yellow-300 rounded-full">Garantía {{ $product->warranty }}</span>
+                                <span class="px-2 py-1 text-white bg-yellow-300 rounded-full dark:bg-gray-900">Garantía {{ $product->warranty }}</span>
                             </div>
 
                         </div>

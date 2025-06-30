@@ -18,7 +18,7 @@
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <script src="https://unpkg.com/alpinejs" defer></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
     <script>
         if (
@@ -70,16 +70,34 @@
 
                     <!-- Mobile Menu open: "block", Menu closed: "hidden" -->
                     <div x-cloak :class="[isOpen ? 'translate-x-0 opacity-100 ' : 'opacity-0 -translate-x-full']" class="absolute inset-x-0 z-20 w-full px-6 py-4 transition-all duration-300 ease-in-out bg-white shadow-md lg:bg-transparent lg:dark:bg-transparent lg:shadow-none dark:bg-gray-900 lg:mt-0 lg:p-0 lg:top-0 lg:relative lg:w-auto lg:opacity-100 lg:translate-x-0">
+                        @php
+                            function activeClass($route) {
+                                return request()->routeIs($route) ? 'border-b-2 border-blue-600 text-blue-600 dark:text-blue-600' : '';
+                            }
+                        @endphp
+
                         <div class="-mx-4 lg:flex lg:items-center">
-                            <a href="{{ route('home') }}" class="block mx-4 text-gray-700 capitalize dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400">Nosotros</a>
-                            <a href="{{ route('catalog') }}" class="block mx-4 mt-4 text-gray-700 capitalize lg:mt-0 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400">Iluminación</a>
-                            <a href="{{ route('blog') }}" class="block mx-4 mt-4 text-gray-700 capitalize lg:mt-0 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400">Blog</a>
-                            <a href="{{ route('contact') }}" class="block mx-4 mt-4 text-gray-700 capitalize lg:mt-0 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400">Contacto</a>
+                            <a href="{{ route('home') }}"
+                            class="block mx-4 text-gray-700 capitalize dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-600 {{ activeClass('home') }}">
+                                Nosotros
+                            </a>
+                            <a href="{{ route('catalog') }}"
+                            class="block mx-4 mt-4 text-gray-700 capitalize lg:mt-0 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-600 {{ activeClass('catalog') }}">
+                                Iluminación
+                            </a>
+                            <a href="{{ route('blog') }}"
+                            class="block mx-4 mt-4 text-gray-700 capitalize lg:mt-0 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-600 {{ activeClass('blog') }}">
+                                Blog
+                            </a>
+                            <a href="{{ route('contact') }}"
+                            class="block mx-4 mt-4 text-gray-700 capitalize lg:mt-0 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-600 {{ activeClass('contact') }}">
+                                Contacto
+                            </a>
+
                             <div class="flex items-center space-x-4">
-                                {{-- Botón de tema --}}
-                                <button onclick="toggleTheme()" class="text-gray-700 transition-colors dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400">
+                                <button onclick="toggleTheme()" class="text-gray-700 transition-colors dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-600">
                                     <svg id="theme-icon" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" stroke="currentColor"
-                                         viewBox="0 0 24 24" stroke-width="2">
+                                        viewBox="0 0 24 24" stroke-width="2">
                                         <!-- Icono dinámico por JS -->
                                     </svg>
                                 </button>

@@ -16,7 +16,7 @@ Route::get('/blog/{slug}', ShowPost::class)->name('blog.show');
 
 Route::get('/', Home::class)->name('home');
 
-Route::get('/catalogo', Catalog::class)->name('catalog');
+Route::get('/iluminacion/catalogo', Catalog::class)->name('ilumination.catalog');
 
 Route::get('/iluminacion', Ilumination::class)->name('ilumination');
 

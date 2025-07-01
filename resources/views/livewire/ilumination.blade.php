@@ -65,7 +65,7 @@
             </div>
 
             <div class="flex items-center justify-center w-full h-96 lg:w-1/2">
-                <img class="object-cover w-full h-full max-w-2xl rounded-md" src="{{ App::environment('local')
+                <img class="object-cover w-full h-full max-w-2xl rounded-md shadow" src="{{ App::environment('local')
                     ? asset('storage/' . ltrim($firstImage->path, '/'))
                     : Storage::disk('s3')->url($firstImage->path) }}" alt="{{ $firstImage->name }}" loading="lazy">
             </div>
@@ -88,7 +88,7 @@
                             <p class="pb-6 text-3xl font-medium tracking-tight text-white">Tecnologia de Vanguardia</p>
                             <p class="text-blue-200 ">Nuestro compromiso es garantizar eficiencia, sostenibilidad y diseño en cada producto, adaptándonos a las necesidades específicas de nuestros clientes y contribuyendo al desarrollo de espacios iluminados de manera inteligente y responsable. </p>
                             <br>
-                            <a href="{{ route('catalog') }}" class="w-full p-2 text-white transition transform bg-blue-600 rounded cursor-pointer hover:border-1 hover:scale-105 hover:border-white dark:bg-blue-600 dark:" type="submit">Ver Catalogo</a>
+                            <a href="{{ route('ilumination.catalog') }}" class="w-full p-2 text-white transition transform bg-blue-600 rounded cursor-pointer hover:border-1 hover:scale-105 hover:border-white dark:bg-blue-600 dark:" type="submit">Ver catálogo</a>
                         </div>
 
 

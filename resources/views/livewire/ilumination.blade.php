@@ -83,7 +83,7 @@
 
                 <div class="w-full p-6 bg-gray-600 md:flex md:items-center rounded-2xl md:bg-transparent md:p-0 lg:px-12 md:justify-evenly">
 
-                    @if ($secondImage->path)
+                    @if ($secondImage)
                         <img class="object-cover shadow-md md:h-[32rem] md:w-80 lg:h-[36rem] lg:w-[26rem] md:rounded-2xl" src="{{ App::environment('local')
                         ? asset('storage/' . ltrim($secondImage->path, '/'))
                         : Storage::disk('s3')->url($secondImage->path) }}" alt="{{ $secondImage->name }}" />

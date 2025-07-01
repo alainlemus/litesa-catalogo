@@ -7,6 +7,7 @@ use App\Livewire\ShowProduct;
 use App\Livewire\Contact;
 use App\Livewire\Blog;
 use App\Livewire\Blog\ShowPost;
+use App\Livewire\Ilumination;
 use App\Livewire\NewsletterForm;
 use App\Livewire\PrivacyPolicyPage;
 use Illuminate\Support\Facades\Mail;
@@ -15,13 +16,15 @@ Route::get('/blog/{slug}', ShowPost::class)->name('blog.show');
 
 Route::get('/', Home::class)->name('home');
 
-Route::get('/catalog', Catalog::class)->name('catalog');
+Route::get('/catalogo', Catalog::class)->name('catalog');
+
+Route::get('/iluminacion', Ilumination::class)->name('ilumination');
 
 Route::get('/blog', Blog::class)->name('blog');
 
-Route::get('/contact', Contact::class)->name('contact');
+Route::get('/contacto', Contact::class)->name('contact');
 
-Route::get('/product/{id}', ShowProduct::class)->name('product.show');
+Route::get('/producto/{id}', ShowProduct::class)->name('product.show');
 
 Route::get('/aviso-de-privacidad', PrivacyPolicyPage::class)->name('privacy.policy');
 

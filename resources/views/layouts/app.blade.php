@@ -83,19 +83,19 @@
 
                         <div class="-mx-4 lg:flex lg:items-center">
                             <a href="{{ route('home') }}"
-                            class="block mx-4 text-gray-700 capitalize dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-600 {{ activeClass('home') }}">
+                            class="block mx-4 capitalize dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-600 {{ activeClass('home') }}">
                                 Nosotros
                             </a>
-                            <a href="{{ route('catalog') }}"
-                            class="block mx-4 mt-4 text-gray-700 capitalize lg:mt-0 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-600 {{ activeClass('catalog') }}">
+                            <a href="{{ route('ilumination') }}"
+                            class="block mx-4 mt-4 capitalize lg:mt-0 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-600 {{ activeClass('ilumination') }}">
                                 Iluminación
                             </a>
                             <a href="{{ route('blog') }}"
-                            class="block mx-4 mt-4 text-gray-700 capitalize lg:mt-0 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-600 {{ activeClass('blog') }}">
+                            class="block mx-4 mt-4 capitalize lg:mt-0 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-600 {{ activeClass('blog') }}">
                                 Blog
                             </a>
                             <a href="{{ route('contact') }}"
-                            class="block mx-4 mt-4 text-gray-700 capitalize lg:mt-0 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-600 {{ activeClass('contact') }}">
+                            class="block mx-4 mt-4 capitalize lg:mt-0 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-600 {{ activeClass('contact') }}">
                                 Contacto
                             </a>
 

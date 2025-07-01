@@ -11,7 +11,10 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:image" content="@yield('og_image', asset('default-og-image.jpg'))">
-    <link rel="icon" type="image/x-icon" href="https://grupolitesa.com.mx/img/favicon.png">
+
+    @if ($setting = \App\Models\SiteSetting::first())
+        <link rel="icon" type="image/x-icon" href="{{ Storage::disk('public')->url($setting->favicon ?? 'default-favicon.ico') }}">
+    @endif
 
     @livewireStyles
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -132,6 +135,8 @@
                         >
                     @endif
                 </a>
+
+                @livewire('newsletter-form')
 
                 <div class="flex flex-wrap justify-center mt-6 -mx-4">
                     <a href="{{ route('home') }}" class="mx-4 text-sm text-gray-600 transition-colors duration-300 hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400" aria-label="Reddit"> Nosotros </a>

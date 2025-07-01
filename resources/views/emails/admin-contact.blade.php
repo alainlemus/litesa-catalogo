@@ -17,7 +17,7 @@
                     <!-- Header -->
                     <tr>
                         <td align="center" style="background-color:#1f2937;padding:20px;">
-                            <img src="{{ Storage::disk('public')->url($setting->logo_dark) }}" alt="{{ $setting->name }}" style="height:50px;">
+                            <img src="{{ asset('img/litesa-logo.png') }}" alt="{{ $setting->name }}" style="height:50px;">
                         </td>
                     </tr>
 

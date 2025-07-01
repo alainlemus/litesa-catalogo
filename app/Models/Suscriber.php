@@ -1,0 +1,12 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Suscriber extends Model
+{
+    protected $table = 'suscribers';
+    protected $fillable = ['email', 'unsubscribe_token'];
+}
+

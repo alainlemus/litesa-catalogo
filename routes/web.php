@@ -7,6 +7,7 @@ use App\Livewire\ShowProduct;
 use App\Livewire\Contact;
 use App\Livewire\Blog;
 use App\Livewire\Blog\ShowPost;
+use App\Livewire\NewsletterForm;
 use App\Livewire\PrivacyPolicyPage;
 use Illuminate\Support\Facades\Mail;
 
@@ -31,3 +32,6 @@ Route::get('/test-mail', function () {
 
     return 'Correo enviado (o intentado)';
 });
+
+Route::get('/newsletter/unsubscribe/{token}', [NewsletterForm::class, 'unsubscribe'])
+    ->name('newsletter.unsubscribe');

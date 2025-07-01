@@ -65,9 +65,12 @@
             </div>
 
             <div class="flex items-center justify-center w-full h-96 lg:w-1/2">
-                <img class="object-cover w-full h-full max-w-2xl rounded-md shadow" src="{{ App::environment('local')
-                    ? asset('storage/' . ltrim($firstImage->path, '/'))
-                    : Storage::disk('s3')->url($firstImage->path) }}" alt="{{ $firstImage->name }}" loading="lazy">
+
+                @if ($firstImage->path != null)
+                    <img class="object-cover w-full h-full max-w-2xl rounded-md shadow" src="{{ App::environment('local')
+                        ? asset('storage/' . ltrim($firstImage->path, '/'))
+                        : Storage::disk('s3')->url($firstImage->path) }}" alt="{{ $firstImage->name }}" loading="lazy">
+                @endif
             </div>
         </div>
     </section>
@@ -79,9 +82,12 @@
                 <div class="absolute w-full bg-gray-700 shadow -z-10 md:h-96 rounded-2xl"></div>
 
                 <div class="w-full p-6 bg-gray-600 md:flex md:items-center rounded-2xl md:bg-transparent md:p-0 lg:px-12 md:justify-evenly">
-                    <img class="object-cover shadow-md md:h-[32rem] md:w-80 lg:h-[36rem] lg:w-[26rem] md:rounded-2xl" src="{{ App::environment('local')
-                    ? asset('storage/' . ltrim($secondImage->path, '/'))
-                    : Storage::disk('s3')->url($secondImage->path) }}" alt="{{ $secondImage->name }}" />
+
+                    @if ($secondImage->path != null)
+                        <img class="object-cover shadow-md md:h-[32rem] md:w-80 lg:h-[36rem] lg:w-[26rem] md:rounded-2xl" src="{{ App::environment('local')
+                        ? asset('storage/' . ltrim($secondImage->path, '/'))
+                        : Storage::disk('s3')->url($secondImage->path) }}" alt="{{ $secondImage->name }}" />
+                    @endif
 
                     <div class="pt-10 mt-2 md:mx-6 lg:pt-0">
                         <div>

@@ -66,7 +66,7 @@
 
             <div class="flex items-center justify-center w-full h-96 lg:w-1/2">
 
-                @if ($firstImage->path != null)
+                @if ($firstImage)
                     <img class="object-cover w-full h-full max-w-2xl rounded-md shadow" src="{{ App::environment('local')
                         ? asset('storage/' . ltrim($firstImage->path, '/'))
                         : Storage::disk('s3')->url($firstImage->path) }}" alt="{{ $firstImage->name }}" loading="lazy">

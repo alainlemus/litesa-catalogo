@@ -1,7 +1,7 @@
 <div>
     @section('title', 'Iluminación - Grupo Litesa')
     @section('meta_description', 'Expertos en iluminación, ofrecemos soluciones de alta calidad para el hogar y la industria. Descubre nuestra amplia gama de productos y servicios.')
-    @section('og_title', 'Nosotros - Grupo Litesa')
+    @section('og_title', 'Iluminación - Grupo Litesa')
     @section('og_description', 'Expertos en iluminación, ofrecemos soluciones de alta calidad para el hogar y la industria. Descubre nuestra amplia gama de productos y servicios.')
     @section('og_image', App::environment('local') ? asset('uploads/' . ltrim('iluminacion.jpg', '/')) : Storage::disk('s3')->url('uploads/iluminacion.jpg'))
 

@@ -13,7 +13,7 @@ class Ilumination extends Component
     public function mount()
     {
         $this->firstImage = MediaFile::where('name', 'Alumbrado')->first();
-        $this->secondImage = MediaFile::where('name', 'Iluminación')->first();
+        $this->secondImage = MediaFile::where('name', 'Iluminacion')->first();
     }
 
     public function render()

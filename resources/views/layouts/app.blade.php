@@ -42,8 +42,20 @@
     <header class="sticky top-0 z-20">
         <nav x-data="{ isOpen: false }" class="transition-colors duration-300 bg-white shadow dark:bg-gray-900">
             <div class="container px-6 py-4 mx-auto">
+
                 <div class="lg:flex lg:items-center lg:justify-between">
+
                     <div class="flex items-center justify-between">
+
+                        <div class="flex items-center justify-center space-x-4 lg:hidden lg:py-0">
+                            <button onclick="toggleTheme()" class="text-gray-700 transition-colors dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-600">
+                                <svg id="theme-icon" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24" stroke-width="2">
+                                    <!-- Icono dinámico por JS -->
+                                </svg>
+                            </button>
+                        </div>
+
                         <a href="{{ route('home') }}" class="mx-auto transition-opacity duration-300">
                             @if ($setting = \App\Models\SiteSetting::first())
                                 <img
@@ -75,6 +87,8 @@
 
                     <!-- Mobile Menu open: "block", Menu closed: "hidden" -->
                     <div x-cloak :class="[isOpen ? 'translate-x-0 opacity-100 ' : 'opacity-0 -translate-x-full']" class="absolute inset-x-0 z-20 w-full px-6 py-4 transition-all duration-300 ease-in-out bg-white shadow-md lg:bg-transparent lg:dark:bg-transparent lg:shadow-none dark:bg-gray-900 lg:mt-0 lg:p-0 lg:top-0 lg:relative lg:w-auto lg:opacity-100 lg:translate-x-0">
+
+
                         @php
 
                             function activeClass($routes) {
@@ -107,8 +121,8 @@
                                 Contacto
                             </a>
 
-                            <div class="flex items-center justify-center py-10 space-x-4 lg:py-0">
-                                <button onclick="toggleTheme()" class="text-gray-700 transition-colors dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-600">
+                            <div class="items-center justify-center hidden py-10 space-x-4 lg:flex lg:py-0">
+                                <button onclick="toggleTheme()" class="text-gray-700 transition-colors cursor-pointer dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-600">
                                     <svg id="theme-icon" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" stroke="currentColor"
                                         viewBox="0 0 24 24" stroke-width="2">
                                         <!-- Icono dinámico por JS -->

@@ -29,7 +29,7 @@ class Home extends Component
             ->take(3)
             ->get();
         $this->page = AboutPageSetting::first();
-        $this->page = SiteSetting::first();
+        $this->seo = SiteSetting::first();
     }
 
     public function render()

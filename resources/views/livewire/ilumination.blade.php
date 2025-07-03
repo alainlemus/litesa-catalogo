@@ -69,17 +69,19 @@
             <hr class="my-12 border-gray-200 dark:border-gray-700">
 
             <div class="grid grid-cols-1 gap-8 md:grid-cols-61 lg:grid-cols-1">
-                @foreach ($lighting->section3_images as $image)
-                    <div class="flex items-center justify-center col-span-1 md:col-span-2 lg:col-span-1">
-                        @if ($image)
-                            <img class="rounded"
-                                src="{{ App::environment('local')
-                                    ? asset('storage/' . ltrim($image, '/'))
-                                    : Storage::disk('s3')->url($image) }}"
-                                alt="Galería Iluminación">
-                        @endif
-                    </div>
-                @endforeach
+                @if ($lighting->section3_images)
+                    @foreach ($lighting->section3_images as $image)
+                        <div class="flex items-center justify-center col-span-1 md:col-span-2 lg:col-span-1">
+                            @if ($image)
+                                <img class="rounded"
+                                    src="{{ App::environment('local')
+                                        ? asset('storage/' . ltrim($image, '/'))
+                                        : Storage::disk('s3')->url($image) }}"
+                                    alt="Galería Iluminación">
+                            @endif
+                        </div>
+                    @endforeach
+                @endif
 
             </div>
         </div>

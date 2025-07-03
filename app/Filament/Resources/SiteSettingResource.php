@@ -17,21 +17,23 @@ class SiteSettingResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-cog';
     protected static ?string $navigationLabel = 'Configuración del sitio';
-    protected static ?string $navigationGroup = 'Configuración';
+    protected static ?string $navigationGroup = 'Sitio Web';
+    protected static ?int $navigationSort = 5;
 
     public static function form(Form $form): Form
     {
         return $form->schema([
             Forms\Components\Section::make('General')
                 ->schema([
-                    Forms\Components\TextInput::make('title')->required(),
-                    Forms\Components\Textarea::make('description'),
-                    Forms\Components\FileUpload::make('favicon')
+                    Forms\Components\TextInput::make('title')->required()->label('Título'),
+                    Forms\Components\Textarea::make('description')->label('Descripción'),
+                    Forms\Components\FileUpload::make('favicon')->label('Favicon')
                         ->image()
                         ->disk('public')
                         ->directory('site')
                         ->acceptedFileTypes(['image/png', 'image/svg+xml', 'image/x-icon']),
-                ]),
+                ])
+                ->collapsible(), // Permite colapsar manualmente
 
             Forms\Components\Section::make('Logos del sitio')
                 ->schema([
@@ -50,32 +52,38 @@ class SiteSettingResource extends Resource
                         ->directory('site')
                         ->imagePreviewHeight('80')
                         ->acceptedFileTypes(['image/png', 'image/jpeg', 'image/webp', 'image/svg+xml']),
-                ]),
+                ])
+                ->collapsible() // Permite colapsar manualmente
+                ->collapsed(),  // Inicia colapsada
 
-            Forms\Components\Section::make('Para compartir')
+            Forms\Components\Section::make('SEO principal')
                 ->schema([
-                    Forms\Components\TextInput::make('share_title'),
-                    Forms\Components\Textarea::make('share_description'),
-                    Forms\Components\FileUpload::make('share_image')
+                    Forms\Components\TextInput::make('share_title')->label('Título'),
+                    Forms\Components\Textarea::make('share_description')->label('Descripción'),
+                    Forms\Components\FileUpload::make('share_image')->label('Imagen')
                         ->image()
                         ->disk('public')
                         ->directory('site')
                         ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp', 'image/svg+xml']),
-                ]),
+                ])
+                ->collapsible() // Permite colapsar manualmente
+                ->collapsed(),  // Inicia colapsada
 
             Forms\Components\Section::make('Redes sociales')
                 ->schema([
-                    Forms\Components\Repeater::make('socials')
+                    Forms\Components\Repeater::make('socials')->label('Red social')
                         ->schema([
-                            Forms\Components\TextInput::make('name')->required(),
-                            Forms\Components\TextInput::make('url')->url()->required(),
-                            Forms\Components\Textarea::make('svg')
+                            Forms\Components\TextInput::make('name')->label('Nombre')->required(),
+                            Forms\Components\TextInput::make('url')->url()->label('Url')->required(),
+                            Forms\Components\Textarea::make('svg')->label('Svg')
                                 ->label('Código SVG')
                                 ->rows(4)
                                 ->helperText('Pega el código del icono SVG'),
                         ])
                         ->columnSpanFull(),
-                ]),
+                ])
+                ->collapsible() // Permite colapsar manualmente
+                ->collapsed(),  // Inicia colapsada
 
             Forms\Components\Section::make('Colores del sitio')
                 ->columns(3)
@@ -83,7 +91,9 @@ class SiteSettingResource extends Resource
                     Forms\Components\ColorPicker::make('primary_color')->required(),
                     Forms\Components\ColorPicker::make('secondary_color')->required(),
                     Forms\Components\ColorPicker::make('tertiary_color')->required(),
-                ]),
+                ])
+                ->collapsible() // Permite colapsar manualmente
+                ->collapsed(),  // Inicia colapsada
 
             Forms\Components\Section::make('Contacto')
                 ->columns(2)
@@ -92,7 +102,9 @@ class SiteSettingResource extends Resource
                     Forms\Components\TextInput::make('contact_email')->label('Email de contacto')->email(),
                     Forms\Components\Textarea::make('contact_address')->label('Dirección'),
                     Forms\Components\TextInput::make('contact_hours')->label('Horario'),
-                ]),
+                ])
+                ->collapsible() // Permite colapsar manualmente
+                ->collapsed(),  // Inicia colapsada
 
             Forms\Components\Section::make('Aviso de Privacidad')
                 ->schema([
@@ -105,7 +117,9 @@ class SiteSettingResource extends Resource
                         ])
                         ->columnSpanFull()
                         ->nullable(),
-                ]),
+                ])
+                ->collapsible() // Permite colapsar manualmente
+                ->collapsed(),  // Inicia colapsada
         ]);
     }
 

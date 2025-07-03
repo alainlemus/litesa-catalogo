@@ -67,7 +67,7 @@
                                     <p class="text-sm text-gray-500 dark:text-gray-400">{{ $fechaFormateada }}</p>
                                 </div>
 
-                                <a href="{{ route('blog.show', $post->slug) }}" class="inline-block text-blue-500 underline hover:text-blue-400">Ves entrada</a>
+                                <a href="{{ route('blog.show', $post->slug) }}" class="inline-block text-blue-500 underline hover:text-blue-400">Ver entrada</a>
                             </div>
 
                         </div>

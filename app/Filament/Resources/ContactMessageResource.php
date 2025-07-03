@@ -15,7 +15,8 @@ class ContactMessageResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-envelope';
     protected static ?string $navigationLabel = 'Mensajes de contacto';
-    protected static ?string $navigationGroup = 'Sitio Web';
+    protected static ?string $navigationGroup = 'Comunicación';
+    protected static ?int $navigationSort = 1;
 
     public static function form(Forms\Form $form): Forms\Form
     {

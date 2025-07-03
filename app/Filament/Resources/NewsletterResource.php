@@ -20,7 +20,8 @@ class NewsletterResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-at-symbol';
     protected static ?string $navigationLabel = 'Suscriptores Newsletter';
-    protected static ?string $navigationGroup = 'Sitio Web';
+    protected static ?string $navigationGroup = 'Comunicación';
+    protected static ?int $navigationSort = 2;
 
     public static function form(Form $form): Form
     {

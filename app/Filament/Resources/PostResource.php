@@ -74,15 +74,16 @@ class PostResource extends Resource
                 ->label('Imagen')
                 ->height(50),
 
-            Tables\Columns\TextColumn::make('title')->searchable()->sortable(),
-            Tables\Columns\TextColumn::make('category')->sortable(),
+            Tables\Columns\TextColumn::make('title')->searchable()->label('Titulo')->sortable(),
+            Tables\Columns\TextColumn::make('category')->label('Categoria')->sortable(),
             Tables\Columns\TextColumn::make('status')
+                ->label('Status de publicación')
                 ->badge()
                 ->colors([
                     'secondary' => 'draft',
                     'success' => 'published',
                 ]),
-            Tables\Columns\TextColumn::make('created_at')->dateTime('d M Y'),
+            Tables\Columns\TextColumn::make('created_at')->label('Fecha de creación')->dateTime('d M Y'),
         ])->defaultSort('created_at', 'desc');
     }
 

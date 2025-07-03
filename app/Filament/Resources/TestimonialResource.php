@@ -58,10 +58,10 @@ class TestimonialResource extends Resource
                     ->height(40)
                     ->label('Foto'),
 
-                Tables\Columns\TextColumn::make('name')->searchable(),
-                Tables\Columns\TextColumn::make('position'),
-                Tables\Columns\TextColumn::make('message')->limit(50),
-                Tables\Columns\TextColumn::make('created_at')->dateTime('d M Y'),
+                Tables\Columns\TextColumn::make('name')->label('Nombre')->searchable(),
+                Tables\Columns\TextColumn::make('position')->label('Posición'),
+                Tables\Columns\TextColumn::make('message')->label('Mensaje')->limit(50),
+                Tables\Columns\TextColumn::make('created_at')->label('Fecha de creación')->dateTime('d M Y'),
             ])
             ->defaultSort('created_at', 'desc');
     }

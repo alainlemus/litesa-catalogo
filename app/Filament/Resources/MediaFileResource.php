@@ -46,13 +46,14 @@ class MediaFileResource extends Resource
     {
         return $table->columns([
             ImageColumn::make('path')
+                ->label('Ruta temporal')
                 ->disk('public')
                 ->label('Imagen')
                 ->height(50),
 
-            TextColumn::make('name')->searchable(),
-            TextColumn::make('extension')->label('Tipo'),
-            TextColumn::make('created_at')->dateTime('d M Y'),
+            TextColumn::make('name')->label('Nombre')->searchable(),
+            TextColumn::make('extension')->label('Extension')->label('Tipo'),
+            TextColumn::make('created_at')->label('Fecha de creación')->dateTime('d M Y'),
         ])
         ->defaultSort('created_at', 'desc');
     }

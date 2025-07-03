@@ -13,13 +13,15 @@
         use Carbon\Carbon;
     @endphp
 
-    <div
-        class="w-full bg-center bg-cover h-[38rem]"
-        style="background-image: url('{{ App::environment('local')
-                    ? asset('storage/' . ltrim($page->hero_image, '/'))
-                    : Storage::disk('s3')->url($page->hero_image) }}')"
-        aria-label="Imagen de fondo {{ $headerImage->hero_text }}"
-    ></div>
+    @if ($page->hero_image)
+        <div
+            class="w-full bg-center bg-cover h-[38rem]"
+            style="background-image: url('{{ App::environment('local')
+                        ? asset('storage/' . ltrim($page->hero_image, '/'))
+                        : Storage::disk('s3')->url($page->hero_image) }}')"
+            aria-label="Imagen de fondo {{ $headerImage->hero_text }}"
+        ></div>
+    @endif
 
     <section class="transition-colors duration-300 bg-white dark:bg-gray-900">
         <div class="container flex flex-col items-center px-4 py-12 mx-auto text-center">
@@ -39,10 +41,12 @@
             class="overflow-hidden transition-colors duration-300 bg-white dark:bg-gray-900 lg:mx-8 lg:flex lg:max-w-6xl lg:w-full lg:shadow-md lg:rounded-xl">
             <div class="lg:w-1/2">
 
-                <div class="h-64 bg-cover lg:h-full" style="background-image: url('{{ App::environment('local')
-                    ? asset('storage/' . ltrim($page->section2_image, '/'))
-                    : Storage::disk('s3')->url($page->section2_image) }}')" aria-label="Imagen de fondo {{ $page->section2_text }}">
-                </div>
+                @if ($page->section2_image)
+                    <div class="h-64 bg-cover lg:h-full" style="background-image: url('{{ App::environment('local')
+                        ? asset('storage/' . ltrim($page->section2_image, '/'))
+                        : Storage::disk('s3')->url($page->section2_image) }}')" aria-label="Imagen de fondo {{ $page->section2_text }}">
+                    </div>
+                @endif
 
             </div>
 
@@ -165,9 +169,11 @@
                         </p>
 
                         <div class="flex items-center mt-8 -mx-2">
-                            <img class="object-cover mx-2 rounded-full w-14 shrink-0 h-14 ring-4 ring-gray-300 dark:ring-gray-700" src="{{ App::environment('local')
-                            ? asset('storage/' . ltrim($testimonio->image, '/'))
-                            : Storage::disk('s3')->url($testimonio->image) }}" alt="{{ $testimonio->name }}">
+                            @if ($testimonio->image)
+                                <img class="object-cover mx-2 rounded-full w-14 shrink-0 h-14 ring-4 ring-gray-300 dark:ring-gray-700" src="{{ App::environment('local')
+                                ? asset('storage/' . ltrim($testimonio->image, '/'))
+                                : Storage::disk('s3')->url($testimonio->image) }}" alt="{{ $testimonio->name }}">
+                            @endif
 
                             <div class="mx-2">
                                 <h1 class="font-semibold text-gray-800 dark:text-white">{{ $testimonio->name }}</h1>
@@ -190,9 +196,11 @@
 
                 @foreach ($posts as $post)
                     <div class="lg:flex">
-                        <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="{{ App::environment('local')
-                            ? asset('storage/' . ltrim($post->image, '/'))
-                            : Storage::disk('s3')->url($post->image) }}" alt="{{ $post->title }}">
+                        @if ($post->image)
+                            <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="{{ App::environment('local')
+                                ? asset('storage/' . ltrim($post->image, '/'))
+                                : Storage::disk('s3')->url($post->image) }}" alt="{{ $post->title }}">
+                        @endif
 
                         <div class="flex flex-col justify-between py-6 lg:mx-6">
                             <a href="{{ route('blog.show', $post->slug) }}" class="text-xl font-semibold text-gray-800 hover:underline dark:text-white ">

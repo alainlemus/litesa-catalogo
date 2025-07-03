@@ -21,13 +21,18 @@
                         <td style="padding:30px 40px;color:#333333;">
 
                             <p style="margin:15px 0;color:#555;">
-                                Felicidades, has confirmado tu suscripción a nuestro boletín de noticias. A partir de ahora, recibirás actualizaciones periódicas sobre nuestros productos, ofertas especiales y noticias relevantes.
+                                {{ $post->title }}
                             </p>
 
                             <p style="margin-top:30px;color:#555;">
-                                Gracias por seguirnos,<br>
-                                <strong>Equipo de Grupo Litesa</strong>
+                                {{ $post->excerpt }}
                             </p>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td style="padding:30px 40px;color:#333333;">
+                            <a href="{{ route('blog.show', $post->slug) }}">Leer artículo completo</a>
                         </td>
                     </tr>
 
@@ -37,7 +42,7 @@
                             Favor de no contestar estos correos.<br>
                             © {{ date('Y') }} Grupo Litesa. Todos los derechos reservados.
                             <br>
-                            Puedes anular tu suscripción: <a href="{{ $unsubscribeUrl }}">aqui</a>
+                            Puedes anular tu suscripción: <a href="{{ route('newsletter.unsubscribe', $token) }}">aqui</a>
                         </td>
                     </tr>
                 </table>
@@ -46,4 +51,5 @@
     </table>
 </body>
 </html>
+
 

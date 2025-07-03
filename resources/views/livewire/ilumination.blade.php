@@ -27,7 +27,7 @@
 
             <div class="flex items-center justify-center w-full h-96 lg:w-1/2">
 
-                @if ($firstImage)
+                @if ($firstImage->path)
                     <img class="object-cover w-full h-full max-w-2xl rounded-md" src="{{ App::environment('local')
                         ? asset('storage/' . ltrim($firstImage->path, '/'))
                         : Storage::disk('s3')->url($firstImage->path) }}" alt="{{ $firstImage->name }}" loading="lazy">
@@ -44,7 +44,7 @@
 
                 <div class="w-full p-6 bg-gray-600 md:flex md:items-center rounded-2xl md:bg-transparent md:p-0 lg:px-12 md:justify-evenly">
 
-                    @if ($secondImage)
+                    @if ($secondImage->path)
                         <img class="object-cover shadow-md md:h-[32rem] md:w-80 lg:h-[36rem] lg:w-[26rem] md:rounded-2xl" src="{{ App::environment('local')
                         ? asset('storage/' . ltrim($secondImage->path, '/'))
                         : Storage::disk('s3')->url($secondImage->path) }}" alt="{{ $secondImage->name }}" />
@@ -71,11 +71,13 @@
             <div class="grid grid-cols-1 gap-8 md:grid-cols-61 lg:grid-cols-1">
                 @foreach ($lighting->section3_images as $image)
                     <div class="flex items-center justify-center col-span-1 md:col-span-2 lg:col-span-1">
-                        <img class="rounded"
-                            src="{{ App::environment('local')
-                                ? asset('storage/' . ltrim($image, '/'))
-                                : Storage::disk('s3')->url($image) }}"
-                            alt="Galería Iluminación">
+                        @if ($image)
+                            <img class="rounded"
+                                src="{{ App::environment('local')
+                                    ? asset('storage/' . ltrim($image, '/'))
+                                    : Storage::disk('s3')->url($image) }}"
+                                alt="Galería Iluminación">
+                        @endif
                     </div>
                 @endforeach
 

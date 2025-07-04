@@ -45,7 +45,7 @@
 
                         <div class="flex items-center justify-center space-x-4 lg:hidden lg:py-0">
                             <button onclick="toggleTheme()" class="text-gray-700 transition-colors dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-600">
-                                <svg id="theme-icon" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" stroke="currentColor"
+                                <svg id="theme-icon2" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" stroke="currentColor"
                                     viewBox="0 0 24 24" stroke-width="2">
                                     <!-- Icono dinámico por JS -->
                                 </svg>
@@ -204,6 +204,7 @@
         function toggleTheme() {
             const html = document.documentElement;
             const icon = document.getElementById('theme-icon');
+            const icon2 = document.getElementById('theme-icon2');
 
             if (html.classList.contains('dark')) {
                 html.classList.remove('dark');
@@ -222,10 +223,13 @@
         // Al cargar, actualizamos el icono
         document.addEventListener('DOMContentLoaded', () => {
             const icon = document.getElementById('theme-icon');
+            const icon2 = document.getElementById('theme-icon2');
             if (localStorage.theme === 'dark' || (!localStorage.theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
                 icon.innerHTML = moonIcon;
+                icon2.innerHTML = moonIcon;
             } else {
                 icon.innerHTML = sunIcon;
+                icon2.innerHTML = sunIcon;
             }
         });
     </script>

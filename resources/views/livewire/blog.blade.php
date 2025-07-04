@@ -75,6 +75,12 @@
                 @endforeach
 
             </div>
+
+            {{-- Links de paginación --}}
+            <div class="mt-6 py-22">
+                {{ $posts->links('vendor.pagination.tailwind') }}
+            </div>
+
         </div>
     </section>
 

@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\Post;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Blog extends Component
 {
@@ -21,7 +22,7 @@ class Blog extends Component
                 });
             })
             ->orderBy('created_at', 'desc')
-            ->get();
+            ->paginate(12);
 
         return view('livewire.blog', compact('posts'));
     }

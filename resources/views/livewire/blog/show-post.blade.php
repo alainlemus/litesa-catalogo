@@ -48,8 +48,7 @@
                 <img
                     src="{{ Storage::disk('public')->url($post->image) }}"
                     alt="{{ $post->title }}"
-                    class="w-full mb-6 rounded-xl"
-                >
+                    class="w-full mb-6 rounded-xl">
             @endif
 
             <div class="flex justify-between mb-4">

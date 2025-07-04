@@ -9,15 +9,27 @@ return [
     'min' => [
         'string' => 'El campo :attribute debe tener al menos :min caracteres.',
     ],
-
     'attributes' => [
         'name' => 'nombre',
         'email' => 'correo electrónico',
         'message' => 'mensaje',
+        'title' => 'título',
+        'slug' => 'slug',
+        'category' => 'categoría',
+        'excerpt' => 'descripción corta',
+        'content' => 'contenido',
+        'status' => 'estado',
     ],
     'custom' => [
         'g-recaptcha-response' => [
             'required' => 'Por favor completa el captcha.',
+        ],
+        'title.required' => 'El título es obligatorio.',
+        'slug.unique' => 'Este slug ya está en uso.',
+        'category.required' => 'La categoría es obligatoria.',
+        'content.required' => 'El contenido no puede estar vacío.',
+        'image' => [
+            'mimetypes' => 'La imagen debe ser un archivo de tipo: :values.',
         ],
     ],
 ];

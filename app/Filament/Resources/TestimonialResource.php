@@ -22,29 +22,35 @@ class TestimonialResource extends Resource
     public static function form(Form $form): Form
     {
         return $form->schema([
-            Forms\Components\TextInput::make('name')
-                ->label('Nombre')
-                ->required()
-                ->maxLength(255),
+            Forms\Components\Section::make('Testimmonios')
+                ->description('Crea y edita testimonios de clientes')
+                ->columns(2)
+                ->columnSpanFull()
+                ->schema([
+                    Forms\Components\TextInput::make('name')
+                        ->label('Nombre')
+                        ->required()
+                        ->maxLength(255),
 
-            Forms\Components\TextInput::make('position')
-                ->label('Puesto')
-                ->required()
-                ->maxLength(255),
+                    Forms\Components\TextInput::make('position')
+                        ->label('Puesto')
+                        ->required()
+                        ->maxLength(255),
 
-            Forms\Components\Textarea::make('message')
-                ->label('Mensaje')
-                ->required()
-                ->rows(5),
+                    Forms\Components\Textarea::make('message')
+                        ->label('Mensaje')
+                        ->required()
+                        ->rows(5),
 
-            Forms\Components\FileUpload::make('image')
-                ->label('Imagen')
-                ->image()
-                ->disk('public')
-                ->directory('testimonials')
-                ->imagePreviewHeight('100')
-                ->acceptedFileTypes(['image/jpeg', 'image/jpg', 'image/png', 'image/webp', 'image/svg+xml'])
-                ->hint('Sube una imagen cuadrada o circular del testimonio.'),
+                    Forms\Components\FileUpload::make('image')
+                        ->label('Imagen')
+                        ->image()
+                        ->disk('public')
+                        ->directory('testimonials')
+                        ->imagePreviewHeight('100')
+                        ->acceptedFileTypes(['image/jpeg', 'image/jpg', 'image/png', 'image/webp', 'image/svg+xml'])
+                        ->hint('Sube una imagen cuadrada o circular del testimonio.'),
+                ])
         ]);
     }
 
@@ -59,7 +65,7 @@ class TestimonialResource extends Resource
                     ->label('Foto'),
 
                 Tables\Columns\TextColumn::make('name')->label('Nombre')->searchable(),
-                Tables\Columns\TextColumn::make('position')->label('Posición'),
+                Tables\Columns\TextColumn::make('position')->label('Puesto'),
                 Tables\Columns\TextColumn::make('message')->label('Mensaje')->limit(50),
                 Tables\Columns\TextColumn::make('created_at')->label('Fecha de creación')->dateTime('d M Y'),
             ])

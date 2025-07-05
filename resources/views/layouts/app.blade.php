@@ -22,6 +22,8 @@
     <meta name="twitter:site" content="@yield('twitter_site')">
     <meta name="twitter:creator" content="@yield('twitter_creator')">
 
+    @stack('head')
+
     @if ($setting = \App\Models\SiteSetting::first())
         <link rel="icon" type="image/x-icon" href="{{ Storage::disk('public')->url($setting->favicon ?? 'default-favicon.ico') }}">
     @else
@@ -33,7 +35,7 @@
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script rel="preconnect" defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
     <script>
         if (

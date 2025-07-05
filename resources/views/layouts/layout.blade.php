@@ -22,8 +22,12 @@
     <meta name="twitter:site" content="@yield('twitter_site')">
     <meta name="twitter:creator" content="@yield('twitter_creator')">
 
+    @stack('head')
+
     @if ($setting = \App\Models\SiteSetting::first())
         <link rel="icon" type="image/x-icon" href="{{ Storage::disk('public')->url($setting->favicon ?? 'default-favicon.ico') }}">
+    @else
+        <link rel="icon" type="image/x-icon" href="{{ request()->getHost().'/storage/site/01JYMZNT38344XSXY924RVBCTS.png'}}">
     @endif
 
     @livewireStyles

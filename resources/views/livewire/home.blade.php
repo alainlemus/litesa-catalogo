@@ -1,5 +1,12 @@
 <div>
 
+    @push('head')
+        <link rel="preload" as="image" href="{{ App::environment('local')
+            ? asset('storage/' . ltrim($page->section2_image, '/'))
+            : Storage::disk('s3')->url($page->section2_image) }}"
+            fetchpriority="high">
+    @endpush
+
     @section('title', $seo?->share_title ?? 'Nosotros - Grupo Litesa')
     @section('meta_description', $seo?->share_description ?? 'Somos una empresa 100% mexicana que nace con un objetivo de comercializar bienes y servicios, mejorando la calidad de vida de los consumidores.')
     @section('og_title', $seo?->share_title ?? 'Nosotros - Grupo Litesa')

@@ -60,7 +60,7 @@
                     <div class="flex items-center justify-between">
 
                         <div class="flex items-center justify-center space-x-4 lg:hidden lg:py-0">
-                            <button onclick="toggleTheme()" class="text-gray-700 transition-colors dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-600">
+                            <button aria-label="Cambiar tema claro/oscuro" onclick="toggleTheme()" class="text-gray-700 transition-colors dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-600">
                                 <svg id="theme-icon2" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" stroke="currentColor"
                                     viewBox="0 0 24 24" stroke-width="2">
                                     <!-- Icono dinámico por JS -->
@@ -134,7 +134,7 @@
                             </a>
 
                             <div class="items-center justify-center hidden py-10 space-x-4 lg:flex lg:py-0">
-                                <button onclick="toggleTheme()" class="text-gray-700 transition-colors cursor-pointer dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-600">
+                                <button aria-label="Cambiar tema claro/oscuro" onclick="toggleTheme()" class="text-gray-700 transition-colors cursor-pointer dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-600">
                                     <svg id="theme-icon" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="white" stroke="currentColor"
                                         viewBox="0 0 24 24" stroke-width="2">
                                         <!-- Icono dinámico por JS -->

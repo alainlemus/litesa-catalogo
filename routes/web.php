@@ -10,7 +10,10 @@ use App\Livewire\Blog\ShowPost;
 use App\Livewire\Ilumination;
 use App\Livewire\NewsletterForm;
 use App\Livewire\PrivacyPolicyPage;
+use App\Models\Post;
 use Illuminate\Support\Facades\Mail;
+use Spatie\Sitemap\Sitemap;
+use Spatie\Sitemap\Tags\Url;
 
 Route::get('/blog/{slug}', ShowPost::class)->name('blog.show');
 
@@ -38,3 +41,19 @@ Route::get('/test-mail', function () {
 
 Route::get('/newsletter/unsubscribe/{token}', [NewsletterForm::class, 'unsubscribe'])
     ->name('newsletter.unsubscribe');
+
+Route::get('/sitemap.xml', function () {
+    $sitemap = Sitemap::create()
+        ->add(Url::create('/'))
+        ->add(Url::create('/blog'));
+
+    // Agrega cada post publicado
+    Post::where('status', 'published')->each(function ($post) use ($sitemap) {
+        $sitemap->add(
+            Url::create(route('blog.show', $post->slug))
+                ->setLastModificationDate($post->updated_at)
+        );
+    });
+
+    return $sitemap->toResponse(request());
+});

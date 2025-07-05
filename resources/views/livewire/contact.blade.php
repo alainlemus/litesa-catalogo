@@ -6,6 +6,10 @@
     @section('og_description', 'Contactanos, estamos para escucharte y resolver tus dudas.')
     @section('og_image', App::environment('local') ? asset('uploads/' . ltrim('grua.jpg', '/')) : Storage::disk('s3')->url('uploads/grua.jpg'))
 
+    @section('twitter_card', 'summary_large_image')
+    @section('twitter_title', 'Contacto - Grupo Litesa')
+    @section('twitter_description', 'Contactanos, estamos para escucharte y resolver tus dudas.')
+    @section('twitter_image', App::environment('local') ? asset('uploads/' . ltrim('grua.jpg', '/')) : Storage::disk('s3')->url('uploads/grua.jpg'))
 
     <section class="min-h-screen bg-cover" style="background-image: url('{{ App::environment('local')
             ? asset('storage/' . ltrim($formImage->path, '/'))

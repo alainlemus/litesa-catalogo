@@ -6,6 +6,11 @@
     @section('og_description', 'Mantente informado con las últimas noticias y actualizaciones de Grupo Litesa.')
     @section('og_image', App::environment('local') ? asset('uploads/' . ltrim('navio.jpg', '/')) : Storage::disk('s3')->url('uploads/navio.jpg'))
 
+    @section('twitter_card', 'summary_large_image')
+    @section('twitter_title', 'Blog - Grupo Litesa')
+    @section('twitter_description', 'Mantente informado con las últimas noticias y actualizaciones de Grupo Litesa.')
+    @section('twitter_image', App::environment('local') ? asset('uploads/' . ltrim('navio.jpg', '/')) : Storage::disk('s3')->url('uploads/navio.jpg'))
+
     @php
         use Carbon\Carbon;
     @endphp

@@ -1,3 +1,13 @@
+@section('title', 'Catalogo de Iluminación - Grupo Litesa')
+@section('meta_description', 'Expertos en iluminación, ofrecemos soluciones de alta calidad para el hogar y la industria. Descubre nuestra amplia gama de productos y servicios.')
+@section('og_title', 'Iluminación - Grupo Litesa')
+@section('og_description', 'Expertos en iluminación, ofrecemos soluciones de alta calidad para el hogar y la industria. Descubre nuestra amplia gama de productos y servicios.')
+@section('og_image', App::environment('local') ? asset('uploads/' . ltrim('iluminacion.jpg', '/')) : Storage::disk('s3')->url('uploads/iluminacion.jpg'))
+
+@section('twitter_card', 'summary_large_image')
+@section('twitter_title', 'Catalogo de Iluminación - Grupo Litesa')
+@section('twitter_description', 'Expertos en iluminación, ofrecemos soluciones de alta calidad para el hogar y la industria. Descubre nuestra amplia gama de productos y servicios.')
+@section('twitter_image', App::environment('local') ? asset('uploads/' . ltrim('iluminacion.jpg', '/')) : Storage::disk('s3')->url('uploads/iluminacion.jpg'))
 <div class="bg-transparent dark:bg-gray-700">
 
     <div class="sticky z-10 w-full text-white bg-white shadow top-18 dark:bg-gray-700">

@@ -6,6 +6,11 @@
     @section('og_description', $post->excerpt)
     @section('og_image', Storage::disk('public')->url($post->image))
 
+    @section('twitter_card', 'summary_large_image')
+    @section('twitter_title', $post->title . ' - Grupo Litesa')
+    @section('twitter_description', $post->excerpt)
+    @section('twitter_image', Storage::disk('public')->url($post->image))
+
     @php
         use Carbon\Carbon;
     @endphp

@@ -5,12 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>@yield('title', 'Título por defecto')</title>
+
+    <!-- Open Graph (Facebook, LinkedIn) -->
     <meta name="description" content="@yield('meta_description', 'Descripción por defecto')">
     <meta property="og:title" content="@yield('og_title', 'Título OG por defecto')">
     <meta property="og:description" content="@yield('og_description', 'Descripción OG por defecto')">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:image" content="@yield('og_image', asset('default-og-image.jpg'))">
+
+    <!-- Twitter (X) Cards -->
+    <meta name="twitter:card" content="@yield('twitter_card')">
+    <meta name="twitter:title" content="@yield('twitter_title')">
+    <meta name="twitter:description" content="@yield('twitter_description')">
+    <meta name="twitter:image" content="@yield('twitter_image')">
+    <meta name="twitter:site" content="@yield('twitter_site')">
+    <meta name="twitter:creator" content="@yield('twitter_creator')">
 
     @if ($setting = \App\Models\SiteSetting::first())
         <link rel="icon" type="image/x-icon" href="{{ Storage::disk('public')->url($setting->favicon ?? 'default-favicon.ico') }}">

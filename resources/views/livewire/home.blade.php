@@ -26,8 +26,8 @@
             style="background-image: url('{{ App::environment('local')
                         ? asset('storage/' . ltrim($page->hero_image, '/'))
                         : Storage::disk('s3')->url($page->hero_image) }}')"
-            aria-label="Imagen de fondo {{ $headerImage->hero_text }}"
-        ></div>
+            aria-label="Grupo Litesa"
+            ></div>
     @endif
 
     <section class="transition-colors duration-300 bg-white dark:bg-gray-900">

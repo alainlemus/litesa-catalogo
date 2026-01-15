@@ -23,7 +23,7 @@
                         class="w-full py-2 pl-4 pr-10 text-black bg-white border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                 </div>
                 <div class="w-full md:w-1/3">
-                    <select wire:model.live="selectedCategory" class="w-full h-full py-2 px-2 text-black bg-white border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <select wire:model.live="selectedCategory" class="cursor-pointer w-full h-full py-2 px-2 text-black bg-white border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                         <option value="">Todas las categorías</option>
                         @foreach ($categories as $id => $category)
                             <option value="{{ $id }}">{{ $category }}</option>
@@ -41,13 +41,13 @@
                             wire:click="$set('selectedUse', {{ $id }})"
                             class="px-3 py-1 text-sm rounded transition-all duration-150
                                 {{ $selectedUse == $id ? 'bg-purple-600 text-white' : 'bg-white text-black border border-purple-300' }}
-                                hover:bg-purple-500 hover:text-white">
+                                hover:bg-purple-500 hover:text-white cursor-pointer">
                             {{ $place }}
                         </button>
                     @endforeach
 
                     @if ($selectedUse)
-                        <button wire:click="$set('selectedUse', null)" class="px-3 py-1 text-sm text-white bg-red-600 rounded hover:bg-red-500">
+                        <button wire:click="$set('selectedUse', null)" class="cursor-pointer px-3 py-1 text-sm text-white bg-red-600 rounded hover:bg-red-500">
                             Limpiar filtro
                         </button>
                     @endif
@@ -64,7 +64,7 @@
         <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
             @foreach ($products as $product)
                 <a href="{{ route('product.show', ['id' => $product->id]) }}"
-                    class="p-4 bg-white rounded-lg shadow dark:bg-gray-500 cursor-pointer text-left w-full focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    class="p-4 bg-white rounded-lg shadow dark:bg-gray-500 cursor-pointer text-left w-full focus:outline-none focus:ring-2 focus:ring-blue-500 hover:shadow-2xl">
                     <h3 class="mb-2 text-xl font-semibold text-gray-600 dark:text-white">{{ $product->name }}</h3>
                     <div class="flex flex-col items-start justify-between">
                         <div class="w-full">

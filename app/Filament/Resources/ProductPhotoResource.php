@@ -15,6 +15,7 @@ class ProductPhotoResource extends Resource
     protected static ?string $model = ProductPhoto::class;
     protected static ?string $navigationIcon = 'heroicon-o-photo';
     protected static ?string $navigationGroup = 'Catalogo';
+    protected static bool $shouldRegisterNavigation = false;
 
     public static function form(Form $form): Form
     {
@@ -30,7 +31,8 @@ class ProductPhotoResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('path'),
+                Tables\Columns\TextColumn::make('path')
+                    ->label('Ruta'),
                 Tables\Columns\TextColumn::make('description'),
                 Tables\Columns\TextColumn::make('alt_text'),
             ])

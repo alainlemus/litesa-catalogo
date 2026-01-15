@@ -63,7 +63,8 @@
 
         <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
             @foreach ($products as $product)
-                <div class="p-4 bg-white rounded-lg shadow dark:bg-gray-500" wire:click="showProductDetails({{ $product->id }})">
+                <a href="{{ route('product.show', ['id' => $product->id]) }}"
+                    class="p-4 bg-white rounded-lg shadow dark:bg-gray-500 cursor-pointer text-left w-full focus:outline-none focus:ring-2 focus:ring-blue-500">
                     <h3 class="mb-2 text-xl font-semibold text-gray-600 dark:text-white">{{ $product->name }}</h3>
                     <div class="flex flex-col items-start justify-between">
                         <div class="w-full">
@@ -92,10 +93,9 @@
                                     <span class="px-2 py-1 text-white bg-yellow-300 rounded-full dark:bg-gray-900">Garantía {{ $product->warranty }}</span>
                                 @endif
                             </div>
-
                         </div>
                     </div>
-                </div>
+                </a>
             @endforeach
         </div>
         {{-- Links de paginación --}}

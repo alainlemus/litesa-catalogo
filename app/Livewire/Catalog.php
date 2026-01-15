@@ -18,6 +18,13 @@ class Catalog extends Component
 
     protected $paginationTheme = 'tailwind';
 
+    public $queryString = [
+        'search' => ['except' => ''],
+        'selectedUse' => ['except' => null],
+        'selectedCategory' => ['except' => null],
+        'page' => ['except' => 1],
+    ];
+
     public function updatedSearch()
     {
         $this->resetPage();
@@ -31,11 +38,6 @@ class Catalog extends Component
     public function updatedSelectedCategory()
     {
         $this->resetPage();
-    }
-
-    public function showProductDetails($productId)
-    {
-        return redirect()->route('product.show', ['id' => $productId]);
     }
 
     #[Layout('layouts.app')]
@@ -53,7 +55,8 @@ class Catalog extends Component
             ->when($this->selectedCategory, function ($query) {
                 $query->where('category_id', $this->selectedCategory);
             })
-            ->paginate(9);
+            ->paginate(9)
+            ->withQueryString();
 
         $places = ProductUse::all()->pluck('name', 'id');
         $categories = Category::all()->pluck('name', 'id');

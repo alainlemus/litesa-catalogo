@@ -21,17 +21,38 @@ class ProductResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')->required(),
-                Forms\Components\TextInput::make('warranty')->required(),
-                Forms\Components\TextInput::make('power_factor')->required(),
-                Forms\Components\TextInput::make('base'),
-                Forms\Components\TextInput::make('certification')->required(),
+                Forms\Components\TextInput::make('name')
+                    ->label('Nombre')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('warranty')
+                    ->label('Garantía')
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('power_factor')
+                    ->label('Factor de Potencia')
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('base')
+                    ->label('Base')
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('certification')
+                    ->label('Certificación')
+                    ->maxLength(255),
+                Forms\Components\Select::make('category_id')
+                    ->label('Categoría')
+                    ->relationship('category', 'name')
+
+                    ->required(),
                 Forms\Components\Select::make('uses')
+                ->label("Usos")
                 ->relationship('uses', 'name')
                 ->multiple()
                 ->searchable()
                 ->preload() // Opcional: precarga las opciones
                 ->required(),
+                Forms\Components\Textarea::make('description')
+                    ->label('Descripción')
+                    ->rows(5)
+                    ->maxLength(65535),
             ]);
     }
 
@@ -39,11 +60,11 @@ class ProductResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name'),
-                Tables\Columns\TextColumn::make('warranty'),
-                Tables\Columns\TextColumn::make('power_factor'),
-                Tables\Columns\TextColumn::make('base'),
-                Tables\Columns\TextColumn::make('certification'),
+                Tables\Columns\TextColumn::make('name')->label("Nombre"),
+                Tables\Columns\TextColumn::make('warranty')->label("Garantía"),
+                Tables\Columns\TextColumn::make('power_factor')->label("Factor de Potencia"),
+                Tables\Columns\TextColumn::make('base')->label("Base"),
+                Tables\Columns\TextColumn::make('certification')->label("Certificación "),
                 Tables\Columns\TextColumn::make('uses.name')->label('Usos')->sortable(),
             ])
             ->filters([

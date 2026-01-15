@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    protected $fillable = ['name', 'warranty', 'power_factor', 'base', 'certification'];
+    protected $fillable = ['name', 'warranty', 'power_factor', 'base', 'certification', 'description', 'category_id'];
 
     public function uses()
     {
@@ -21,5 +21,10 @@ class Product extends Model
     public function photos()
     {
         return $this->hasMany(ProductPhoto::class, 'product_id');
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
     }
 }

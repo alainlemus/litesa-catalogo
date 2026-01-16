@@ -11,6 +11,7 @@ class Blog extends Component
     use WithPagination;
     public $search = '';
     public $show = false;
+    public $page = 1;
     public $queryString = [
         'search' => ['except' => ''],
         'page' => ['except' => 1],

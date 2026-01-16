@@ -18,6 +18,8 @@ class Catalog extends Component
 
     protected $paginationTheme = 'tailwind';
 
+     public $page = 1;
+
     public $queryString = [
         'search' => ['except' => ''],
         'selectedUse' => ['except' => null],

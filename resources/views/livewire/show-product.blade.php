@@ -26,7 +26,7 @@
                 </svg>
             </span>
 
-            <span class="text-blue-600 dark:text-blue-400 hover:underline">
+            <span class="text-gray-500 dark:text-gray-300 hover:underline">
                 {{ $product->name }}
             </span>
         </div>

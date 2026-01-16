@@ -27,7 +27,7 @@ Route::get('/blog', Blog::class)->name('blog');
 
 Route::get('/contacto', Contact::class)->name('contact');
 
-Route::get('/producto/{id}', ShowProduct::class)->name('product.show');
+Route::get('/iluminacion/catalogo/producto/{id}', ShowProduct::class)->name('product.show');
 
 Route::get('/aviso-de-privacidad', PrivacyPolicyPage::class)->name('privacy.policy');
 

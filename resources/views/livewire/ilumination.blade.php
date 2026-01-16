@@ -81,13 +81,36 @@
         </div>
     </section>
 
-    <section class="pb-20 bg-white dark:bg-gray-900 duration-300 fade-in-up">
-        <div class="container px-6 py-10 mx-auto">
+    <section class="py-16 bg-white dark:bg-gray-900">
+        <div class="w-full flex justify-between items-center px-4 md:px-20 mb-8">
+            <p class="text-3xl dark:text-white">Lo último</p>
+            <a href="{{ route('ilumination.catalog') }}" class="text-blue-600 font-semibold hover:underline flex items-center gap-2">Ver catálogo completo <span>&rarr;</span></a>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 px-4 md:px-20">
+            @foreach ($newProducts as $product)
+                <div class="bg-gray-50 rounded-3xl p-6 flex flex-col items-center shadow-sm">
+                    <div class="w-48 h-48 flex items-center justify-center bg-white rounded-2xl mb-4 overflow-hidden">
+                        <img src="{{ App::environment('local')
+                            ? asset('storage/' . ltrim($product->photos->first()->path ?? '', '/'))
+                            : Storage::disk('s3')->url($product->photos->first()->path ?? '') }}"
+                            alt="{{ $product->name }}"
+                            class="object-cover w-full h-full">
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2 text-center">{{ $product->name }}</h3>
+                </div>
+            @endforeach
+        </div>
+    </section>
 
-            <hr class="my-12 border-gray-200 dark:border-gray-700">
+    @if ($lighting->section3_images)
+        <section class="pb-20 bg-white dark:bg-gray-900 duration-300 fade-in-up">
+            <div class="container px-6 py-10 mx-auto">
 
-            <div class="grid grid-cols-1 gap-8 md:grid-cols-61 lg:grid-cols-3">
-                @if ($lighting->section3_images)
+                <div class="w-full flex justify-center pb-20">
+                    <p class="pb-6 text-3xl font-medium tracking-tight dark:text-white">Distribuidores Oficiales</p>
+                </div>
+
+                <div class="grid grid-cols-1 gap-8 md:grid-cols-61 lg:grid-cols-3">
                     @foreach ($lighting->section3_images as $image)
                         <div class="flex items-center justify-center col-span-1 md:col-span-2 lg:col-span-1">
                             @if ($image)
@@ -99,11 +122,10 @@
                             @endif
                         </div>
                     @endforeach
-                @endif
-
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    @endif
 
     <style>
         .fade-in-up {

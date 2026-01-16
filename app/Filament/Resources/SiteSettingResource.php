@@ -17,8 +17,8 @@ class SiteSettingResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-cog';
     protected static ?string $navigationLabel = 'Configuración del sitio';
-    protected static ?string $navigationGroup = 'Sitio Web';
-    protected static ?int $navigationSort = 5;
+    protected static ?int $navigationSort = 1;
+    protected static ?string $navigationGroup = "Configuración";
 
     public static function form(Form $form): Form
     {

@@ -22,6 +22,7 @@ class LightingPage extends Model
         'og_title',
         'og_description',
         'og_image_path',
+        'header_image'
     ];
 
     protected $casts = [

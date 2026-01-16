@@ -12,6 +12,16 @@
 
     <section class="bg-white dark:bg-gray-900">
 
+       @if ($lighting->header_image)
+            <div
+                class="w-full bg-center bg-cover h-[38rem]"
+                style="background-image: url('{{ App::environment('local')
+                            ? asset('storage/' . ltrim($lighting->header_image, '/'))
+                            : Storage::disk('s3')->url($lighting->header_image) }}')"
+                aria-label="Grupo Litesa"
+                ></div>
+        @endif
+
         <div class="container flex flex-col px-6 py-10 mx-auto space-y-6 lg:h-[32rem] lg:py-16 lg:flex-row lg:items-center">
             <div class="w-full lg:w-1/2">
                 <div class="lg:max-w-lg">
@@ -76,7 +86,7 @@
             <div class="grid grid-cols-1 gap-8 md:grid-cols-61 lg:grid-cols-1">
                 @if ($lighting->section3_images)
                     @foreach ($lighting->section3_images as $image)
-                        <div class="flex items-center justify-center col-span-1 md:col-span-2 lg:col-span-1">
+                        <div class="flex items-center justify-center col-span-1 md:col-span-2 lg:col-span-4">
                             @if ($image)
                                 <img class="rounded"
                                     src="{{ App::environment('local')

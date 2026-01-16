@@ -40,6 +40,11 @@ class LightingPageResource extends Resource
                         ])
                         ->default([])
                         ->columnSpanFull(),
+                    Forms\Components\FileUpload::make('header_image')
+                        ->label('Imagen de encabezado')
+                        ->directory('landing/header')
+                        ->image()
+                        ->preserveFilenames(),
                     Forms\Components\FileUpload::make('section1_image_path')
                         ->label('Imagen')
                         ->directory('landing/section1')

@@ -8,8 +8,13 @@ use Livewire\WithPagination;
 
 class Blog extends Component
 {
+    use WithPagination;
     public $search = '';
     public $show = false;
+    public $queryString = [
+        'search' => ['except' => ''],
+        'page' => ['except' => 1],
+    ];
 
     public function render()
     {
@@ -22,7 +27,7 @@ class Blog extends Component
                 });
             })
             ->orderBy('created_at', 'desc')
-            ->paginate(12);
+            ->paginate(9);
 
         return view('livewire.blog', compact('posts'));
     }
@@ -30,5 +35,10 @@ class Blog extends Component
     public function toggleSearch()
     {
         $this->show = !$this->show;
+    }
+
+    public function updatedSearch()
+    {
+        $this->resetPage();
     }
 }

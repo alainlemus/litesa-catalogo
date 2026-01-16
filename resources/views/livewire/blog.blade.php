@@ -47,7 +47,7 @@
             <div class="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3">
 
                 @foreach ($posts as $post)
-                    <div>
+                    <div class="duration-300 fade-in-up">
                         <img class="object-cover object-center w-full h-64 rounded-lg lg:h-80" src="{{ App::environment('local')
                             ? asset('storage/' . ltrim($post->image, '/'))
                             : Storage::disk('s3')->url($post->image) }}" alt="{{ $post->title }}">
@@ -88,5 +88,19 @@
 
         </div>
     </section>
+
+    <style>
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: none;
+            }
+        }
+    </style>
 
 </div>

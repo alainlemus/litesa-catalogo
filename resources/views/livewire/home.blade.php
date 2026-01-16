@@ -22,7 +22,10 @@
 
     @if ($page->hero_image)
         <div
-            class="w-full bg-center bg-cover h-[38rem]"
+            x-data="{ loaded: false }"
+            x-init="setTimeout(() => loaded = true, 300)"
+            :class="loaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'"
+            class="w-full bg-center bg-cover h-[38rem] transition-all duration-700 ease-out opacity-0 scale-95"
             style="background-image: url('{{ App::environment('local')
                         ? asset('storage/' . ltrim($page->hero_image, '/'))
                         : Storage::disk('s3')->url($page->hero_image) }}')"
@@ -30,44 +33,36 @@
             ></div>
     @endif
 
-    <section class="transition-colors duration-300 bg-white dark:bg-gray-900">
+    <section class="transition-colors duration-300 bg-white dark:bg-gray-900 fade-in-up">
         <div class="container flex flex-col items-center px-4 py-12 mx-auto text-center">
-            <h2 class="max-w-2xl mx-auto text-2xl font-semibold tracking-tight text-gray-800 xl:text-3xl dark:text-white">
+            <h2 class="max-w-2xl mx-auto text-2xl font-semibold tracking-tight text-gray-800 xl:text-3xl dark:text-white fade-in-up">
                 {!! $page->hero_text !!}
             </h2>
-
-            <p class="max-w-4xl mt-6 text-center text-gray-500 dark:text-gray-300">
+            <p class="max-w-4xl mt-6 text-center text-gray-500 dark:text-gray-300 fade-in-up">
                 {!! $page->section1_text !!}
             </p>
-
         </div>
     </section>
 
-    <section class="transition-colors duration-300 bg-gray-100 dark:bg-gray-800 lg:py-12 lg:flex lg:justify-center">
-        <div
-            class="overflow-hidden transition-colors duration-300 bg-white dark:bg-gray-900 lg:mx-8 lg:flex lg:max-w-6xl lg:w-full lg:shadow-md lg:rounded-xl">
-            <div class="lg:w-1/2">
-
+    <section class="transition-colors duration-300 bg-gray-100 dark:bg-gray-800 lg:py-12 lg:flex lg:justify-center fade-in-up">
+        <div class="overflow-hidden transition-colors duration-300 bg-white dark:bg-gray-900 lg:mx-8 lg:flex lg:max-w-6xl lg:w-full lg:shadow-md lg:rounded-xl fade-in-up">
+            <div class="lg:w-1/2 fade-in-up">
                 @if ($page->section2_image)
-                    <div class="h-64 bg-cover lg:h-full" style="background-image: url('{{ App::environment('local')
+                    <div class="h-64 bg-cover lg:h-full fade-in-up" style="background-image: url('{{ App::environment('local')
                         ? asset('storage/' . ltrim($page->section2_image, '/'))
                         : Storage::disk('s3')->url($page->section2_image) }}')" aria-label="Imagen de fondo {{ $page->section2_text }}">
                     </div>
                 @endif
-
             </div>
-
-            <div class="max-w-xl px-6 py-12 lg:max-w-5xl lg:w-1/2">
-                <h2 class="text-2xl font-semibold text-gray-800 dark:text-white md:text-3xl">
+            <div class="max-w-xl px-6 py-12 lg:max-w-5xl lg:w-1/2 fade-in-up">
+                <h2 class="text-2xl font-semibold text-gray-800 dark:text-white md:text-3xl fade-in-up">
                     {!! $page->section2_text !!}
                 </h2>
-
-                <p class="mt-4 text-gray-500 dark:text-gray-300">
+                <p class="mt-4 text-gray-500 dark:text-gray-300 fade-in-up">
                     {!! $page->section3_text !!}
                 </p>
-
-                <div class="inline-flex w-full mt-6 sm:w-auto">
-                    <a href="{{ route('contact') }}" class="inline-flex items-center justify-center w-full px-6 py-2 text-sm text-white duration-300 bg-gray-800 rounded-lg hover:bg-gray-700 focus:ring focus:ring-gray-300 focus:ring-opacity-80">
+                <div class="inline-flex w-full mt-6 sm:w-auto fade-in-up">
+                    <a href="{{ route('contact') }}" class="inline-flex items-center justify-center w-full px-6 py-2 text-sm text-white duration-300 bg-gray-800 rounded-lg hover:bg-gray-700 focus:ring focus:ring-gray-300 focus:ring-opacity-80 fade-in-up">
                         Contactanos
                     </a>
                 </div>
@@ -75,63 +70,52 @@
         </div>
     </section>
 
-    <section class="transition-colors duration-300 bg-white dark:bg-gray-900">
-        <div class="container px-6 py-12 mx-auto">
-            <h1 class="text-2xl font-semibold text-gray-800 lg:text-3xl dark:text-white">¿Quienes somos?</h1>
-
-            <div class="grid grid-cols-1 gap-8 mt-8 lg:mt-16 md:grid-cols-2 xl:grid-cols-3">
+    <section class="transition-colors duration-300 bg-white dark:bg-gray-900 fade-in-up">
+        <div class="container px-6 py-12 mx-auto fade-in-up">
+            <h1 class="text-2xl font-semibold text-gray-800 lg:text-3xl dark:text-white fade-in-up">¿Quienes somos?</h1>
+            <div class="grid grid-cols-1 gap-8 mt-8 lg:mt-16 md:grid-cols-2 xl:grid-cols-3 fade-in-up">
                 <div>
                     <div class="inline-block p-3 text-white bg-blue-600 rounded-lg">
                         {!! $page->about_svg !!}
                     </div>
-
                     <div>
                         <h1 class="text-xl font-semibold text-gray-700 dark:text-white">{{ $page->about_title }}</h1>
-
                         <p class="mt-2 text-sm text-gray-500 dark:text-gray-300">
                             {{ $page->about_description }}
                         </p>
                     </div>
                 </div>
-
                 <div>
                     <div class="inline-block p-3 text-white bg-blue-600 rounded-lg">
                         {!! $page->mission_svg !!}
                     </div>
-
                     <div>
                         <h1 class="text-xl font-semibold text-gray-700 dark:text-white">{{ $page->mission_title }}</h1>
-
                         <p class="mt-2 text-sm text-gray-500 dark:text-gray-300">
                             {{ $page->mission_description }}
                         </p>
                     </div>
                 </div>
-
                 <div>
                     <div class="inline-block p-3 text-white bg-blue-600 rounded-lg">
                         {!! $page->vision_svg !!}
                     </div>
-
                     <div>
                         <h1 class="text-xl font-semibold text-gray-700 dark:text-white">{{ $page->vision_title }}</h1>
-
                         <p class="mt-2 text-sm text-gray-500 dark:text-gray-300">
                             {{ $page->vision_description }}
                         </p>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
 
-    <section class="transition-colors duration-300 bg-white dark:bg-gray-900">
+    <section class="transition-colors duration-300 bg-white dark:bg-gray-900 fade-in-up">
         <div class="container px-6 py-10 mx-auto">
             <h1 class="text-2xl font-semibold text-center text-gray-800 capitalize lg:text-3xl dark:text-white">conoce nuestros <br> <span class="text-blue-500">Servicios</span></h1>
 
             <div class="grid grid-cols-1 gap-8 mt-8 xl:mt-12 xl:gap-16 md:grid-cols-2 xl:grid-cols-3">
-
                 {{-- Servicios --}}
                 @foreach($page->services ?? [] as $service)
                     <div class="flex flex-col items-center p-6 space-y-3 text-center transition-colors duration-300 bg-gray-100 rounded-xl dark:bg-gray-800">
@@ -150,14 +134,12 @@
                             <svg class="w-4 h-4 mx-1 rtl:-scale-x-100" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                         </a>
                     </div>
-
                 @endforeach
-
             </div>
         </div>
     </section>
 
-    <section class="transition-colors duration-300 bg-white dark:bg-gray-900">
+    <section class="transition-colors duration-300 bg-white dark:bg-gray-900 fade-in-up">
         <div class="container px-6 py-10 mx-auto">
             <h1 class="text-2xl font-semibold text-center text-gray-800 capitalize lg:text-3xl dark:text-white">
                 {!! $page->testimonials_title !!}
@@ -168,7 +150,6 @@
             </p>
 
             <section class="grid grid-cols-1 gap-8 mt-8 xl:mt-12 lg:grid-cols-2 xl:grid-cols-3">
-
                 @foreach ($testimonials as $testimonio)
                     <div class="p-8 border rounded-lg dark:border-gray-700">
                         <p class="leading-loose text-gray-500 dark:text-gray-400">
@@ -189,14 +170,11 @@
                         </div>
                     </div>
                 @endforeach
-
             </section>
         </div>
     </section>
 
-    <section class="transition-colors duration-300 bg-white dark:bg-gray-900">
-
-        <div class="container px-6 py-10 mx-auto">
+    <div class="container px-6 py-10 mx-auto">
             <h1 class="text-2xl font-semibold text-gray-800 capitalize lg:text-3xl dark:text-white">Entradas recientes del blog</h1>
 
             <div class="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2">
@@ -228,7 +206,7 @@
         </div>
     </section>
 
-    <section class="transition-colors duration-300 bg-white dark:bg-gray-900">
+    <section class="transition-colors duration-300 bg-white dark:bg-gray-900 fade-in-up">
         <div class="container px-6 py-12 mx-auto">
             <div class="text-center">
                 <p class="font-medium text-blue-500 dark:text-blue-400">Medios de</p>
@@ -282,5 +260,19 @@
             </div>
         </div>
     </section>
+
+    <style>
+    .fade-in-up {
+        opacity: 0;
+        transform: translateY(30px);
+        animation: fadeInUp 0.8s ease-out forwards;
+    }
+    @keyframes fadeInUp {
+        to {
+            opacity: 1;
+            transform: none;
+        }
+    }
+    </style>
 
 </div>

@@ -14,7 +14,10 @@
 
        @if ($lighting->header_image)
             <div
-                class="w-full bg-center bg-cover h-[38rem]"
+                x-data="{ loaded: false }"
+                x-init="setTimeout(() => loaded = true, 300)"
+                :class="loaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'"
+                class="w-full bg-center bg-cover h-[38rem] transition-all duration-700 ease-out opacity-0 scale-95"
                 style="background-image: url('{{ App::environment('local')
                             ? asset('storage/' . ltrim($lighting->header_image, '/'))
                             : Storage::disk('s3')->url($lighting->header_image) }}')"
@@ -22,7 +25,7 @@
                 ></div>
         @endif
 
-        <div class="container flex flex-col px-6 py-10 mx-auto space-y-6 lg:h-[32rem] lg:py-16 lg:flex-row lg:items-center">
+        <div class="duration-300 fade-in-up container flex flex-col px-6 py-10 mx-auto space-y-6 lg:h-[32rem] lg:py-16 lg:flex-row lg:items-center">
             <div class="w-full lg:w-1/2">
                 <div class="lg:max-w-lg">
                     <h1 class="text-3xl font-semibold tracking-wide text-gray-800 dark:text-white lg:text-4xl">{{ $lighting->section1_title }}</h1>
@@ -51,7 +54,7 @@
         </div>
     </section>
 
-    <section class="py-20 bg-white dark:bg-gray-900">
+    <section class="py-20 bg-white dark:bg-gray-900 duration-300 fade-in-up">
         <div class="max-w-6xl px-6 py-10 mx-auto">
 
             <main class="relative z-10 w-full mt-8 md:flex md:items-center xl:mt-12">
@@ -78,7 +81,7 @@
         </div>
     </section>
 
-    <section class="pb-20 bg-white dark:bg-gray-900">
+    <section class="pb-20 bg-white dark:bg-gray-900 duration-300 fade-in-up">
         <div class="container px-6 py-10 mx-auto">
 
             <hr class="my-12 border-gray-200 dark:border-gray-700">
@@ -101,4 +104,19 @@
             </div>
         </div>
     </section>
+
+    <style>
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: none;
+            }
+        }
+    </style>
+
 </div>

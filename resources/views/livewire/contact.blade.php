@@ -44,7 +44,7 @@
                                     </div>
                                 </div>
 
-                    <div class="mt-8 lg:w-1/2 lg:mx-6">
+                    <div class="mt-8 lg:w-1/2 lg:mx-6 duration-300 fade-in-up">
                         <div class="w-full px-8 py-10 mx-auto overflow-hidden transition-colors duration-300 bg-white shadow-2xl rounded-xl dark:bg-gray-900 lg:max-w-xl">
                             <h1 class="text-xl font-medium text-gray-700 dark:text-gray-200">Formulario de contacto</h1>
 
@@ -172,5 +172,18 @@
         });
     </script>
 
+    <style>
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: none;
+            }
+        }
+    </style>
 
 </div>

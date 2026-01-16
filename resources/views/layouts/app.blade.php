@@ -189,15 +189,15 @@
             <hr class="my-6 border-gray-200 md:my-10 dark:border-gray-700" />
 
             <div class="flex flex-col items-center sm:flex-row sm:justify-between">
-                <div class="flex justify-center">
+                <div class="flex justify-center flex-col lg:flex-row">
                     <p class="text-sm text-gray-500 dark:text-gray-300">© Copyright {{ date("Y") }}. Todos los derechos reservados.</p>
-                    <a href="{{ route('privacy.policy') }}" class="pl-6 text-sm text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">
+                    <a href="{{ route('privacy.policy') }}" class="lg:pt-0 pt-4 pl-0 lg:pl-6 text-sm text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">
                         Aviso de Privacidad
                     </a>
                 </div>
 
 
-                <div class="flex -mx-2">
+                <div class="flex -mx-2 lg:pt-0 pt-12">
 
                     @php
                         $siteSetting = \App\Models\SiteSetting::first();

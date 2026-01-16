@@ -180,6 +180,7 @@
             <div class="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2">
 
                 @foreach ($posts as $post)
+                <a href="{{ route('blog.show', $post->slug) }}">
                     <div class="lg:flex">
                         @if ($post->image)
                             <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="{{ App::environment('local')
@@ -188,9 +189,10 @@
                         @endif
 
                         <div class="flex flex-col justify-between py-6 lg:mx-6">
-                            <a href="{{ route('blog.show', $post->slug) }}" class="text-xl font-semibold text-gray-800 hover:underline dark:text-white ">
-                                {{ $post->title }}
-                            </a>
+
+                            <h2 class="text-xl font-semibold text-gray-800 hover:underline dark:text-white ">{{ $post->title }}</h2>
+
+                            <p>{{ $post->excerpt }}</p>
 
                             @php
                                 $fechaFormateada = Carbon::parse($post->updated_at)
@@ -200,6 +202,7 @@
                             <span class="text-sm text-gray-500 dark:text-gray-300">Publicado: {{ $fechaFormateada }}</span>
                         </div>
                     </div>
+                </a>
                 @endforeach
 
             </div>

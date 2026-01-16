@@ -8,7 +8,7 @@
 @section('twitter_title', 'Catalogo de Iluminación - Grupo Litesa')
 @section('twitter_description', 'Expertos en iluminación, ofrecemos soluciones de alta calidad para el hogar y la industria. Descubre nuestra amplia gama de productos y servicios.')
 @section('twitter_image', App::environment('local') ? asset('uploads/' . ltrim('iluminacion.jpg', '/')) : Storage::disk('s3')->url('uploads/iluminacion.jpg'))
-<div class="bg-transparent dark:bg-gray-700">
+<div class="bg-transparent dark:bg-gray-900">
 
     <div class="sticky z-10 w-full text-white bg-white shadow top-18 dark:bg-gray-700">
         <div class="w-full flex flex-wrap items-center px-4 py-3 lg:justify-center md:flex-row md:space-y-0">
@@ -64,7 +64,7 @@
         <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
             @foreach ($products as $product)
                 <a href="{{ route('product.show', ['id' => $product->id]) }}"
-                    class="p-4 bg-white rounded-lg shadow dark:bg-gray-500 cursor-pointer text-left w-full focus:outline-none focus:ring-2 focus:ring-blue-500 hover:shadow-2xl">
+                    class="p-4 bg-white rounded-lg shadow dark:bg-gray-700 cursor-pointer text-left w-full focus:outline-none focus:ring-2 focus:ring-blue-500 hover:shadow-2xl">
                     <h3 class="mb-2 text-xl font-semibold text-gray-600 dark:text-white">{{ $product->name }}</h3>
                     <div class="flex flex-col items-start justify-between">
                         <div class="w-full">

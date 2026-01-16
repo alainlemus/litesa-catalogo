@@ -15,7 +15,7 @@
         use Carbon\Carbon;
     @endphp
 
-    <div class="flex justify-center w-full px-4 py-10 mx-auto transition-colors duration-300 dark:bg-gray-900">
+    <div class="flex justify-center w-full px-4 py-10 mx-auto transition-colors duration-300 dark:bg-gray-700">
 
         <div class="max-w-3xl">
 
@@ -55,7 +55,7 @@
                 <!-- Facebook -->
                 <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(request()->fullUrl()) }}"
                    target="_blank"
-                   class="text-blue-600 hover:text-blue-800"
+                   class="text-blue-600 hover:text-blue-800 dark:text-white"
                    title="Compartir en Facebook">
                     <svg xmlns="http://www.w3.org/2000/svg" class="inline w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M22 12a10 10 0 10-11.63 9.88v-6.99h-2.8v-2.89h2.8V9.41c0-2.77 1.66-4.3 4.2-4.3 1.22 0 2.49.22 2.49.22v2.73h-1.4c-1.38 0-1.81.86-1.81 1.74v2.09h3.07l-.49 2.89h-2.58v6.99A10 10 0 0022 12z"/>
@@ -65,7 +65,7 @@
                 <!-- X (Twitter) -->
                 <a href="https://twitter.com/intent/tweet?url={{ urlencode(request()->fullUrl()) }}&text={{ urlencode($post->title) }}"
                    target="_blank"
-                   class="text-gray-600 hover:text-black"
+                   class="text-gray-600 hover:text-black dark:text-white"
                    title="Compartir en X (Twitter)">
                     <svg xmlns="http://www.w3.org/2000/svg" class="inline w-5 h-5" fill="currentColor" viewBox="0 0 1200 1227">
                         <path d="M715.9 567.3 1178.7 0H1072L666.5 491.3 340.6 0H0l490 728.3L0 1227h106.7l424.5-531.5L875 1227h325L715.9 567.3Zm-150.2 188-49.2-73.6L163.7 91.5h136.3l293.2 438.5 49.2 73.6 373.2 557.2H879.9L565.7 755.3Z"/>
@@ -75,7 +75,7 @@
                 <!-- LinkedIn -->
                 <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ urlencode(request()->fullUrl()) }}"
                    target="_blank"
-                   class="text-blue-700 hover:text-blue-900"
+                   class="text-blue-700 hover:text-blue-900 dark:text-white"
                    title="Compartir en LinkedIn">
                     <svg xmlns="http://www.w3.org/2000/svg" class="inline w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M20.45 20.45h-3.55v-5.42c0-1.29-.03-2.96-1.8-2.96-1.8 0-2.08 1.4-2.08 2.85v5.53h-3.54v-11h3.4v1.5h.05c.47-.9 1.63-1.85 3.35-1.85 3.58 0 4.24 2.36 4.24 5.43v6.42zM5.34 8.5c-1.14 0-2.06-.92-2.06-2.06s.92-2.06 2.06-2.06 2.06.92 2.06 2.06-.92 2.06-2.06 2.06zm1.78 11.95H3.56v-11h3.56v11zM22.22 0H1.77C.8 0 0 .77 0 1.73v20.54C0 23.23.8 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/>

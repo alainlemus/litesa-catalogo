@@ -1,4 +1,4 @@
-<div class="bg-transparent dark:bg-gray-700">
+<div class="bg-transparent dark:bg-gray-900">
 
     <div class="container flex-grow h-full px-4 py-12 mx-auto">
 
@@ -80,7 +80,7 @@
             <!-- Product Info -->
             <div class="space-y-6">
 
-                <div class="p-8 bg-white shadow-lg dark:bg-gray-500 rounded-2xl">
+                <div class="p-8 bg-white shadow-lg dark:bg-gray-700 rounded-2xl">
 
                     <div class="block lg:hidden">
                         <div class="space-y-4">
@@ -154,9 +154,9 @@
 
                     </ul>
                     @if ($product->description != null)
-                        <hr class="my-6 border-gray-300 dark:border-gray-600" />
+                        <hr class="my-6 border-gray-300 dark:border-gray-600 dark:text-white" />
                         <div>
-                            <span>{{ $product->description }}</span>
+                            <span class="dark:text-white">{{ $product->description }}</span>
                         </div>
                     @endif
                 </div>

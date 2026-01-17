@@ -53,7 +53,8 @@ class ProductResource extends Resource
                 TiptapEditor::make('description')
                     ->label('Descripción')
                     ->profile('default') // puedes usar 'full' para más botones
-                    ->helperText('Puedes usar etiquetas HTML como <h2>, <span>, etc.'),
+                    ->helperText('Puedes usar etiquetas HTML como <h2>, <span>, etc.')
+                    ->columnSpan('full'),
             ]);
     }
 

@@ -87,7 +87,9 @@
                             <!-- Main Image -->
                             <div class="relative overflow-hidden bg-white rounded-2xl">
                                 <div class="flex items-center justify-center aspect-square">
-                                    <img id="mainImage" src="{{  asset('storage/' . $product->photos->first()->path) }}" alt="{{ $product->name }}" class="object-fill max-w-full max-h-full"/>
+                                    @if (!$product->photos->isEmpty())
+                                        <img id="mainImage" src="{{  asset('storage/' . $product->photos->first()->path) }}" alt="{{ $product->name }}" class="object-fill max-w-full max-h-full"/>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -156,7 +158,7 @@
                     @if ($product->description != null)
                         <hr class="my-6 border-gray-300 dark:border-gray-600 dark:text-white" />
                         <div>
-                            <span class="dark:text-white">{{ $product->description }}</span>
+                            <span class="dark:text-white">{!! $product->description !!}</span>
                         </div>
                     @endif
                 </div>
@@ -207,5 +209,13 @@
         </div>
 
     </div>
+
+    <style>
+        td{
+            border: 1px solid black;
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+    </style>
 
 </div>

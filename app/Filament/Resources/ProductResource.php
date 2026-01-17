@@ -10,6 +10,7 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
+use FilamentTiptapEditor\TiptapEditor;
 
 class ProductResource extends Resource
 {
@@ -43,16 +44,16 @@ class ProductResource extends Resource
 
                     ->required(),
                 Forms\Components\Select::make('uses')
-                ->label("Usos")
-                ->relationship('uses', 'name')
-                ->multiple()
-                ->searchable()
-                ->preload() // Opcional: precarga las opciones
-                ->required(),
-                Forms\Components\Textarea::make('description')
+                    ->label("Usos")
+                    ->relationship('uses', 'name')
+                    ->multiple()
+                    ->searchable()
+                    ->preload() // Opcional: precarga las opciones
+                    ->required(),
+                TiptapEditor::make('description')
                     ->label('Descripción')
-                    ->rows(5)
-                    ->maxLength(65535),
+                    ->profile('default') // puedes usar 'full' para más botones
+                    ->helperText('Puedes usar etiquetas HTML como <h2>, <span>, etc.'),
             ]);
     }
 

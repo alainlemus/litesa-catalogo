@@ -1,5 +1,16 @@
 <div class="bg-transparent dark:bg-gray-900">
 
+    @section('title', $product->name . ' - Grupo Litesa')
+    @section('meta_description', $product->description ? $product->description : 'Expertos en iluminación, ofrecemos soluciones de alta calidad para el hogar y la industria. Descubre nuestra amplia gama de productos y servicios.')
+    @section('og_title',  $product->name . ' - Grupo Litesa')
+    @section('og_description', $product->description ? $product->description : 'Expertos en iluminación, ofrecemos soluciones de alta calidad para el hogar y la industria. Descubre nuestra amplia gama de productos y servicios.')
+    @section('og_image', App::environment('local') ? asset('storage/' . $product->photo) : \Illuminate\Support\Facades\Storage::disk('s3')->url($product->photo))
+
+    @section('twitter_card', 'summary_large_image')
+    @section('twitter_title',  $product->name . ' - Grupo Litesa')
+    @section('twitter_description', $product->description ? $product->description : 'Expertos en iluminación, ofrecemos soluciones de alta calidad para el hogar y la industria. Descubre nuestra amplia gama de productos y servicios.')
+    @section('twitter_image', App::environment('local') ? asset('storage/' . $product->photo) : \Illuminate\Support\Facades\Storage::disk('s3')->url($product->photo))
+
     <div class="container flex-grow h-full px-4 py-12 mx-auto">
 
         <!-- Breadcrumb -->

@@ -87,7 +87,7 @@
                             <!-- Main Image -->
                             <div class="relative overflow-hidden bg-white rounded-2xl">
                                 <div class="flex items-center justify-center aspect-square">
-                                    @if (!$product->photos->isEmpty())
+                                    @if ($product->photos->count() > 0)
                                         <img id="mainImage" src="{{  asset('storage/' . $product->photos->first()->path) }}" alt="{{ $product->name }}" class="object-fill max-w-full max-h-full"/>
                                     @endif
                                 </div>

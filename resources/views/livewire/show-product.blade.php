@@ -87,8 +87,8 @@
                             <!-- Main Image -->
                             <div class="relative overflow-hidden bg-white rounded-2xl">
                                 <div class="flex items-center justify-center aspect-square">
-                                    @if ($product->photos->count() > 0)
-                                        <img id="mainImage" src="{{  asset('storage/' . $product->photos->first()->path) }}" alt="{{ $product->name }}" class="object-fill max-w-full max-h-full"/>
+                                    @if (!$product->photos->isEmpty())
+                                        <img id="mainImage" src="{{ App::environment('local') ? asset('storage/' . $product->photos->first()->path) : \Illuminate\Support\Facades\Storage::disk('s3')->url($product->photos->first()->path) }}" alt="{{ $product->name }}" class="object-fill max-w-full max-h-full"/>
                                     @endif
                                 </div>
                             </div>

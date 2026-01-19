@@ -83,12 +83,12 @@
 
     <section class="py-16 bg-white dark:bg-gray-900">
         <div class="w-full flex justify-between items-center px-4 md:px-20 mb-8">
-            <p class="text-3xl dark:text-white">Lo último</p>
+            <p class="text-3xl dark:text-white">Lo último en productos</p>
             <a href="{{ route('ilumination.catalog') }}" class="text-blue-600 font-semibold hover:underline flex items-center gap-2">Ver catálogo completo <span>&rarr;</span></a>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 px-4 md:px-20">
             @foreach ($newProducts as $product)
-                <div class="bg-gray-50 rounded-3xl p-6 flex flex-col items-center shadow-sm">
+                <a href="{{ route('product.show', ['id' => $product->id]) }}" class="bg-gray-50 rounded-3xl p-6 flex flex-col items-center shadow-sm">
                     <div class="w-48 h-48 flex items-center justify-center bg-white rounded-2xl mb-4 overflow-hidden">
                         <img src="{{ App::environment('local')
                             ? asset('storage/' . ltrim($product->photos->first()->path ?? '', '/'))
@@ -97,7 +97,7 @@
                             class="object-cover w-full h-full">
                     </div>
                     <h3 class="text-xl font-bold text-gray-900 mb-2 text-center">{{ $product->name }}</h3>
-                </div>
+                </a>
             @endforeach
         </div>
     </section>

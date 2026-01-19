@@ -24,6 +24,7 @@ class SiteSetting extends Model
         'contact_email',
         'contact_address',
         'contact_hours',
+        'whatsapp',
     ];
 
     protected $casts = [

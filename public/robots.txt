@@ -1,5 +1,8 @@
 User-agent: *
-Disallow:
-
+Disallow: /admin/
+Disallow: /login/
+Disallow: /register/
+Disallow: /dashboard/
+Allow: /
 
 Sitemap: https://litesa-catalogo-main-hpckme.laravel.cloud/sitemap.xml

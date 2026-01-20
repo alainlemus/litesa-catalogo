@@ -176,7 +176,7 @@
                     @if ($whatsapp)
                         <div class="mt-6 flex flex-col lg:items-end items-center gap-2">
                             <div class="flex gap-2 mb-2">
-                                <p class="flex justify-center items-center dark:text-white">Compartir: </p>
+                                <p class="font-semibold text-gray-600 flex justify-center items-center dark:text-white">Compartir: </p>
                                 <!-- Facebook -->
                                 <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(request()->fullUrl()) }}" target="_blank" class="inline-flex items-center justify-center w-8 h-8 lg:w-10 lg:h-10 rounded-full bg-blue-600 hover:bg-blue-700 text-white overflow-hidden" title="Compartir en Facebook">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-5 h-5">

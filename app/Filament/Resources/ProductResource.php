@@ -11,6 +11,7 @@ use Filament\Tables;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
 use FilamentTiptapEditor\TiptapEditor;
+use Illuminate\Support\Str;
 
 class ProductResource extends Resource
 {
@@ -25,7 +26,21 @@ class ProductResource extends Resource
                 Forms\Components\TextInput::make('name')
                     ->label('Nombre')
                     ->required()
-                    ->maxLength(255),
+                    ->maxLength(255)
+                    ->live(debounce:4000)
+                    ->afterStateUpdated(function ($state, callable $set, $livewire) {
+                        if (!empty($state)) {
+                            $set('slug', Str::slug($state));
+                        } else {
+                            $set('slug', null);
+                        }
+                    }),
+                Forms\Components\TextInput::make('slug')
+                    ->label('Slug (URL)')
+                    ->hint('Se autogenera si lo dejas vacío')
+                    ->maxLength(255)
+                    ->disabled()
+                    ->extraInputAttributes(['x-ref' => 'slug']),
                 Forms\Components\TextInput::make('warranty')
                     ->label('Garantía')
                     ->maxLength(255),

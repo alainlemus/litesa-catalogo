@@ -88,7 +88,7 @@
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 px-4 md:px-20">
             @foreach ($newProducts as $product)
-                <a href="{{ route('product.show', ['id' => $product->id]) }}" class="bg-gray-50 rounded-3xl p-6 flex flex-col items-center shadow-sm">
+                <a href="{{ route('product.show', $product->slug) }}" class="bg-gray-50 rounded-3xl p-6 flex flex-col items-center shadow-sm">
                     <div class="w-48 h-48 flex items-center justify-center bg-white rounded-2xl mb-4 overflow-hidden">
                         <img src="{{ App::environment('local')
                             ? asset('storage/' . ltrim($product->photos->first()->path ?? '', '/'))

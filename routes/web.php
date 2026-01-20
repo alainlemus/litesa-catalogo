@@ -14,6 +14,7 @@ use App\Models\Post;
 use Illuminate\Support\Facades\Mail;
 use Spatie\Sitemap\Sitemap;
 use Spatie\Sitemap\Tags\Url;
+use App\Models\Product;
 
 Route::get('/blog/{slug}', ShowPost::class)->name('blog.show');
 
@@ -27,7 +28,7 @@ Route::get('/blog', Blog::class)->name('blog');
 
 Route::get('/contacto', Contact::class)->name('contact');
 
-Route::get('/iluminacion/catalogo/producto/{id}', ShowProduct::class)->name('product.show');
+Route::get('/iluminacion/catalogo/producto/{slug}', ShowProduct::class)->name('product.show');
 
 Route::get('/aviso-de-privacidad', PrivacyPolicyPage::class)->name('privacy.policy');
 
@@ -43,17 +44,29 @@ Route::get('/newsletter/unsubscribe/{token}', [NewsletterForm::class, 'unsubscri
     ->name('newsletter.unsubscribe');
 
 Route::get('/sitemap.xml', function () {
-    $sitemap = Sitemap::create()
-        ->add(Url::create('/'))
-        ->add(Url::create('/blog'));
+    $sitemap = Sitemap::create();
 
-    // Agrega cada post publicado
-    Post::where('status', 'published')->each(function ($post) use ($sitemap) {
-        $sitemap->add(
-            Url::create(route('blog.show', $post->slug))
-                ->setLastModificationDate($post->updated_at)
-        );
-    });
+    // Página principal
+    $sitemap->add(Url::create(url('/')));
+    // Catálogo
+    $sitemap->add(Url::create(url('/iluminacion/catalogo')));
+    // Contacto
+    $sitemap->add(Url::create(url('/contacto')));
+    // Aviso de privacidad
+    $sitemap->add(Url::create(url('/aviso-de-privacidad')));
+    // Iluminación
+    $sitemap->add(Url::create(url('/iluminacion')));
+    // Blog
+    $sitemap->add(Url::create(url('/blog')));
+
+    // Productos
+    foreach (Product::whereNotNull('slug')->get() as $product) {
+        $sitemap->add(Url::create(url('/iluminacion/catalogo/producto/' . $product->slug)));
+    }
+    // Posts
+    foreach (Post::where('status', 'published')->whereNotNull('slug')->get() as $post) {
+        $sitemap->add(Url::create(url('/blog/' . $post->slug)));
+    }
 
     return $sitemap->toResponse(request());
 });

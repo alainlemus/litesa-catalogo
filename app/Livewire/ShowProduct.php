@@ -11,9 +11,9 @@ class ShowProduct extends Component
     public $product;
     public $whatsapp = null;
 
-    public function mount($id)
+    public function mount($slug)
     {
-        $this->product = Product::with(['variants', 'photos', 'uses'])->findOrFail($id);
+        $this->product = Product::with(['variants', 'photos', 'uses'])->where('slug', $slug)->firstOrFail();
         $this->whatsapp = SiteSetting::find(1)->whatsapp;
     }
 

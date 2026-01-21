@@ -1,14 +1,18 @@
 <div class="bg-transparent dark:bg-gray-900">
 
+    @php
+        use Illuminate\Support\Str;
+        $plainDescription = $product->description ? Str::limit(strip_tags($product->description), 160) : 'Expertos en iluminación, ofrecemos soluciones de alta calidad para el hogar y la industria. Descubre nuestra amplia gama de productos y servicios.';
+    @endphp
     @section('title', $product->name . ' - Grupo Litesa')
-    @section('meta_description', $product->description ? $product->description : 'Expertos en iluminación, ofrecemos soluciones de alta calidad para el hogar y la industria. Descubre nuestra amplia gama de productos y servicios.')
+    @section('meta_description', $plainDescription)
     @section('og_title',  $product->name . ' - Grupo Litesa')
-    @section('og_description', $product->description ? $product->description : 'Expertos en iluminación, ofrecemos soluciones de alta calidad para el hogar y la industria. Descubre nuestra amplia gama de productos y servicios.')
+    @section('og_description', $plainDescription)
     @section('og_image', App::environment('local') ? asset('storage/' . $product->photos->first()->path) : \Illuminate\Support\Facades\Storage::disk('s3')->url($product->photos->first()->path))
 
     @section('twitter_card', 'summary_large_image')
     @section('twitter_title',  $product->name . ' - Grupo Litesa')
-    @section('twitter_description', $product->description ? $product->description : 'Expertos en iluminación, ofrecemos soluciones de alta calidad para el hogar y la industria. Descubre nuestra amplia gama de productos y servicios.')
+    @section('twitter_description', $plainDescription)
     @section('twitter_image', App::environment('local') ? asset('storage/' . $product->photos->first()->path) : \Illuminate\Support\Facades\Storage::disk('s3')->url($product->photos->first()->path))
 
     <div class="container flex-grow h-full px-4 py-12 mx-auto">
@@ -118,7 +122,7 @@
                             </div>
                         @endif
                         @if ($product->power_factor != null)
-                            <div class="inline-flex items-center px-3 py-1 text-sm font-bold text-yellow-500 border-yellow-500 rounded rounded-full dark:text-white bg-litesa-yellow dark:bg-gray-500 dark:border-gray-700 border-1 ">
+                            <div class="inline-flex items-center px-3 py-1 text-sm font-bold text-yellow-500 border-yellow-500  rounded-full dark:text-white bg-litesa-yellow dark:bg-gray-500 dark:border-gray-700 border-1 ">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" />
                                 </svg>
@@ -129,7 +133,7 @@
                             </div>
                         @endif
                         @if ($product->certification != null)
-                            <div class="inline-flex items-center px-3 py-1 text-sm font-bold text-yellow-500 border-yellow-500 rounded rounded-full bg-litesa-yellow dark:bg-gray-500 dark:border-gray-700 border-1 dark:text-white">
+                            <div class="inline-flex items-center px-3 py-1 text-sm font-bold text-yellow-500 border-yellow-500 rounded-full bg-litesa-yellow dark:bg-gray-500 dark:border-gray-700 border-1 dark:text-white">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
                                 </svg>
@@ -138,7 +142,7 @@
                             </div>
                         @endif
                         @if ($product->base != null)
-                            <div class="inline-flex items-center px-3 py-1 text-sm font-bold text-yellow-500 border-yellow-500 rounded rounded-full bg-litesa-yellow dark:bg-gray-500 dark:border-gray-700 border-1">
+                            <div class="inline-flex items-center px-3 py-1 text-sm font-bold text-yellow-500 border-yellow-500 rounded-full bg-litesa-yellow dark:bg-gray-500 dark:border-gray-700 border-1">
                                 <span class="p-1 text-yellow-500 dark:text-white">{{ $product->base }}</span>
                             </div>
                         @endif

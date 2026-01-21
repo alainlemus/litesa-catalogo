@@ -64,39 +64,36 @@
         <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
             @foreach ($products as $product)
                 <a href="{{ route('product.show', $product->slug) }}"
-                    class="p-4 bg-white rounded-lg shadow dark:bg-gray-700 cursor-pointer text-left w-full focus:outline-none focus:ring-2 focus:ring-blue-500 hover:shadow-2xl">
-                    <h3 class="mb-2 text-xl font-semibold text-gray-600 dark:text-white">
-                        {{ mb_strtoupper($product->name, 'UTF-8') }}
-                    </h3>
-                    <div class="flex flex-col items-start justify-between">
-                        <div class="w-full">
-                            @if ($product->photos->count() > 0)
-                                <img src="{{ App::environment('local') ? asset('storage/' . $product->photos->first()->path) : \Illuminate\Support\Facades\Storage::disk('s3')->url($product->photos->first()->path) }}" alt="{{ $product->name }}" class="object-contain w-full h-48 bg-white rounded">
-                            @else
-                                <div class="flex items-center justify-center w-full h-48 bg-gray-200">Sin imagen</div>
+                    class="p-6 bg-white dark:bg-gray-800 rounded-3xl flex flex-col items-center shadow-sm border border-gray-200 dark:border-gray-700 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group relative overflow-hidden w-full cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <div class="w-44 h-44 flex items-center justify-center bg-gray-50 dark:bg-gray-900 rounded-2xl mb-4 overflow-hidden border border-gray-100 dark:border-gray-700 group-hover:scale-105 transition-transform duration-300">
+                        @if ($product->photos->count() > 0)
+                            <img src="{{ App::environment('local') ? asset('storage/' . $product->photos->first()->path) : \Illuminate\Support\Facades\Storage::disk('s3')->url($product->photos->first()->path) }}" alt="{{ $product->name }}" class="object-contain w-full h-full transition-transform duration-300 group-hover:scale-110">
+                        @else
+                            <div class="flex items-center justify-center w-full h-full bg-gray-200 text-gray-500">Sin imagen</div>
+                        @endif
+                    </div>
+                    <h3 class="mb-2 text-lg font-extrabold text-gray-900 dark:text-white text-center tracking-wide uppercase">{{ mb_strtoupper($product->name, 'UTF-8') }}</h3>
+                    <div class="w-full pt-2 pl-1">
+                        <p class="mb-2 text-green-600">
+                            @if ($product->certification != null)
+                                <span class="p-1 text-yellow-500 border-gray-300 rounded dark:text-gray-300 border-1">{{ $product->certification }}</span>
+                            @endif
+                            @if ($product->base != null)
+                                <span class="p-1 border-gray-300 rounded border-1 dark:text-gray-300">{{ $product->base }}</span>
+                            @endif
+                            @if ($product->power_factor != null)
+                                <span class="p-1 border-gray-300 rounded border-1 dark:text-gray-300">
+                                    {{ $product->power_factor }}
+                                </span>
+                            @endif
+                        </p>
+                        <div class="flex items-center mb-2">
+                            @if ($product->warranty != null)
+                                <span class="px-2 py-1 text-white bg-yellow-300 rounded-full dark:bg-gray-900">Garantía {{ $product->warranty }}</span>
                             @endif
                         </div>
-                        <div class="w-full pt-4 pl-1">
-                            <p class="mb-2 text-green-600">
-                                @if ($product->certification != null)
-                                    <span class="p-1 text-yellow-500 border-gray-300 rounded dark:text-gray-300 border-1">{{ $product->certification }}</span>
-                                @endif
-                                @if ($product->base != null)
-                                    <span class="p-1 border-gray-300 rounded border-1 dark:text-gray-300">{{ $product->base }}</span>
-                                @endif
-                                @if ($product->power_factor != null)
-                                    <span class="p-1 border-gray-300 rounded border-1 dark:text-gray-300">
-                                        {{ $product->power_factor }}
-                                    </span>
-                                @endif
-                            </p>
-                            <div class="flex items-center mb-2">
-                                @if ($product->warranty != null)
-                                    <span class="px-2 py-1 text-white bg-yellow-300 rounded-full dark:bg-gray-900">Garantía {{ $product->warranty }}</span>
-                                @endif
-                            </div>
-                        </div>
                     </div>
+                    <span class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-blue-600 text-white rounded-full px-3 py-1 text-xs font-semibold shadow-lg">Ver más</span>
                 </a>
             @endforeach
         </div>

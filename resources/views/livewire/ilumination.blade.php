@@ -88,15 +88,16 @@
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 px-4 md:px-20">
             @foreach ($newProducts as $product)
-                <a href="{{ route('product.show', $product->slug) }}" class="bg-gray-50 rounded-3xl p-6 flex flex-col items-center shadow-sm">
-                    <div class="w-48 h-48 flex items-center justify-center bg-white rounded-2xl mb-4 overflow-hidden">
+                <a href="{{ route('product.show', $product->slug) }}" class="bg-white dark:bg-gray-800 rounded-3xl p-6 flex flex-col items-center shadow-sm border border-gray-200 dark:border-gray-700 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group relative overflow-hidden">
+                    <div class="w-44 h-44 flex items-center justify-center bg-gray-50 dark:bg-gray-900 rounded-2xl mb-4 overflow-hidden border border-gray-100 dark:border-gray-700 group-hover:scale-105 transition-transform duration-300">
                         <img src="{{ App::environment('local')
                             ? asset('storage/' . ltrim($product->photos->first()->path ?? '', '/'))
                             : Storage::disk('s3')->url($product->photos->first()->path ?? '') }}"
                             alt="{{ $product->name }}"
-                            class="object-cover w-full h-full">
+                            class="object-contain w-full h-full transition-transform duration-300 group-hover:scale-110">
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-2 text-center">{{ $product->name }}</h3>
+                    <h3 class="text-lg font-extrabold text-gray-900 dark:text-white mb-2 text-center tracking-wide uppercase">{{ mb_strtoupper($product->name, 'UTF-8') }}</h3>
+                    <span class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-blue-600 text-white rounded-full px-3 py-1 text-xs font-semibold shadow-lg">Ver más</span>
                 </a>
             @endforeach
         </div>

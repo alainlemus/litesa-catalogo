@@ -42,14 +42,14 @@
                     </svg>
                 </span>
 
-                <span class="text-blue-600 dark:text-blue-400 hover:underline max-w-xs truncate inline-block align-bottom" style="vertical-align:bottom;" title="{{ strtoupper($post->title) }}">
-                    {{ strtoupper($post->title) }}
+                <span class="text-blue-600 dark:text-blue-400 hover:underline max-w-[100px] sm:max-w-[220px] truncate inline-block align-bottom overflow-hidden text-ellipsis text-xs sm:text-sm md:text-base" style="vertical-align:bottom;" title="{{ mb_strtoupper($post->title, 'UTF-8') }}">
+                    {{ mb_strtoupper($post->title, 'UTF-8') }}
                 </span>
             </div>
 
-            <div class="mb-4 overflow-x-auto whitespace-nowrap">
-                <h1 class="text-3xl font-bold text-gray-800 dark:text-white inline-block align-bottom select-text" style="min-width:fit-content;">
-                    {{ strtoupper($post->title) }}
+            <div class="mb-4">
+                <h1 class="text-3xl font-bold text-gray-800 dark:text-white select-text break-words w-full max-w-full" style="word-break:break-word;">
+                    {{ mb_strtoupper($post->title, 'UTF-8') }}
                 </h1>
             </div>
 
@@ -98,7 +98,7 @@
             <div class="flex lg:justify-between flex-col lg:flex-row mb-4">
                 @php
                     $fechaFormateada = Carbon::parse($post->updated_at)
-                        ->translatedFormat('d \d\e\l \m\e\s F \d\e\l Y');
+                        ->translatedFormat('d \d\e\l \m\és F \d\e\l Y');
                     // Limpiar acentos y caracteres extraños
                     $fechaFormateada = str_replace(['É', '́'], ['E', ''], $fechaFormateada);
                 @endphp

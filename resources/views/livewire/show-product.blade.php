@@ -282,7 +282,7 @@
                         <a href="{{ route('product.show', $similar->slug) }}" class="w-3/4 sm:w-1/2 md:w-1/3 lg:w-1/4 min-w-[70vw] sm:min-w-[45vw] md:min-w-[32vw] lg:min-w-0 p-4 bg-white rounded-lg shadow dark:bg-gray-700 cursor-pointer text-left focus:outline-none focus:ring-2 focus:ring-blue-500 hover:shadow-2xl transition-all">
                             <div>
                                 <img src="{{ App::environment('local') ? asset('storage/' . $similar->photos->first()->path) : \Illuminate\Support\Facades\Storage::disk('s3')->url($similar->photos->first()->path) }}" alt="{{ $similar->name }}" class="object-contain w-full h-32 mb-2 rounded" />
-                                <h3 class="mb-2 text-lg font-semibold text-gray-600 dark:text-white">{{ mb_strtoupper($similar->name, 'UTF-8') }}</h3>
+                                <h3 class="mb-2 text-md font-semibold text-gray-600 dark:text-white text-center">{{ mb_strtoupper($similar->name, 'UTF-8') }}</h3>
 
                             </div>
                         </a>

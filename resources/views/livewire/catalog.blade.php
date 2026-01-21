@@ -65,7 +65,9 @@
             @foreach ($products as $product)
                 <a href="{{ route('product.show', $product->slug) }}"
                     class="p-4 bg-white rounded-lg shadow dark:bg-gray-700 cursor-pointer text-left w-full focus:outline-none focus:ring-2 focus:ring-blue-500 hover:shadow-2xl">
-                    <h3 class="mb-2 text-xl font-semibold text-gray-600 dark:text-white">{{ $product->name }}</h3>
+                    <h3 class="mb-2 text-xl font-semibold text-gray-600 dark:text-white">
+                        {{ mb_strtoupper($product->name, 'UTF-8') }}
+                    </h3>
                     <div class="flex flex-col items-start justify-between">
                         <div class="w-full">
                             @if ($product->photos->count() > 0)

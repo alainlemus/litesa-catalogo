@@ -40,7 +40,8 @@ class ProductResource extends Resource
                     ->hint('Se autogenera si lo dejas vacío')
                     ->maxLength(255)
                     ->disabled()
-                    ->extraInputAttributes(['x-ref' => 'slug']),
+                    ->extraInputAttributes(['x-ref' => 'slug'])
+                    ->rule('regex:/^[a-z0-9]+(-[a-z0-9]+)*$/'),
                 Forms\Components\TextInput::make('warranty')
                     ->label('Garantía')
                     ->maxLength(255),

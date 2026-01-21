@@ -4,14 +4,14 @@
         use Illuminate\Support\Str;
         $plainDescription = $product->description ? Str::limit(strip_tags($product->description), 160) : 'Expertos en iluminación, ofrecemos soluciones de alta calidad para el hogar y la industria. Descubre nuestra amplia gama de productos y servicios.';
     @endphp
-    @section('title', $product->name . ' - Grupo Litesa')
+    @section('title', strtoupper($product->name) . ' - Grupo Litesa')
     @section('meta_description', $plainDescription)
-    @section('og_title',  $product->name . ' - Grupo Litesa')
+    @section('og_title',  strtoupper($product->name) . ' - Grupo Litesa')
     @section('og_description', $plainDescription)
     @section('og_image', App::environment('local') ? asset('storage/' . $product->photos->first()->path) : \Illuminate\Support\Facades\Storage::disk('s3')->url($product->photos->first()->path))
 
     @section('twitter_card', 'summary_large_image')
-    @section('twitter_title',  $product->name . ' - Grupo Litesa')
+    @section('twitter_title',  strtoupper($product->name) . ' - Grupo Litesa')
     @section('twitter_description', $plainDescription)
     @section('twitter_image', App::environment('local') ? asset('storage/' . $product->photos->first()->path) : \Illuminate\Support\Facades\Storage::disk('s3')->url($product->photos->first()->path))
 
@@ -41,8 +41,8 @@
                 </svg>
             </span>
 
-            <span class="text-gray-500 dark:text-gray-300 hover:underline max-w-xs truncate inline-block align-bottom" style="vertical-align:bottom;" title="{{ $product->name }}">
-                {{ $product->name }}
+            <span class="text-gray-500 dark:text-gray-300 hover:underline max-w-xs truncate inline-block align-bottom" style="vertical-align:bottom;" title="{{ strtoupper($product->name) }}">
+                {{ strtoupper($product->name) }}
             </span>
         </div>
 
@@ -51,14 +51,16 @@
             <!-- Product Images Carousel -->
             <div class="hidden lg:block">
                 <div class="space-y-4">
-                    <div class="relative overflow-hidden bg-white shadow-lg rounded-2xl">
+                    <div class="relative overflow-hidden bg-white shadow-lg rounded-2xl group">
                         <div class="flex items-center justify-center p-8 aspect-square">
                             <div id="carousel" class="relative w-full">
                                 <div class="swiper-container">
                                     <div class="swiper-wrapper">
                                         @foreach ($product->photos as $photo)
                                             <div class="swiper-slide flex items-center justify-center h-full">
-                                                <img src="{{ App::environment('local') ? asset('storage/' . $photo->path) : \Illuminate\Support\Facades\Storage::disk('s3')->url($photo->path) }}" alt="{{ $product->name }}" class="object-contain max-w-full max-h-full h-full w-auto mx-auto rounded-2xl"/>
+                                                <div class="zoom-container relative w-full h-full">
+                                                    <img src="{{ App::environment('local') ? asset('storage/' . $photo->path) : \Illuminate\Support\Facades\Storage::disk('s3')->url($photo->path) }}" alt="{{ $product->name }}" class="zoom-image object-contain max-w-full max-h-full h-full w-auto mx-auto rounded-2xl transition-transform duration-300" style="cursor:zoom-in;"/>
+                                                </div>
                                             </div>
                                         @endforeach
                                     </div>
@@ -95,7 +97,7 @@
             <!-- Product Info -->
             <div class="space-y-6">
 
-                <div class="p-8 bg-white shadow-lg dark:bg-gray-700 rounded-2xl">
+                <div class="p-8 ">
 
                     <div class="block lg:hidden">
                         <div class="space-y-4">
@@ -110,7 +112,7 @@
                         </div>
                     </div>
 
-                    <h1 class="mb-2 text-3xl font-bold text-gray-500 dark:text-white">{{ $product->name }}</h1>
+                    <h1 class="lg:pt-0 pt-4 mb-2 text-3xl font-bold text-gray-500 dark:text-white">{{ strtoupper($product->name) }}</h1>
 
                     <div class="flex flex-wrap items-center gap-2 space-x-4">
                         @if ($product->warranty != null)
@@ -188,13 +190,13 @@
                                     </svg>
                                 </a>
                                 <!-- Twitter/X -->
-                                <a href="https://twitter.com/intent/tweet?url={{ urlencode(request()->fullUrl()) }}&text={{ urlencode('Mira este producto: ' . $product->name) }}" target="_blank" class="inline-flex items-center justify-center w-8 h-8 lg:w-10 lg:h-10 rounded-full bg-black hover:bg-gray-800 text-white" title="Compartir en X (Twitter)">
+                                <a href="https://twitter.com/intent/tweet?url={{ urlencode(request()->fullUrl()) }}&text={{ urlencode('Mira este producto: ' . strtoupper($product->name)) }}" target="_blank" class="inline-flex items-center justify-center w-8 h-8 lg:w-10 lg:h-10 rounded-full bg-black hover:bg-gray-800 text-white" title="Compartir en X (Twitter)">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-5 h-5">
                                         <path d="M22.162 5.656c.015.211.015.423.015.636 0 6.49-4.941 13.973-13.973 13.973-2.777 0-5.366-.813-7.548-2.213.386.045.772.075 1.173.075 2.3 0 4.415-.772 6.105-2.073-2.15-.045-3.963-1.462-4.59-3.417.303.045.606.075.924.075.439 0 .879-.06 1.288-.166-2.23-.454-3.91-2.415-3.91-4.773v-.06c.651.363 1.401.606 2.2.636-1.288-.863-2.13-2.34-2.13-4.011 0-.878.227-1.701.621-2.409 2.274 2.789 5.675 4.617 9.504 4.808-.075-.351-.12-.712-.12-1.082 0-2.626 2.13-4.757 4.757-4.757 1.373 0 2.614.575 3.484 1.501 1.082-.211 2.13-.606 3.06-1.173-.363 1.127-1.127 2.073-2.13 2.671 0.963-.106 1.877-.372 2.724-.757-.651.954-1.462 1.797-2.406 2.463z"/>
                                     </svg>
                                 </a>
                                 <!-- LinkedIn -->
-                                <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ urlencode(request()->fullUrl()) }}&title={{ urlencode($product->name) }}" target="_blank" class="inline-flex items-center justify-center w-8 h-8 lg:w-10 lg:h-10 rounded-full bg-blue-800 hover:bg-blue-900 text-white" title="Compartir en LinkedIn">
+                                <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ urlencode(request()->fullUrl()) }}&title={{ urlencode(strtoupper($product->name)) }}" target="_blank" class="inline-flex items-center justify-center w-8 h-8 lg:w-10 lg:h-10 rounded-full bg-blue-800 hover:bg-blue-900 text-white" title="Compartir en LinkedIn">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-5 h-5">
                                         <path d="M20.447 20.452h-3.554v-5.569c0-1.327-.027-3.037-1.849-3.037-1.851 0-2.132 1.445-2.132 2.939v5.667H9.358V9h3.414v1.561h.049c.476-.899 1.637-1.849 3.37-1.849 3.602 0 4.267 2.369 4.267 5.455v6.285zM5.337 7.433c-1.144 0-2.069-.926-2.069-2.069 0-1.144.925-2.07 2.069-2.07 1.143 0 2.069.926 2.069 2.07 0 1.143-.926 2.069-2.069 2.069zm1.777 13.019H3.56V9h3.554v11.452zM22.225 0H1.771C.792 0 0 .771 0 1.723v20.549C0 23.229.792 24 1.771 24h20.451C23.2 24 24 23.229 24 22.271V1.723C24 .771 23.2 0 22.225 0z"/>
                                     </svg>
@@ -214,9 +216,9 @@
                             </div>
                             <div class="flex justify-end w-full">
                                 <a
-                                    href="https://wa.me/52{{ $whatsapp }}?text={{ urlencode('Hola, quiero más información sobre el producto: ' . $product->name . ($product->warranty ? ' | Garantía: ' . $product->warranty : '') . ($product->power_factor ? ' | Factor de Potencia: ' . $product->power_factor : '') . ($product->certification ? ' | Certificación: ' . $product->certification : '') . ($product->base ? ' | Base: ' . $product->base : '') . (request()->fullUrl() ? ' | Link: ' . request()->fullUrl() : '')) }}"
-                                    target="_blank"
-                                    class="inline-flex items-center gap-2 px-6 py-3 text-white bg-green-500 rounded-lg shadow hover:bg-green-600 transition-colors font-semibold text-lg"
+                                    href="https://wa.me/52{{ $whatsapp }}?text={{ urlencode('Hola, quiero más información sobre el producto: ' . strtoupper($product->name) . ($product->warranty ? ' | Garantía: ' . $product->warranty : '') . ($product->power_factor ? ' | Factor de Potencia: ' . $product->power_factor : '') . ($product->certification ? ' | Certificación: ' . $product->certification : '') . ($product->base ? ' | Base: ' . $product->base : '') . (request()->fullUrl() ? ' | Link: ' . request()->fullUrl() : '')) }}"
+    target="_blank"
+    class="inline-flex items-center gap-2 px-6 py-3 text-white bg-green-500 rounded-lg shadow hover:bg-green-600 transition-colors font-semibold text-lg"
                                 >
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-6 h-6">
                                         <path d="M20.52 3.48A12.07 12.07 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.12.55 4.19 1.6 6.02L0 24l6.18-1.62A12.07 12.07 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.19-1.24-6.19-3.48-8.52zM12 22c-1.85 0-3.67-.5-5.24-1.44l-.37-.22-3.67.96.98-3.58-.24-.37A9.94 9.94 0 0 1 2 12C2 6.48 6.48 2 12 2c2.54 0 4.93.99 6.74 2.76A9.94 9.94 0 0 1 22 12c0 5.52-4.48 10-10 10zm5.2-7.6c-.28-.14-1.65-.81-1.9-.9-.25-.09-.43-.14-.61.14-.18.28-.7.9-.86 1.08-.16.18-.32.2-.6.07-.28-.14-1.18-.44-2.25-1.4-.83-.74-1.39-1.65-1.55-1.93-.16-.28-.02-.43.12-.57.13-.13.28-.34.42-.51.14-.17.18-.29.28-.48.09-.19.05-.36-.02-.5-.07-.14-.61-1.47-.84-2.01-.22-.53-.45-.46-.62-.47-.16-.01-.36-.01-.56-.01-.19 0-.5.07-.76.34-.26.27-1 1-.98 2.43.02 1.43 1.02 2.81 1.16 3 .14.19 2.01 3.07 4.88 4.19.68.29 1.21.46 1.62.59.68.22 1.3.19 1.79.12.55-.08 1.65-.67 1.89-1.32.23-.65.23-1.2.16-1.32-.07-.12-.25-.19-.53-.33z"/>
@@ -233,7 +235,7 @@
                         <div class="w-full">
 
                             <div id="specifications" class="mt-6 tab-content">
-                                <div class="p-8 bg-white shadow-lg rounded-2xl dark:bg-gray-500">
+                                <div class="p-8 ">
                                     <h3 class="mb-4 text-xl font-bold text-gray-700 dark:text-white">Variantes</h3>
                                     <div class="overflow-x-auto bg-blue-600 dark:bg-gray-900">
                                         <table class="w-full border-collapse">
@@ -273,6 +275,24 @@
 
         </div>
 
+        <div class="py-20">
+            <h2 class="mb-4 text-2xl font-bold text-gray-700 dark:text-white">Productos similares</h2>
+            <hr class="py-2 mb-6 border-gray-300 dark:border-gray-600" />
+            <div class="swiper-similares-container container px-0 sm:px-4">
+                <div class="swiper-wrapper gap-4 flex-nowrap overflow-x-auto scrollbar-hide">
+                    @foreach ($similares as $similar)
+                        <a href="{{ route('product.show', $similar->slug) }}" class="w-3/4 sm:w-1/2 md:w-1/3 lg:w-1/4 min-w-[70vw] sm:min-w-[45vw] md:min-w-[32vw] lg:min-w-0 p-4 bg-white rounded-lg shadow dark:bg-gray-700 cursor-pointer text-left focus:outline-none focus:ring-2 focus:ring-blue-500 hover:shadow-2xl transition-all">
+                            <div>
+                                <img src="{{ App::environment('local') ? asset('storage/' . $similar->photos->first()->path) : \Illuminate\Support\Facades\Storage::disk('s3')->url($similar->photos->first()->path) }}" alt="{{ $similar->name }}" class="object-contain w-full h-32 mb-2 rounded" />
+                                <h3 class="mb-2 text-lg font-semibold text-gray-600 dark:text-white">{{ mb_strtoupper($similar->name, 'UTF-8') }}</h3>
+
+                            </div>
+                        </a>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <style>
@@ -281,6 +301,93 @@
             padding-left: 5px;
             padding-right: 5px;
         }
+        @media (min-width: 1024px) {
+            .group:hover img,
+            .group:active img {
+                transform: scale(1.25);
+                cursor: zoom-in;
+            }
+        }
+        @media (max-width: 1023px) {
+            .group:hover img,
+            .group:active img {
+                transform: scale(1);
+                cursor: default;
+            }
+        }
+        @media (min-width: 1024px) {
+            .zoom-container {
+                overflow: hidden;
+                position: relative;
+            }
+            .zoom-image {
+                transition: transform 0.5s cubic-bezier(.4,0,.2,1); /* Más lento */
+                will-change: transform;
+                pointer-events: none;
+            }
+            .zoom-container.active .zoom-image {
+                cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><circle cx="14" cy="14" r="9" stroke="black" stroke-width="2" fill="none"/><line x1="20" y1="20" x2="30" y2="30" stroke="black" stroke-width="2"/></svg>') 16 16, zoom-in;
+            }
+        }
+        @media (max-width: 1023px) {
+            .zoom-image {
+                transform: scale(1) !important;
+                cursor: default !important;
+            }
+        }
     </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            new Swiper('.swiper-container', {
+                loop: true,
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+            });
+
+            if (window.innerWidth >= 1024) {
+                document.querySelectorAll('.zoom-container').forEach(function(container) {
+                    const img = container.querySelector('.zoom-image');
+                    let lastX = 0, lastY = 0, animating = false;
+                    container.addEventListener('mousemove', function(e) {
+                        const rect = container.getBoundingClientRect();
+                        const x = e.clientX - rect.left;
+                        const y = e.clientY - rect.top;
+                        const xPercent = x / rect.width;
+                        const yPercent = y / rect.height;
+                        const scale = 2.2;
+                        const translateX = ((xPercent - 0.5) * (rect.width * (scale - 1)));
+                        const translateY = ((yPercent - 0.5) * (rect.height * (scale - 1)));
+                        // Animación suave
+                        if (!animating) {
+                            animating = true;
+                            container.classList.add('active');
+                            requestAnimationFrame(function animate() {
+                                lastX += (translateX - lastX) * 0.2;
+                                lastY += (translateY - lastY) * 0.2;
+                                img.style.transform = `scale(${scale}) translate(${-lastX}px, ${-lastY}px)`;
+                                if (Math.abs(lastX - translateX) > 0.5 || Math.abs(lastY - translateY) > 0.5) {
+                                    requestAnimationFrame(animate);
+                                } else {
+                                    animating = false;
+                                }
+                            });
+                        }
+                    });
+                    container.addEventListener('mouseleave', function() {
+                        img.style.transform = '';
+                        lastX = 0;
+                        lastY = 0;
+                        container.classList.remove('active');
+                    });
+                });
+            }
+        });
+    </script>
 
 </div>

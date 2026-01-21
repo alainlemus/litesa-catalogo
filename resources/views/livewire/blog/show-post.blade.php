@@ -1,13 +1,13 @@
 <div>
 
-    @section('title', $post->title . ' - Grupo Litesa')
+    @section('title', strtoupper($post->title) . ' - Grupo Litesa')
     @section('meta_description', $post->excerpt)
-    @section('og_title', $post->title . ' - Grupo Litesa')
+    @section('og_title', strtoupper($post->title) . ' - Grupo Litesa')
     @section('og_description', $post->excerpt)
     @section('og_image', Storage::disk('public')->url($post->image))
 
     @section('twitter_card', 'summary_large_image')
-    @section('twitter_title', $post->title . ' - Grupo Litesa')
+    @section('twitter_title', strtoupper($post->title) . ' - Grupo Litesa')
     @section('twitter_description', $post->excerpt)
     @section('twitter_image', Storage::disk('public')->url($post->image))
 
@@ -42,8 +42,8 @@
                     </svg>
                 </span>
 
-                <span class="text-blue-600 dark:text-blue-400 hover:underline max-w-xs truncate inline-block align-bottom" style="vertical-align:bottom;" title="{{ $post->title }}">
-                    {{ $post->title }}
+                <span class="text-blue-600 dark:text-blue-400 hover:underline max-w-xs truncate inline-block align-bottom" style="vertical-align:bottom;" title="{{ strtoupper($post->title) }}">
+                    {{ strtoupper($post->title) }}
                 </span>
             </div>
 
@@ -91,15 +91,16 @@
             @if ($post->image)
                 <img
                     src="{{ Storage::disk('public')->url($post->image) }}"
-                    alt="{{ $post->title }}"
+                    alt="{{ strtoupper($post->title) }}"
                     class="w-full mb-6 rounded-xl">
             @endif
 
             <div class="flex lg:justify-between flex-col lg:flex-row mb-4">
-
                 @php
                     $fechaFormateada = Carbon::parse($post->updated_at)
-                    ->translatedFormat('d \d\e\l \m\e\s F \d\e\l Y');
+                        ->translatedFormat('d \d\e\l \m\e\s F \d\e\l Y');
+                    // Limpiar acentos y caracteres extraños
+                    $fechaFormateada = str_replace(['É', '́'], ['E', ''], $fechaFormateada);
                 @endphp
                 <p class="mb-4 text-sm text-gray-400 dark:text-gray-500">{{ strtoupper("Categoría: ".$post->category) }}</p>
                 <p class="mb-4 text-sm text-gray-400 dark:text-gray-500">{{ strtoupper($fechaFormateada) }}</p>

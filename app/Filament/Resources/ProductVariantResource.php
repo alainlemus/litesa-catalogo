@@ -36,14 +36,14 @@ class ProductVariantResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('variant_id'),
-                Tables\Columns\TextColumn::make('pcs'),
-                Tables\Columns\TextColumn::make('description'),
-                Tables\Columns\TextColumn::make('size'),
-                Tables\Columns\TextColumn::make('power'),
-                Tables\Columns\TextColumn::make('lumen'),
-                Tables\Columns\TextColumn::make('voltage'),
-                Tables\Columns\TextColumn::make('colorTemperature.value')->label('Color Temperature'),
+                Tables\Columns\TextColumn::make('variant_id')->searchable(),
+                Tables\Columns\TextColumn::make('pcs')->searchable(),
+                Tables\Columns\TextColumn::make('description')->label('Descripción')->searchable(),
+                Tables\Columns\TextColumn::make('size')->label('Tamaño')->searchable(),
+                Tables\Columns\TextColumn::make('power')->label('Potencia')->searchable(),
+                Tables\Columns\TextColumn::make('lumen')->searchable(),
+                Tables\Columns\TextColumn::make('voltage')->label('Voltaje')->searchable(),
+                Tables\Columns\TextColumn::make('colorTemperature.value')->label('Color Temperatura')->searchable(),
             ])
             ->filters([
                 //

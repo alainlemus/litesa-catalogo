@@ -34,7 +34,8 @@ class ProductResource extends Resource
                         } else {
                             $set('slug', null);
                         }
-                    }),
+                    })
+                    ->searchable(),
                 Forms\Components\TextInput::make('slug')
                     ->label('Slug (URL)')
                     ->hint('Se autogenera si lo dejas vacío')
@@ -78,12 +79,12 @@ class ProductResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')->label("Nombre"),
-                Tables\Columns\TextColumn::make('warranty')->label("Garantía"),
-                Tables\Columns\TextColumn::make('power_factor')->label("Factor de Potencia"),
-                Tables\Columns\TextColumn::make('base')->label("Base"),
-                Tables\Columns\TextColumn::make('certification')->label("Certificación "),
-                Tables\Columns\TextColumn::make('uses.name')->label('Usos')->sortable(),
+                Tables\Columns\TextColumn::make('name')->label("Nombre")->searchable(),
+                Tables\Columns\TextColumn::make('warranty')->label("Garantía")->searchable(),
+                Tables\Columns\TextColumn::make('power_factor')->label("Factor de Potencia")->searchable(),
+                Tables\Columns\TextColumn::make('base')->label("Base")->searchable(),
+                Tables\Columns\TextColumn::make('certification')->label("Certificación ")->searchable(),
+                Tables\Columns\TextColumn::make('uses.name')->label('Usos')->sortable()->searchable(),
             ])
             ->filters([
                 //

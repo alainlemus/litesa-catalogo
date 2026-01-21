@@ -28,7 +28,7 @@ class ColorTemperatureResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('value'),
+                Tables\Columns\TextColumn::make('value')->label('Valor')->searchable(),
             ])
             ->filters([
                 //

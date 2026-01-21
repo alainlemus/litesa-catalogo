@@ -58,9 +58,7 @@
                                     <div class="swiper-wrapper">
                                         @foreach ($product->photos as $photo)
                                             <div class="swiper-slide flex items-center justify-center h-full">
-                                                <div class="zoom-container relative w-full h-full">
-                                                    <img src="{{ App::environment('local') ? asset('storage/' . $photo->path) : \Illuminate\Support\Facades\Storage::disk('s3')->url($photo->path) }}" alt="{{ $product->name }}" class="zoom-image object-contain max-w-full max-h-full h-full w-auto mx-auto rounded-2xl transition-transform duration-300" style="cursor:zoom-in;"/>
-                                                </div>
+                                                <img src="{{ App::environment('local') ? asset('storage/' . $photo->path) : \Illuminate\Support\Facades\Storage::disk('s3')->url($photo->path) }}" alt="{{ $product->name }}" class="object-contain max-w-full max-h-full h-full w-auto mx-auto rounded-2xl transition-transform duration-300" style="cursor:default;"/>
                                             </div>
                                         @endforeach
                                     </div>
@@ -304,35 +302,15 @@
         @media (min-width: 1024px) {
             .group:hover img,
             .group:active img {
-                transform: scale(1.25);
-                cursor: zoom-in;
+                transform: none;
+                cursor: default;
             }
         }
         @media (max-width: 1023px) {
             .group:hover img,
             .group:active img {
-                transform: scale(1);
+                transform: none;
                 cursor: default;
-            }
-        }
-        @media (min-width: 1024px) {
-            .zoom-container {
-                overflow: hidden;
-                position: relative;
-            }
-            .zoom-image {
-                transition: transform 0.5s cubic-bezier(.4,0,.2,1); /* Más lento */
-                will-change: transform;
-                pointer-events: none;
-            }
-            .zoom-container.active .zoom-image {
-                cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><circle cx="14" cy="14" r="9" stroke="black" stroke-width="2" fill="none"/><line x1="20" y1="20" x2="30" y2="30" stroke="black" stroke-width="2"/></svg>') 16 16, zoom-in;
-            }
-        }
-        @media (max-width: 1023px) {
-            .zoom-image {
-                transform: scale(1) !important;
-                cursor: default !important;
             }
         }
     </style>
@@ -349,44 +327,6 @@
                     prevEl: '.swiper-button-prev',
                 },
             });
-
-            if (window.innerWidth >= 1024) {
-                document.querySelectorAll('.zoom-container').forEach(function(container) {
-                    const img = container.querySelector('.zoom-image');
-                    let lastX = 0, lastY = 0, animating = false;
-                    container.addEventListener('mousemove', function(e) {
-                        const rect = container.getBoundingClientRect();
-                        const x = e.clientX - rect.left;
-                        const y = e.clientY - rect.top;
-                        const xPercent = x / rect.width;
-                        const yPercent = y / rect.height;
-                        const scale = 2.2;
-                        const translateX = ((xPercent - 0.5) * (rect.width * (scale - 1)));
-                        const translateY = ((yPercent - 0.5) * (rect.height * (scale - 1)));
-                        // Animación suave
-                        if (!animating) {
-                            animating = true;
-                            container.classList.add('active');
-                            requestAnimationFrame(function animate() {
-                                lastX += (translateX - lastX) * 0.2;
-                                lastY += (translateY - lastY) * 0.2;
-                                img.style.transform = `scale(${scale}) translate(${-lastX}px, ${-lastY}px)`;
-                                if (Math.abs(lastX - translateX) > 0.5 || Math.abs(lastY - translateY) > 0.5) {
-                                    requestAnimationFrame(animate);
-                                } else {
-                                    animating = false;
-                                }
-                            });
-                        }
-                    });
-                    container.addEventListener('mouseleave', function() {
-                        img.style.transform = '';
-                        lastX = 0;
-                        lastY = 0;
-                        container.classList.remove('active');
-                    });
-                });
-            }
         });
     </script>
 

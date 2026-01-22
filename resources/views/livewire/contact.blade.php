@@ -19,14 +19,14 @@
             <div class="container flex flex-col flex-1 px-6 py-12 mx-auto">
                 <div class="flex-1 lg:flex lg:items-center lg:-mx-6">
                     <div class="text-white lg:w-1/2 lg:mx-6">
-                        <h1 class="text-2xl font-semibold capitalize lg:text-3xl">Necesitas nuestra asesoria</h1>
+                        <h1 class="text-2xl font-semibold capitalize lg:text-3xl">Necesitas nuestra asesoría</h1>
 
                         <p class="max-w-xl mt-6">
                             En Grupo Litesa estamos para escucharte y resolver tus dudas. Si tienes alguna pregunta, comentario o necesitas más información sobre nuestros servicios, no dudes en contactarnos. Nuestro equipo de asesores está listo para ayudarte en lo que necesites.
                         </p>
 
                         <div class="mt-6 md:mt-8">
-                            <h3 class="text-gray-300 ">Siguenos</h3>
+                            <h2 class="text-gray-300">Síguenos</h2>
 
                             <div class="flex mt-4 -mx-1.5 ">
                                 @php
@@ -34,7 +34,7 @@
                                     $socialNetworks = $siteSetting?->socials ?? [];
                                 @endphp
                                 @foreach ($socialNetworks as $network)
-                                    <a href="{{ $network['url'] }}" target="_blank"
+                                    <a href="{{ $network['url'] }}" target="_blank" rel="noopener noreferrer"
                                         class="mx-2 text-gray-300 transition-colors duration-300 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400"
                                         aria-label="{{ $network['name'] }}">
                                         {!! $network['svg'] !!}
@@ -46,28 +46,28 @@
 
                     <div class="mt-8 lg:w-1/2 lg:mx-6 duration-300 fade-in-up">
                         <div class="w-full px-8 py-10 mx-auto overflow-hidden transition-colors duration-300 bg-white shadow-2xl rounded-xl dark:bg-gray-900 lg:max-w-xl">
-                            <h1 class="text-xl font-medium text-gray-700 dark:text-gray-200">Formulario de contacto</h1>
+                            <h2 class="text-xl font-medium text-gray-700 dark:text-gray-200">Formulario de contacto</h2>
 
                             <p class="mt-2 text-gray-500 dark:text-gray-400">
-                                Escribenos y un asesor se pondrá en contacto contigo a la brevedad posible.
+                                Escríbenos y un asesor se pondrá en contacto contigo a la brevedad posible.
                             </p>
 
                             <form wire:submit.prevent="sendMessage" class="mt-6">
                                 <div class="flex-1">
-                                    <label class="block mb-2 text-sm text-gray-600 dark:text-gray-200">Nombre completo</label>
-                                    <input wire:model="name" type="text" placeholder="Carlos Carbajal" class="block w-full px-5 py-3 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" />
+                                    <label for="name" class="block mb-2 text-sm text-gray-600 dark:text-gray-200">Nombre completo</label>
+                                    <input wire:model="name" id="name" type="text" placeholder="Carlos Carbajal" class="block w-full px-5 py-3 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" />
                                     @error('name') <span class="text-sm text-red-600">{{ $message }}</span> @enderror
                                 </div>
 
                                 <div class="flex-1 mt-6">
-                                    <label class="block mb-2 text-sm text-gray-600 dark:text-gray-200">Correo electronico</label>
-                                    <input wire:model="email" type="email" placeholder="carlos@example.com" class="block w-full px-5 py-3 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" />
+                                    <label for="email" class="block mb-2 text-sm text-gray-600 dark:text-gray-200">Correo electrónico</label>
+                                    <input wire:model="email" id="email" type="email" placeholder="carlos@example.com" class="block w-full px-5 py-3 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" />
                                     @error('email') <span class="text-sm text-red-600">{{ $message }}</span> @enderror
                                 </div>
 
                                 <div class="w-full mt-6">
-                                    <label class="block mb-2 text-sm text-gray-600 dark:text-gray-200">Mensaje</label>
-                                    <textarea wire:model="message" class="block w-full h-32 px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md md:h-48 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" placeholder="Mensaje"></textarea>
+                                    <label for="message" class="block mb-2 text-sm text-gray-600 dark:text-gray-200">Mensaje</label>
+                                    <textarea wire:model="message" id="message" class="block w-full h-32 px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md md:h-48 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring" placeholder="Mensaje"></textarea>
                                     @error('message') <span class="text-sm text-red-600">{{ $message }}</span> @enderror
                                 </div>
 

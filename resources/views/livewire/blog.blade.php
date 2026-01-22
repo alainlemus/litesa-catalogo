@@ -47,17 +47,23 @@
             <div class="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3">
 
                 @foreach ($posts as $post)
-                    <div class="duration-300 fade-in-up">
-                        <img class="object-cover object-center w-full h-64 rounded-lg lg:h-80" src="{{ App::environment('local')
-                            ? asset('storage/' . ltrim($post->image, '/'))
-                            : Storage::disk('s3')->url($post->image) }}" alt="{{ $post->title }}">
+                    <article class="duration-300 fade-in-up">
+                        <img class="object-cover object-center w-full h-64 rounded-lg lg:h-80"
+                            src="{{ App::environment('local')
+                                ? asset('storage/' . ltrim($post->image, '/'))
+                                : Storage::disk('s3')->url($post->image) }}"
+                            alt="{{ $post->title }}"
+                            loading="lazy"
+                            decoding="async"
+                            width="400"
+                            height="320">
 
                         <div class="mt-8">
                             <span class="text-blue-500 uppercase">{{ $post->category }}</span>
 
-                            <h1 class="mt-4 text-xl font-semibold text-gray-800 dark:text-white">
+                            <h2 class="mt-4 text-xl font-semibold text-gray-800 dark:text-white">
                                 {{ $post->title }}
-                            </h1>
+                            </h2>
 
                             <p class="mt-2 text-gray-500 dark:text-gray-400">
                                 {{ $post->excerpt }}
@@ -69,14 +75,14 @@
                                         $fechaFormateada = Carbon::parse($post->updated_at)
                                         ->translatedFormat('d \d\e\l \m\e\s F \d\e\l Y');
                                     @endphp
-                                    <p class="text-sm text-gray-500 dark:text-gray-400">{{ $fechaFormateada }}</p>
+                                    <time datetime="{{ $post->updated_at->toISOString() }}" class="text-sm text-gray-500 dark:text-gray-400">{{ $fechaFormateada }}</time>
                                 </div>
 
                                 <a href="{{ route('blog.show', $post->slug) }}" class="inline-block text-blue-500 underline hover:text-blue-400">Ver entrada</a>
                             </div>
 
                         </div>
-                    </div>
+                    </article>
                 @endforeach
 
             </div>

@@ -58,7 +58,7 @@
 
     <!-- Main Content -->
     <main class="container relative p-6 pb-20 mx-auto bg-transparent pt-18">
-        <h2 class="mb-4 text-2xl font-bold dark:text-white">Catálogo de Productos</h2>
+        <h1 class="mb-4 text-2xl font-bold dark:text-white">Catálogo de Productos</h1>
         <p class="mb-6 text-gray-600 dark:text-white">Descubre nuestra amplia gama de productos de iluminación LED</p>
 
         <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
@@ -67,12 +67,12 @@
                     class="p-6 bg-white dark:bg-gray-800 rounded-3xl flex flex-col items-center shadow-sm border border-gray-200 dark:border-gray-700 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group relative overflow-hidden w-full cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500">
                     <div class="w-44 h-44 flex items-center justify-center bg-gray-50 dark:bg-gray-900 rounded-2xl mb-4 overflow-hidden border border-gray-100 dark:border-gray-700 group-hover:scale-105 transition-transform duration-300">
                         @if ($product->photos->count() > 0)
-                            <img src="{{ App::environment('local') ? asset('storage/' . $product->photos->first()->path) : \Illuminate\Support\Facades\Storage::disk('s3')->url($product->photos->first()->path) }}" alt="{{ $product->name }}" class="object-contain w-full h-full transition-transform duration-300 group-hover:scale-110">
+                            <img src="{{ App::environment('local') ? asset('storage/' . $product->photos->first()->path) : \Illuminate\Support\Facades\Storage::disk('s3')->url($product->photos->first()->path) }}" alt="{{ $product->name }}" class="object-contain w-full h-full transition-transform duration-300 group-hover:scale-110" loading="lazy" decoding="async" width="176" height="176">
                         @else
                             <div class="flex items-center justify-center w-full h-full bg-gray-200 text-gray-500">Sin imagen</div>
                         @endif
                     </div>
-                    <h3 class="mb-2 text-lg font-extrabold text-gray-900 dark:text-white text-center tracking-wide uppercase">{{ mb_strtoupper($product->name, 'UTF-8') }}</h3>
+                    <h2 class="mb-2 text-lg font-extrabold text-gray-900 dark:text-white text-center tracking-wide uppercase">{{ mb_strtoupper($product->name, 'UTF-8') }}</h2>
                     <div class="w-full pt-2 pl-1">
                         <p class="mb-2 text-green-600">
                             @if ($product->certification != null)

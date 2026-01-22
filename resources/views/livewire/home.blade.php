@@ -35,9 +35,9 @@
 
     <section class="transition-colors duration-300 bg-white dark:bg-gray-900 fade-in-up">
         <div class="container flex flex-col items-center px-4 py-12 mx-auto text-center">
-            <h2 class="max-w-2xl mx-auto text-2xl font-semibold tracking-tight text-gray-800 xl:text-3xl dark:text-white fade-in-up">
+            <h1 class="max-w-2xl mx-auto text-2xl font-semibold tracking-tight text-gray-800 xl:text-3xl dark:text-white fade-in-up">
                 {!! $page->hero_text !!}
-            </h2>
+            </h1>
             <p class="max-w-4xl mt-6 text-center text-gray-500 dark:text-gray-300 fade-in-up">
                 {!! $page->section1_text !!}
             </p>
@@ -72,14 +72,14 @@
 
     <section class="transition-colors duration-300 bg-white dark:bg-gray-900 fade-in-up">
         <div class="container px-6 py-12 mx-auto fade-in-up">
-            <h1 class="text-2xl font-semibold text-gray-800 lg:text-3xl dark:text-white fade-in-up">¿Quienes somos?</h1>
+            <h2 class="text-2xl font-semibold text-gray-800 lg:text-3xl dark:text-white fade-in-up">¿Quienes somos?</h2>
             <div class="grid grid-cols-1 gap-8 mt-8 lg:mt-16 md:grid-cols-2 xl:grid-cols-3 fade-in-up">
                 <div>
                     <div class="inline-block p-3 text-white bg-blue-600 rounded-lg">
                         {!! $page->about_svg !!}
                     </div>
                     <div>
-                        <h1 class="text-xl font-semibold text-gray-700 dark:text-white">{{ $page->about_title }}</h1>
+                        <h3 class="text-xl font-semibold text-gray-700 dark:text-white">{{ $page->about_title }}</h3>
                         <p class="mt-2 text-sm text-gray-500 dark:text-gray-300">
                             {{ $page->about_description }}
                         </p>
@@ -90,7 +90,7 @@
                         {!! $page->mission_svg !!}
                     </div>
                     <div>
-                        <h1 class="text-xl font-semibold text-gray-700 dark:text-white">{{ $page->mission_title }}</h1>
+                        <h3 class="text-xl font-semibold text-gray-700 dark:text-white">{{ $page->mission_title }}</h3>
                         <p class="mt-2 text-sm text-gray-500 dark:text-gray-300">
                             {{ $page->mission_description }}
                         </p>
@@ -101,7 +101,7 @@
                         {!! $page->vision_svg !!}
                     </div>
                     <div>
-                        <h1 class="text-xl font-semibold text-gray-700 dark:text-white">{{ $page->vision_title }}</h1>
+                        <h3 class="text-xl font-semibold text-gray-700 dark:text-white">{{ $page->vision_title }}</h3>
                         <p class="mt-2 text-sm text-gray-500 dark:text-gray-300">
                             {{ $page->vision_description }}
                         </p>
@@ -113,7 +113,7 @@
 
     <section class="transition-colors duration-300 bg-white dark:bg-gray-900 fade-in-up">
         <div class="container px-6 py-10 mx-auto">
-            <h1 class="text-2xl font-semibold text-center text-gray-800 capitalize lg:text-3xl dark:text-white">conoce nuestros <br> <span class="text-blue-500">Servicios</span></h1>
+            <h2 class="text-2xl font-semibold text-center text-gray-800 capitalize lg:text-3xl dark:text-white">conoce nuestros <br> <span class="text-blue-500">Servicios</span></h2>
 
             <div class="grid grid-cols-1 gap-8 mt-8 xl:mt-12 xl:gap-16 md:grid-cols-2 xl:grid-cols-3">
                 {{-- Servicios --}}
@@ -123,7 +123,7 @@
                             {!! $service['svg'] !!}
                         </span>
 
-                        <h1 class="text-xl font-semibold text-gray-700 capitalize dark:text-white">{{ $service['title'] }}</h1>
+                        <h3 class="text-xl font-semibold text-gray-700 capitalize dark:text-white">{{ $service['title'] }}</h3>
 
                         <p class="text-gray-500 dark:text-gray-300">
                             {{ $service['description'] }}
@@ -143,9 +143,9 @@
 
     <section class="transition-colors duration-300 bg-white dark:bg-gray-900 fade-in-up">
         <div class="container px-6 py-10 mx-auto">
-            <h1 class="text-2xl font-semibold text-center text-gray-800 capitalize lg:text-3xl dark:text-white">
+            <h2 class="text-2xl font-semibold text-center text-gray-800 capitalize lg:text-3xl dark:text-white">
                 {!! $page->testimonials_title !!}
-            </h1>
+            </h2>
 
             <p class="max-w-2xl mx-auto mt-6 text-center text-gray-500 dark:text-gray-300">
                 {{ $page->testimonials_description }}
@@ -153,24 +153,30 @@
 
             <section class="grid grid-cols-1 gap-8 mt-8 xl:mt-12 lg:grid-cols-2 xl:grid-cols-3">
                 @foreach ($testimonials as $testimonio)
-                    <div class="p-8 border rounded-lg dark:border-gray-700">
+                    <article class="p-8 border rounded-lg dark:border-gray-700">
                         <p class="leading-loose text-gray-500 dark:text-gray-400">
                             {{ $testimonio->message }}
                         </p>
 
                         <div class="flex items-center mt-8 -mx-2">
                             @if ($testimonio->image)
-                                <img class="object-cover mx-2 rounded-full w-14 shrink-0 h-14 ring-4 ring-gray-300 dark:ring-gray-700" src="{{ App::environment('local')
-                                ? asset('storage/' . ltrim($testimonio->image, '/'))
-                                : Storage::disk('s3')->url($testimonio->image) }}" alt="{{ $testimonio->name }}">
+                                <img class="object-cover mx-2 rounded-full w-14 shrink-0 h-14 ring-4 ring-gray-300 dark:ring-gray-700"
+                                    src="{{ App::environment('local')
+                                        ? asset('storage/' . ltrim($testimonio->image, '/'))
+                                        : Storage::disk('s3')->url($testimonio->image) }}"
+                                    alt="Foto de {{ $testimonio->name }}"
+                                    loading="lazy"
+                                    decoding="async"
+                                    width="56"
+                                    height="56">
                             @endif
 
                             <div class="mx-2">
-                                <h1 class="font-semibold text-gray-800 dark:text-white">{{ $testimonio->name }}</h1>
+                                <h3 class="font-semibold text-gray-800 dark:text-white">{{ $testimonio->name }}</h3>
                                 <span class="text-sm text-gray-500">{{ $testimonio->position }}</span>
                             </div>
                         </div>
-                    </div>
+                    </article>
                 @endforeach
             </section>
         </div>
@@ -179,34 +185,40 @@
     <section class="w-full py-10 dark:bg-gray-800 fade-in-up duration-300">
         <div class="container w-full flex justify-center flex-col mx-auto">
             <div class="w-full flex justify-center">
-                <h1 class="text-2xl font-semibold text-gray-800 capitalize lg:text-3xl dark:text-white">Entradas recientes del blog</h1>
+                <h2 class="text-2xl font-semibold text-gray-800 capitalize lg:text-3xl dark:text-white">Entradas recientes del blog</h2>
             </div>
 
             <div class="w-full px-6 lg:px-20 grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2">
 
                 @foreach ($posts as $post)
                 <a href="{{ route('blog.show', $post->slug) }}">
-                    <div class="lg:flex">
+                    <article class="lg:flex">
                         @if ($post->image)
-                            <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="{{ App::environment('local')
-                                ? asset('storage/' . ltrim($post->image, '/'))
-                                : Storage::disk('s3')->url($post->image) }}" alt="{{ $post->title }}">
+                            <img class="object-cover w-full h-56 rounded-lg lg:w-64"
+                                src="{{ App::environment('local')
+                                    ? asset('storage/' . ltrim($post->image, '/'))
+                                    : Storage::disk('s3')->url($post->image) }}"
+                                alt="{{ $post->title }}"
+                                loading="lazy"
+                                decoding="async"
+                                width="256"
+                                height="224">
                         @endif
 
                         <div class="flex flex-col justify-between py-6 lg:mx-6">
 
-                            <h2 class="text-xl font-semibold text-gray-800 hover:underline dark:text-white ">{{ $post->title }}</h2>
+                            <h3 class="text-xl font-semibold text-gray-800 hover:underline dark:text-white">{{ $post->title }}</h3>
 
-                            <p class="text-gray-800 dark:text-white ">{{ $post->excerpt }}</p>
+                            <p class="text-gray-600 dark:text-gray-300">{{ $post->excerpt }}</p>
 
                             @php
                                 $fechaFormateada = Carbon::parse($post->updated_at)
                                 ->translatedFormat('d \d\e\l \m\e\s F \d\e\l Y');
                             @endphp
 
-                            <span class="text-sm text-gray-500 dark:text-gray-300">Publicado: {{ $fechaFormateada }}</span>
+                            <span class="text-sm text-gray-500 dark:text-gray-300">Publicado: <time datetime="{{ $post->updated_at->toISOString() }}">{{ $fechaFormateada }}</time></span>
                         </div>
-                    </div>
+                    </article>
                 </a>
                 @endforeach
 
@@ -219,7 +231,7 @@
             <div class="text-center">
                 <p class="font-medium text-blue-500 dark:text-blue-400">Medios de</p>
 
-                <h1 class="mt-2 text-2xl font-semibold text-gray-800 md:text-3xl dark:text-white">Contacto</h1>
+                <h2 class="mt-2 text-2xl font-semibold text-gray-800 md:text-3xl dark:text-white">Contacto</h2>
 
                 <p class="mt-3 text-gray-500 dark:text-gray-400">Listos para escuchar su requerimientos y apoyarlos.</p>
             </div>
@@ -236,7 +248,7 @@
                         </svg>
                     </span>
 
-                    <h2 class="mt-4 text-lg font-medium text-gray-800 dark:text-white">Email</h2>
+                    <h3 class="mt-4 text-lg font-medium text-gray-800 dark:text-white">Email</h3>
                     <p class="mt-2 text-gray-500 dark:text-gray-400">Estamos para ayudarle.</p>
                     <p class="mt-2 text-blue-500 dark:text-blue-400">{{ $siteSetting->contact_email }}</p>
                 </div>
@@ -249,9 +261,9 @@
                         </svg>
                     </span>
 
-                    <h2 class="mt-4 text-lg font-medium text-gray-800 dark:text-white">Oficina</h2>
+                    <h3 class="mt-4 text-lg font-medium text-gray-800 dark:text-white">Oficina</h3>
                     <p class="mt-2 text-gray-500 dark:text-gray-400">Visitanos en </p>
-                    <p class="mt-2 text-blue-500 dark:text-blue-400">{{ $siteSetting->contact_address }}</p>
+                    <address class="mt-2 text-blue-500 dark:text-blue-400 not-italic">{{ $siteSetting->contact_address }}</address>
                 </div>
 
                 <div class="flex flex-col items-center justify-center text-center">
@@ -261,7 +273,7 @@
                         </svg>
                     </span>
 
-                    <h2 class="mt-4 text-lg font-medium text-gray-800 dark:text-white">Teléfono</h2>
+                    <h3 class="mt-4 text-lg font-medium text-gray-800 dark:text-white">Teléfono</h3>
                     <p class="mt-2 text-gray-500 dark:text-gray-400">{{ $siteSetting->contact_hours }}</p>
                     <p class="mt-2 text-blue-500 dark:text-blue-400">{{ $siteSetting->contact_phone }}</p>
                 </div>

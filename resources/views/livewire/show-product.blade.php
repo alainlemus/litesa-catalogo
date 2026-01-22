@@ -4,14 +4,14 @@
         use Illuminate\Support\Str;
         $plainDescription = $product->description ? Str::limit(strip_tags($product->description), 160) : 'Expertos en iluminación, ofrecemos soluciones de alta calidad para el hogar y la industria. Descubre nuestra amplia gama de productos y servicios.';
     @endphp
-    @section('title', strtoupper($product->name) . ' - Grupo Litesa')
+    @section('title', mb_strtoupper($product->name, 'UTF-8') . ' - Grupo Litesa')
     @section('meta_description', $plainDescription)
-    @section('og_title',  strtoupper($product->name) . ' - Grupo Litesa')
+    @section('og_title',  mb_strtoupper($product->name, 'UTF-8') . ' - Grupo Litesa')
     @section('og_description', $plainDescription)
     @section('og_image', App::environment('local') ? asset('storage/' . $product->photos->first()->path) : \Illuminate\Support\Facades\Storage::disk('s3')->url($product->photos->first()->path))
 
     @section('twitter_card', 'summary_large_image')
-    @section('twitter_title',  strtoupper($product->name) . ' - Grupo Litesa')
+    @section('twitter_title',  mb_strtoupper($product->name, 'UTF-8') . ' - Grupo Litesa')
     @section('twitter_description', $plainDescription)
     @section('twitter_image', App::environment('local') ? asset('storage/' . $product->photos->first()->path) : \Illuminate\Support\Facades\Storage::disk('s3')->url($product->photos->first()->path))
 
@@ -41,8 +41,8 @@
                 </svg>
             </span>
 
-            <span class="text-gray-500 dark:text-gray-300 hover:underline max-w-xs truncate inline-block align-bottom" style="vertical-align:bottom;" title="{{ strtoupper($product->name) }}">
-                {{ strtoupper($product->name) }}
+            <span class="text-gray-500 dark:text-gray-300 hover:underline max-w-xs truncate inline-block align-bottom" style="vertical-align:bottom;" title="{{ mb_strtoupper($product->name, 'UTF-8') }}">
+                {{ mb_strtoupper($product->name, 'UTF-8') }}
             </span>
         </div>
 
@@ -58,7 +58,7 @@
                                     <div class="swiper-wrapper">
                                         @foreach ($product->photos as $photo)
                                             <div class="swiper-slide flex items-center justify-center h-full">
-                                                <img src="{{ App::environment('local') ? asset('storage/' . $photo->path) : \Illuminate\Support\Facades\Storage::disk('s3')->url($photo->path) }}" alt="{{ $product->name }}" class="object-contain max-w-full max-h-full h-full w-auto mx-auto rounded-2xl transition-transform duration-300" style="cursor:default;"/>
+                                                <img src="{{ App::environment('local') ? asset('storage/' . $photo->path) : \Illuminate\Support\Facades\Storage::disk('s3')->url($photo->path) }}" alt="{{ $product->name }}" class="object-contain max-w-full max-h-full h-full w-auto mx-auto rounded-2xl transition-transform duration-300" style="cursor:default;" loading="lazy" decoding="async" width="400" height="400"/>
                                             </div>
                                         @endforeach
                                     </div>
@@ -103,14 +103,14 @@
                             <div class="relative overflow-hidden bg-white rounded-2xl">
                                 <div class="flex items-center justify-center aspect-square">
                                     @if (!$product->photos->isEmpty())
-                                        <img id="mainImage" src="{{ App::environment('local') ? asset('storage/' . $product->photos->first()->path) : \Illuminate\Support\Facades\Storage::disk('s3')->url($product->photos->first()->path) }}" alt="{{ $product->name }}" class="object-fill max-w-full max-h-full"/>
+                                        <img id="mainImage" src="{{ App::environment('local') ? asset('storage/' . $product->photos->first()->path) : \Illuminate\Support\Facades\Storage::disk('s3')->url($product->photos->first()->path) }}" alt="{{ $product->name }}" class="object-fill max-w-full max-h-full" loading="lazy" decoding="async" width="400" height="400"/>
                                     @endif
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <h1 class="lg:pt-0 pt-4 mb-2 text-3xl font-bold text-gray-500 dark:text-white">{{ strtoupper($product->name) }}</h1>
+                    <h1 class="lg:pt-0 pt-4 mb-2 text-3xl font-bold text-gray-500 dark:text-white">{{ mb_strtoupper($product->name, 'UTF-8') }}</h1>
 
                     <div class="flex flex-wrap items-center gap-2 space-x-4">
                         @if ($product->warranty != null)
@@ -182,25 +182,25 @@
                             <div class="flex gap-2 mb-2">
                                 <p class="font-semibold text-gray-600 flex justify-center items-center dark:text-white">Compartir: </p>
                                 <!-- Facebook -->
-                                <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(request()->fullUrl()) }}" target="_blank" class="inline-flex items-center justify-center w-8 h-8 lg:w-10 lg:h-10 rounded-full bg-blue-600 hover:bg-blue-700 text-white overflow-hidden" title="Compartir en Facebook">
+                                <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(request()->fullUrl()) }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center w-8 h-8 lg:w-10 lg:h-10 rounded-full bg-blue-600 hover:bg-blue-700 text-white overflow-hidden" title="Compartir en Facebook">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-5 h-5">
                                         <path d="M22.675 0h-21.35C.595 0 0 .592 0 1.326v21.348C0 23.408.595 24 1.325 24h11.495v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.797.143v3.24l-1.918.001c-1.504 0-1.797.715-1.797 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116C23.406 24 24 23.408 24 22.674V1.326C24 .592 23.406 0 22.675 0"/>
                                     </svg>
                                 </a>
                                 <!-- Twitter/X -->
-                                <a href="https://twitter.com/intent/tweet?url={{ urlencode(request()->fullUrl()) }}&text={{ urlencode('Mira este producto: ' . strtoupper($product->name)) }}" target="_blank" class="inline-flex items-center justify-center w-8 h-8 lg:w-10 lg:h-10 rounded-full bg-black hover:bg-gray-800 text-white" title="Compartir en X (Twitter)">
+                                <a href="https://twitter.com/intent/tweet?url={{ urlencode(request()->fullUrl()) }}&text={{ urlencode('Mira este producto: ' . mb_strtoupper($product->name, 'UTF-8')) }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center w-8 h-8 lg:w-10 lg:h-10 rounded-full bg-black hover:bg-gray-800 text-white" title="Compartir en X (Twitter)">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-5 h-5">
                                         <path d="M22.162 5.656c.015.211.015.423.015.636 0 6.49-4.941 13.973-13.973 13.973-2.777 0-5.366-.813-7.548-2.213.386.045.772.075 1.173.075 2.3 0 4.415-.772 6.105-2.073-2.15-.045-3.963-1.462-4.59-3.417.303.045.606.075.924.075.439 0 .879-.06 1.288-.166-2.23-.454-3.91-2.415-3.91-4.773v-.06c.651.363 1.401.606 2.2.636-1.288-.863-2.13-2.34-2.13-4.011 0-.878.227-1.701.621-2.409 2.274 2.789 5.675 4.617 9.504 4.808-.075-.351-.12-.712-.12-1.082 0-2.626 2.13-4.757 4.757-4.757 1.373 0 2.614.575 3.484 1.501 1.082-.211 2.13-.606 3.06-1.173-.363 1.127-1.127 2.073-2.13 2.671 0.963-.106 1.877-.372 2.724-.757-.651.954-1.462 1.797-2.406 2.463z"/>
                                     </svg>
                                 </a>
                                 <!-- LinkedIn -->
-                                <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ urlencode(request()->fullUrl()) }}&title={{ urlencode(strtoupper($product->name)) }}" target="_blank" class="inline-flex items-center justify-center w-8 h-8 lg:w-10 lg:h-10 rounded-full bg-blue-800 hover:bg-blue-900 text-white" title="Compartir en LinkedIn">
+                                <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ urlencode(request()->fullUrl()) }}&title={{ urlencode(mb_strtoupper($product->name, 'UTF-8')) }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center w-8 h-8 lg:w-10 lg:h-10 rounded-full bg-blue-800 hover:bg-blue-900 text-white" title="Compartir en LinkedIn">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-5 h-5">
                                         <path d="M20.447 20.452h-3.554v-5.569c0-1.327-.027-3.037-1.849-3.037-1.851 0-2.132 1.445-2.132 2.939v5.667H9.358V9h3.414v1.561h.049c.476-.899 1.637-1.849 3.37-1.849 3.602 0 4.267 2.369 4.267 5.455v6.285zM5.337 7.433c-1.144 0-2.069-.926-2.069-2.069 0-1.144.925-2.07 2.069-2.07 1.143 0 2.069.926 2.069 2.07 0 1.143-.926 2.069-2.069 2.069zm1.777 13.019H3.56V9h3.554v11.452zM22.225 0H1.771C.792 0 0 .771 0 1.723v20.549C0 23.229.792 24 1.771 24h20.451C23.2 24 24 23.229 24 22.271V1.723C24 .771 23.2 0 22.225 0z"/>
                                     </svg>
                                 </a>
                                 <!-- Instagram -->
-                                <a href="https://www.instagram.com/?url={{ urlencode(request()->fullUrl()) }}" target="_blank" class="inline-flex items-center justify-center w-8 h-8 lg:w-10 lg:h-10 rounded-full bg-gradient-to-tr from-pink-500 via-red-500 to-yellow-500 hover:from-pink-600 hover:via-red-600 hover:to-yellow-600 text-white" title="Compartir en Instagram">
+                                <a href="https://www.instagram.com/?url={{ urlencode(request()->fullUrl()) }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center w-8 h-8 lg:w-10 lg:h-10 rounded-full bg-gradient-to-tr from-pink-500 via-red-500 to-yellow-500 hover:from-pink-600 hover:via-red-600 hover:to-yellow-600 text-white" title="Compartir en Instagram">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-5 h-5">
                                         <path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.334 3.608 1.308.974.974 1.246 2.241 1.308 3.608.058 1.266.069 1.646.069 4.85s-.012 3.584-.07 4.85c-.062 1.366-.334 2.633-1.308 3.608-.974.974-2.241 1.246-3.608 1.308-1.266.058-1.646.069-4.85.069s-3.584-.012-4.85-.07c-1.366-.062-2.633-.334-3.608-1.308-.974-.974-1.246-2.241-1.308-3.608C2.175 15.647 2.163 15.267 2.163 12s.012-3.584.07-4.85c.059-1.282.353-2.394 1.333-3.374.98-.98 2.092-1.274 3.374-1.333C8.416 2.175 8.796 2.163 12 2.163zm0-2.163C8.741 0 8.332.013 7.052.072 5.771.131 4.659.425 3.678 1.406c-.98.98-1.274 2.092-1.333 3.374C2.013 5.668 2 6.077 2 12c0 5.923.013 6.332.072 7.612.059 1.282.353 2.394 1.333 3.374.98.98 2.092 1.274 3.374 1.333C8.332 23.987 8.741 24 12 24s3.668-.013 4.948-.072c1.282-.059 2.394-.353 3.374-1.333.98-.98 1.274-2.092 1.333-3.374.059-1.28.072-1.689.072-7.612 0-5.923-.013-6.332-.072-7.612-.059-1.282-.353-2.394-1.333-3.374-.98-.98-2.092-1.274-3.374-1.333C15.668.013 15.259 0 12 0zm0 5.838A6.162 6.162 0 0 0 5.838 12 6.162 6.162 0 0 0 12 18.162 6.162 6.162 0 0 0 18.162 12 6.162 6.162 0 0 0 12 5.838zm0 10.162A3.999 3.999 0 1 1 12 8a3.999 3.999 0 0 1 0 7.999zm6.406-11.845a1.44 1.44 0 1 1-2.88 0 1.44 1.44 0 0 1 2.88 0z"/>
                                     </svg>
@@ -214,8 +214,9 @@
                             </div>
                             <div class="flex justify-end w-full">
                                 <a
-                                    href="https://wa.me/52{{ $whatsapp }}?text={{ urlencode('Hola, quiero más información sobre el producto: ' . strtoupper($product->name) . ($product->warranty ? ' | Garantía: ' . $product->warranty : '') . ($product->power_factor ? ' | Factor de Potencia: ' . $product->power_factor : '') . ($product->certification ? ' | Certificación: ' . $product->certification : '') . ($product->base ? ' | Base: ' . $product->base : '') . (request()->fullUrl() ? ' | Link: ' . request()->fullUrl() : '')) }}"
+                                    href="https://wa.me/52{{ $whatsapp }}?text={{ urlencode('Hola, quiero más información sobre el producto: ' . mb_strtoupper($product->name, 'UTF-8') . ($product->warranty ? ' | Garantía: ' . $product->warranty : '') . ($product->power_factor ? ' | Factor de Potencia: ' . $product->power_factor : '') . ($product->certification ? ' | Certificación: ' . $product->certification : '') . ($product->base ? ' | Base: ' . $product->base : '') . (request()->fullUrl() ? ' | Link: ' . request()->fullUrl() : '')) }}"
     target="_blank"
+    rel="noopener noreferrer"
     class="inline-flex items-center gap-2 px-6 py-3 text-white bg-green-500 rounded-lg shadow hover:bg-green-600 transition-colors font-semibold text-lg"
                                 >
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-6 h-6">
@@ -281,7 +282,7 @@
                     @foreach ($similares as $similar)
                         <a href="{{ route('product.show', $similar->slug) }}" class="w-3/4 sm:w-1/2 md:w-1/3 lg:w-1/4 min-w-[70vw] sm:min-w-[45vw] md:min-w-[32vw] lg:min-w-0 p-4 bg-white rounded-lg  dark:bg-gray-700 cursor-pointer text-left focus:outline-none focus:ring-2 focus:ring-blue-500  transition-all">
                             <div>
-                                <img src="{{ App::environment('local') ? asset('storage/' . $similar->photos->first()->path) : \Illuminate\Support\Facades\Storage::disk('s3')->url($similar->photos->first()->path) }}" alt="{{ $similar->name }}" class="object-contain w-full h-32 mb-2 rounded" />
+                                <img src="{{ App::environment('local') ? asset('storage/' . $similar->photos->first()->path) : \Illuminate\Support\Facades\Storage::disk('s3')->url($similar->photos->first()->path) }}" alt="{{ $similar->name }}" class="object-contain w-full h-32 mb-2 rounded" loading="lazy" decoding="async" width="200" height="128"/>
                                 <h3 class="mb-2 text-md font-semibold text-gray-600 dark:text-white text-center">{{ mb_strtoupper($similar->name, 'UTF-8') }}</h3>
 
                             </div>

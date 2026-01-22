@@ -46,9 +46,15 @@
             <div class="flex items-center justify-center w-full h-96 lg:w-1/2">
 
                 @if ($firstImage->path)
-                    <img class="object-cover w-full h-full max-w-2xl rounded-md" src="{{ App::environment('local')
-                        ? asset('storage/' . ltrim($firstImage->path, '/'))
-                        : Storage::disk('s3')->url($firstImage->path) }}" alt="{{ $firstImage->name }}" loading="lazy">
+                    <img class="object-cover w-full h-full max-w-2xl rounded-md"
+                        src="{{ App::environment('local')
+                            ? asset('storage/' . ltrim($firstImage->path, '/'))
+                            : Storage::disk('s3')->url($firstImage->path) }}"
+                        alt="{{ $firstImage->name }}"
+                        loading="lazy"
+                        decoding="async"
+                        width="672"
+                        height="384">
                 @endif
             </div>
         </div>
@@ -63,15 +69,21 @@
                 <div class="w-full p-6 bg-gray-600 md:flex md:items-center rounded-2xl md:bg-transparent md:p-0 lg:px-12 md:justify-evenly">
 
                     @if ($secondImage->path)
-                        <img class="object-cover shadow-md md:h-[32rem] md:w-80 lg:h-[36rem] lg:w-[26rem] md:rounded-2xl" src="{{ App::environment('local')
-                        ? asset('storage/' . ltrim($secondImage->path, '/'))
-                        : Storage::disk('s3')->url($secondImage->path) }}" alt="{{ $secondImage->name }}" />
+                        <img class="object-cover shadow-md md:h-[32rem] md:w-80 lg:h-[36rem] lg:w-[26rem] md:rounded-2xl"
+                            src="{{ App::environment('local')
+                                ? asset('storage/' . ltrim($secondImage->path, '/'))
+                                : Storage::disk('s3')->url($secondImage->path) }}"
+                            alt="{{ $secondImage->name }}"
+                            loading="lazy"
+                            decoding="async"
+                            width="416"
+                            height="576">
                     @endif
 
                     <div class="pt-10 mt-2 md:mx-6 lg:pt-0">
                         <div>
-                            <p class="pb-6 text-3xl font-medium tracking-tight text-white">{{ $lighting->section2_title }}</p>
-                            <p class="text-blue-200 ">{{ $lighting->section2_description }} </p>
+                            <h2 class="pb-6 text-3xl font-medium tracking-tight text-white">{{ $lighting->section2_title }}</h2>
+                            <p class="text-blue-200">{{ $lighting->section2_description }}</p>
                             <br>
                             <a href="{{ $lighting->section2_url ? route($lighting->section2_url) : route('home') }}" class="w-full p-2 text-white transition transform bg-blue-600 rounded cursor-pointer hover:border-1 hover:scale-105 hover:border-white dark:bg-blue-600 dark:" type="submit">Ver catálogo</a>
                         </div>
@@ -83,7 +95,7 @@
 
     <section class="py-16 bg-white dark:bg-gray-900">
         <div class="w-full flex justify-between items-center px-4 md:px-20 mb-8">
-            <p class="text-3xl dark:text-white">Lo último en productos</p>
+            <h2 class="text-3xl font-semibold dark:text-white">Lo último en productos</h2>
             <a href="{{ route('ilumination.catalog') }}" class="text-blue-600 font-semibold hover:underline flex items-center gap-2">Ver catálogo completo <span>&rarr;</span></a>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 px-4 md:px-20">
@@ -93,8 +105,12 @@
                         <img src="{{ App::environment('local')
                             ? asset('storage/' . ltrim($product->photos->first()->path ?? '', '/'))
                             : Storage::disk('s3')->url($product->photos->first()->path ?? '') }}"
-                            alt="{{ $product->name }}"
-                            class="object-contain w-full h-full transition-transform duration-300 group-hover:scale-110">
+                            alt="Producto {{ $product->name }}"
+                            class="object-contain w-full h-full transition-transform duration-300 group-hover:scale-110"
+                            loading="lazy"
+                            decoding="async"
+                            width="176"
+                            height="176">
                     </div>
                     <h3 class="text-lg font-extrabold text-gray-900 dark:text-white mb-2 text-center tracking-wide uppercase">{{ mb_strtoupper($product->name, 'UTF-8') }}</h3>
                     <span class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-blue-600 text-white rounded-full px-3 py-1 text-xs font-semibold shadow-lg">Ver más</span>
@@ -108,18 +124,21 @@
             <div class="container px-6 py-10 mx-auto">
 
                 <div class="w-full flex justify-center pb-20">
-                    <p class="pb-6 text-3xl font-medium tracking-tight dark:text-white">Distribuidores Oficiales</p>
+                    <h2 class="pb-6 text-3xl font-medium tracking-tight dark:text-white">Distribuidores Oficiales</h2>
                 </div>
 
-                <div class="grid grid-cols-1 gap-8 md:grid-cols-61 lg:grid-cols-3">
+                <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
                     @foreach ($lighting->section3_images as $image)
-                        <div class="flex items-center justify-center col-span-1 md:col-span-2 lg:col-span-1">
+                        <div class="flex items-center justify-center col-span-1 md:col-span-1 lg:col-span-1">
                             @if ($image)
                                 <img class="rounded h-20"
                                     src="{{ App::environment('local')
                                         ? asset('storage/' . ltrim($image, '/'))
                                         : Storage::disk('s3')->url($image) }}"
-                                    alt="Galería Iluminación">
+                                    alt="Logo distribuidor oficial"
+                                    loading="lazy"
+                                    decoding="async"
+                                    height="80">
                             @endif
                         </div>
                     @endforeach

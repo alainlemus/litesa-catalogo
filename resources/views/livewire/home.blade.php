@@ -177,38 +177,40 @@
     </section>
 
     <section class="w-full py-10 dark:bg-gray-800 fade-in-up duration-300">
-        <div class="w-full flex justify-center">
-            <h1 class="text-2xl font-semibold text-gray-800 capitalize lg:text-3xl dark:text-white">Entradas recientes del blog</h1>
-        </div>
+        <div class="container w-full flex justify-center flex-col mx-auto">
+            <div class="w-full flex justify-center">
+                <h1 class="text-2xl font-semibold text-gray-800 capitalize lg:text-3xl dark:text-white">Entradas recientes del blog</h1>
+            </div>
 
-        <div class="w-full px-6 lg:px-20 grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2">
+            <div class="w-full px-6 lg:px-20 grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2">
 
-            @foreach ($posts as $post)
-            <a href="{{ route('blog.show', $post->slug) }}">
-                <div class="lg:flex">
-                    @if ($post->image)
-                        <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="{{ App::environment('local')
-                            ? asset('storage/' . ltrim($post->image, '/'))
-                            : Storage::disk('s3')->url($post->image) }}" alt="{{ $post->title }}">
-                    @endif
+                @foreach ($posts as $post)
+                <a href="{{ route('blog.show', $post->slug) }}">
+                    <div class="lg:flex">
+                        @if ($post->image)
+                            <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="{{ App::environment('local')
+                                ? asset('storage/' . ltrim($post->image, '/'))
+                                : Storage::disk('s3')->url($post->image) }}" alt="{{ $post->title }}">
+                        @endif
 
-                    <div class="flex flex-col justify-between py-6 lg:mx-6">
+                        <div class="flex flex-col justify-between py-6 lg:mx-6">
 
-                        <h2 class="text-xl font-semibold text-gray-800 hover:underline dark:text-white ">{{ $post->title }}</h2>
+                            <h2 class="text-xl font-semibold text-gray-800 hover:underline dark:text-white ">{{ $post->title }}</h2>
 
-                        <p class="text-gray-800 dark:text-white ">{{ $post->excerpt }}</p>
+                            <p class="text-gray-800 dark:text-white ">{{ $post->excerpt }}</p>
 
-                        @php
-                            $fechaFormateada = Carbon::parse($post->updated_at)
-                            ->translatedFormat('d \d\e\l \m\e\s F \d\e\l Y');
-                        @endphp
+                            @php
+                                $fechaFormateada = Carbon::parse($post->updated_at)
+                                ->translatedFormat('d \d\e\l \m\e\s F \d\e\l Y');
+                            @endphp
 
-                        <span class="text-sm text-gray-500 dark:text-gray-300">Publicado: {{ $fechaFormateada }}</span>
+                            <span class="text-sm text-gray-500 dark:text-gray-300">Publicado: {{ $fechaFormateada }}</span>
+                        </div>
                     </div>
-                </div>
-            </a>
-            @endforeach
+                </a>
+                @endforeach
 
+            </div>
         </div>
     </section>
 

@@ -78,19 +78,19 @@
                                 <img
                                     src="{{ Storage::disk('public')->url($setting->logo_light) }}"
                                     alt="{{ $setting->title }} logo"
-                                    class="block h-10 dark:hidden"
+                                    class="block dark:hidden"
                                     fetchpriority="high"
                                     decoding="async"
-                                    width="124"
+                                    width="71"
                                     height="40"
                                 >
                                 <img
                                     src="{{ Storage::disk('public')->url($setting->logo_dark) }}"
                                     alt="{{ $setting->title }} logo"
-                                    class="hidden h-10 dark:block"
+                                    class="hidden dark:block"
                                     fetchpriority="high"
                                     decoding="async"
-                                    width="124"
+                                    width="71"
                                     height="40"
                                 >
                             @endif
@@ -175,20 +175,20 @@
                         <img
                             src="{{ Storage::disk('public')->url($setting->logo_light) }}"
                             alt="{{ $setting->title }} logo"
-                            class="block h-7 dark:hidden"
+                            class="block dark:hidden"
                             loading="lazy"
                             decoding="async"
-                            width="87"
-                            height="28"
+                            width="71"
+                            height="40"
                         >
                         <img
                             src="{{ Storage::disk('public')->url($setting->logo_dark) }}"
                             alt="{{ $setting->title }} logo"
-                            class="hidden h-7 dark:block"
+                            class="hidden dark:block"
                             loading="lazy"
                             decoding="async"
-                            width="87"
-                            height="28"
+                            width="71"
+                            height="40"
                         >
                     @endif
                 </a>

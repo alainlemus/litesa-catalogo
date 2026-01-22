@@ -213,7 +213,7 @@
 
                             @php
                                 $fechaFormateada = Carbon::parse($post->updated_at)
-                                ->translatedFormat('d \d\e\l \m\e\s F \d\e\l Y');
+                                ->translatedFormat('d \d\e F \d\e\l Y');
                             @endphp
 
                             <span class="text-sm text-gray-500 dark:text-gray-300">Publicado: <time datetime="{{ $post->updated_at->toISOString() }}">{{ $fechaFormateada }}</time></span>

@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- Preconexión a orígenes externos para mejorar LCP -->
+    <link rel="preconnect" href="https://fls-9f3a7a14-7b46-4df9-9b6c-b8c9e0e74df9.laravel.cloud" crossorigin>
+    <link rel="dns-prefetch" href="https://fls-9f3a7a14-7b46-4df9-9b6c-b8c9e0e74df9.laravel.cloud">
+    <link rel="preconnect" href="https://unpkg.com" crossorigin>
+
     <title>@yield('title', 'Título por defecto')</title>
 
     <!-- Open Graph (Facebook, LinkedIn) -->
@@ -74,11 +79,19 @@
                                     src="{{ Storage::disk('public')->url($setting->logo_light) }}"
                                     alt="{{ $setting->title }} logo"
                                     class="block h-10 dark:hidden"
+                                    fetchpriority="high"
+                                    decoding="async"
+                                    width="124"
+                                    height="40"
                                 >
                                 <img
                                     src="{{ Storage::disk('public')->url($setting->logo_dark) }}"
                                     alt="{{ $setting->title }} logo"
                                     class="hidden h-10 dark:block"
+                                    fetchpriority="high"
+                                    decoding="async"
+                                    width="124"
+                                    height="40"
                                 >
                             @endif
                         </a>
@@ -159,15 +172,23 @@
             <div class="flex flex-col items-center text-center">
                 <a href="{{ route('home') }}">
                     @if ($setting = \App\Models\SiteSetting::first())
-                                <img
+                        <img
                             src="{{ Storage::disk('public')->url($setting->logo_light) }}"
                             alt="{{ $setting->title }} logo"
                             class="block h-7 dark:hidden"
+                            loading="lazy"
+                            decoding="async"
+                            width="87"
+                            height="28"
                         >
                         <img
                             src="{{ Storage::disk('public')->url($setting->logo_dark) }}"
                             alt="{{ $setting->title }} logo"
                             class="hidden h-7 dark:block"
+                            loading="lazy"
+                            decoding="async"
+                            width="87"
+                            height="28"
                         >
                     @endif
                 </a>

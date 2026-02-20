@@ -1,7 +1,6 @@
 # Use official PHP 8.4 image with Apache
 FROM php:8.4-apache
 
-# Install system dependencies
 RUN apt-get update && apt-get install -y \
     libpng-dev \
     libjpeg-dev \
@@ -11,8 +10,9 @@ RUN apt-get update && apt-get install -y \
     unzip \
     git \
     curl \
+    libicu-dev \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install gd zip pdo_mysql
+    && docker-php-ext-install gd zip pdo_mysql intl
 
 # Enable Apache mod_rewrite
 RUN a2enmod rewrite

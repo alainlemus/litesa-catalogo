@@ -1,6 +1,9 @@
-# Use official PHP 8.4 image with Apache
+# Imagen base
 FROM php:8.4-apache
 
+# ================================
+# Dependencias del sistema + Node
+# ================================
 RUN apt-get update && apt-get install -y \
     libpng-dev \
     libjpeg-dev \
@@ -11,32 +14,66 @@ RUN apt-get update && apt-get install -y \
     git \
     curl \
     libicu-dev \
+    nodejs \
+    npm \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install gd zip pdo_mysql intl
+    && docker-php-ext-install \
+        gd \
+        zip \
+        pdo_mysql \
+        intl \
+        mbstring \
+        bcmath \
+        exif \
+        pcntl
 
-# Enable Apache mod_rewrite
+# ================================
+# Apache
+# ================================
 RUN a2enmod rewrite
 
-# Install Composer
+# ================================
+# Composer
+# ================================
 COPY --from=composer:2.7 /usr/bin/composer /usr/bin/composer
 
-# Set working directory
+# ================================
+# Working directory
+# ================================
 WORKDIR /var/www/html
 
-# Copy app files
+# ================================
+# Copiar proyecto
+# ================================
 COPY . .
 
-# Install PHP dependencies
+# ================================
+# Crear .env si no existe
+# ================================
+RUN cp .env.example .env || true
+
+# ================================
+# Instalar dependencias PHP
+# ================================
 RUN composer install --no-interaction --prefer-dist --optimize-autoloader
 
-# Install Node dependencies and build assets
-RUN npm install && npm run build
+# ================================
+# Build frontend (solo si hay Vite)
+# ================================
+RUN if [ -f package.json ]; then npm install && npm run build; fi
 
-# Set permissions for storage and bootstrap/cache
-RUN chown -R www-data:www-data storage bootstrap/cache
+# ================================
+# Permisos Laravel
+# ================================
+RUN chown -R www-data:www-data storage bootstrap/cache \
+    && chmod -R 775 storage bootstrap/cache
 
-# Expose port 80
+# ================================
+# Puerto
+# ================================
 EXPOSE 80
 
-# Start Apache in foreground
-CMD ["apache2-foreground"]
+# ================================
+# Startup (IMPORTANTE para Filament)
+# ================================
+CMD php artisan storage:link || true && apache2-foreground

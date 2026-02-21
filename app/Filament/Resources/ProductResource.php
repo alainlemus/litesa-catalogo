@@ -34,8 +34,8 @@ class ProductResource extends Resource
                         } else {
                             $set('slug', null);
                         }
-                    })
-                    ->searchable(),
+                    }),
+
                 Forms\Components\TextInput::make('slug')
                     ->label('Slug (URL)')
                     ->hint('Se autogenera si lo dejas vacío')

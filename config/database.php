@@ -61,6 +61,23 @@ return [
                 PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
             ]) : [],
         ],
+            'mysql_remote' => [
+                'driver' => 'mysql',
+                'host' => '187.77.212.199',
+                'port' => '4307',
+                'database' => 'litesadev',
+                'username' => 'systemdev',
+                'password' => 'ypombbeC1BddkdPKG3fK',
+                'charset' => 'utf8mb4',
+                'collation' => 'utf8mb4_unicode_ci',
+                'prefix' => '',
+                'prefix_indexes' => true,
+                'strict' => true,
+                'engine' => null,
+                'options' => extension_loaded('pdo_mysql') ? array_filter([
+                    PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+                ]) : [],
+            ],
 
         'mariadb' => [
             'driver' => 'mariadb',
@@ -83,18 +100,17 @@ return [
         ],
 
         'pgsql' => [
-            'driver' => 'pgsql',
-            'url' => env('DB_URL'),
-            'host' => env('DB_HOST', '127.0.0.1'),
-            'port' => env('DB_PORT', '5432'),
-            'database' => env('DB_DATABASE', 'laravel'),
-            'username' => env('DB_USERNAME', 'root'),
-            'password' => env('DB_PASSWORD', ''),
-            'charset' => env('DB_CHARSET', 'utf8'),
-            'prefix' => '',
-            'prefix_indexes' => true,
-            'search_path' => 'public',
-            'sslmode' => 'prefer',
+              'driver' => 'pgsql',
+              'host' => env('DB_HOST_PGSQL', '127.0.0.1'),
+              'port' => env('DB_PORT_PGSQL', '5432'),
+              'database' => env('DB_DATABASE_PGSQL', 'main'),
+              'username' => env('DB_USERNAME_PGSQL', 'root'),
+              'password' => env('DB_PASSWORD_PGSQL', ''),
+              'charset' => 'utf8',
+              'prefix' => '',
+              'prefix_indexes' => true,
+              'search_path' => 'public',
+              'sslmode' => 'prefer',
         ],
 
         'sqlsrv' => [

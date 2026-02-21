@@ -26,17 +26,35 @@ use App\Filament\Resources\ProductPhotoResource;
 use App\Models\SiteSetting;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Schema;
 
 class AdminPanelProvider extends PanelProvider
 {
 
     public function panel(Panel $panel): Panel
     {
-        $setting = SiteSetting::first();
+        $faviconUrl = null;
+        $logoUrl = null;
 
-        $faviconUrl = (App::environment('local') ? asset('storage/' . ltrim($setting->favicon, '/')) : Storage::disk('s3')->url($setting->favicon));
+        if (! App::runningInConsole() && Schema::hasTable('site_settings')) {
+            $setting = SiteSetting::first();
 
-        $logoUrl = (App::environment('local') ? asset('storage/' . ltrim($setting->logo_light, '/')) : Storage::disk('s3')->url($setting->logo_light));
+            if ($setting) {
+                // ✅ favicon
+                if (! empty($setting->favicon)) {
+                    $faviconUrl = App::environment('local')
+                        ? asset('storage/' . ltrim($setting->favicon, '/'))
+                        : Storage::disk('s3')->url($setting->favicon);
+                }
+
+                // ✅ logo
+                if (! empty($setting->logo_light)) {
+                    $logoUrl = App::environment('local')
+                        ? asset('storage/' . ltrim($setting->logo_light, '/'))
+                        : Storage::disk('s3')->url($setting->logo_light);
+                }
+            }
+        }
 
         return $panel
             ->default()

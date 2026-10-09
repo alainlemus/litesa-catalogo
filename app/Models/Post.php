@@ -15,7 +15,8 @@ class Post extends Model
         'excerpt',
         'content',
         'status',
-        'slug'
+        'meta_title',
+        'meta_description',
     ];
 
     // Generar el slug automáticamente

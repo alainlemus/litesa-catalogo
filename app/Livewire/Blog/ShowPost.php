@@ -18,8 +18,12 @@ class ShowPost extends Component
 
     public function render()
     {
-        return view('livewire.blog.show-post')
-            ->with('title', $this->post->title)
-            ->with('layout', 'layouts.app'); // Cambia a tu layout principal si es diferente
+        $related = Post::where('status', 'published')
+            ->where('id', '!=', $this->post->id)
+            ->latest()
+            ->take(3)
+            ->get();
+
+        return view('livewire.blog.show-post', compact('related'));
     }
 }

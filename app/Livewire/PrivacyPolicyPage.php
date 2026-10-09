@@ -9,7 +9,7 @@ class PrivacyPolicyPage extends Component
 {
     public function render()
     {
-        $settings = SiteSetting::first();
+        $settings = SiteSetting::current();
 
         return view('livewire.privacy-policy-page', [
             'privacyPolicy' => $settings?->privacy_policy,

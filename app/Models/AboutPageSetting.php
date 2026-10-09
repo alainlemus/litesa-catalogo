@@ -26,6 +26,8 @@ class AboutPageSetting extends Model
         'services',
         'testimonials_title',
         'testimonials_description',
+        'meta_title',
+        'meta_description',
     ];
 
     protected $casts = [

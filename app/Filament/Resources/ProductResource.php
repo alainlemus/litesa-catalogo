@@ -58,8 +58,8 @@ class ProductResource extends Resource
                 Forms\Components\Select::make('category_id')
                     ->label('Categoría')
                     ->relationship('category', 'name')
-
-                    ->required(),
+                    ->placeholder('Sin categoría')
+                    ->helperText('Opcional. Se usa para mostrar productos similares.'),
                 Forms\Components\Select::make('uses')
                     ->label("Usos")
                     ->relationship('uses', 'name')
@@ -72,6 +72,7 @@ class ProductResource extends Resource
                     ->profile('default') // puedes usar 'full' para más botones
                     ->helperText('Puedes usar etiquetas HTML como <h2>, <span>, etc.')
                     ->columnSpan('full'),
+                \App\Filament\Support\SeoFields::section()->columnSpanFull(),
             ]);
     }
 

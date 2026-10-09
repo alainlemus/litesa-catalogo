@@ -5,6 +5,8 @@ namespace App\Livewire;
 use App\Models\AboutPageSetting;
 use App\Models\MediaFile;
 use App\Models\Post;
+use App\Models\Product;
+use App\Models\ProductUse;
 use App\Models\SiteSetting;
 use App\Models\Testimonial;
 use Livewire\Component;
@@ -17,6 +19,9 @@ class Home extends Component
     public $testimonials = null;
     public $posts = [];
 
+    public $featured = [];
+    public $uses = [];
+
     public $page = null;
     public $seo = null;
 
@@ -28,8 +33,10 @@ class Home extends Component
             ->orderBy('created_at', 'desc')
             ->take(3)
             ->get();
+        $this->featured = Product::with('photos')->latest()->take(4)->get();
+        $this->uses = ProductUse::all();
         $this->page = AboutPageSetting::first();
-        $this->seo = SiteSetting::first();
+        $this->seo = SiteSetting::current();
     }
 
     public function render()

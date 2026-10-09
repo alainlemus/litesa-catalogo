@@ -109,6 +109,8 @@ class AboutPageSettingResource extends Resource
                     ])
                     ->collapsible() // Permite colapsar manualmente
                     ->collapsed(),  // Inicia colapsada
+
+                \App\Filament\Support\SeoFields::section('Título y descripción de la página /nosotros.'),
             ]);
     }
 

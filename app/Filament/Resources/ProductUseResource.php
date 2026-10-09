@@ -20,7 +20,14 @@ class ProductUseResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')->required(),
+                Forms\Components\TextInput::make('name')->label('Nombre')->required()
+                    ->helperText('Define la URL de su página: /iluminacion/aplicaciones/<nombre>'),
+                Forms\Components\Textarea::make('description')->label('Descripción de la aplicación')
+                    ->rows(3)->helperText('Se muestra como introducción en la página de esta aplicación.'),
+                Forms\Components\FileUpload::make('image')->label('Imagen de la aplicación')
+                    ->image()->disk('public')->directory('aplicaciones')
+                    ->acceptedFileTypes(['image/png', 'image/jpeg', 'image/webp']),
+                \App\Filament\Support\SeoFields::section(),
             ]);
     }
 

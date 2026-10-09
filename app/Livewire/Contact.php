@@ -29,7 +29,7 @@ class Contact extends Component
 
     public function mount(){
         $this->formImage = MediaFile::where('name', 'Footer')->first();
-        $this->emailContactAdmin = SiteSetting::first()->contact_email;
+        $this->emailContactAdmin = SiteSetting::current()?->contact_email;
     }
 
     public function sendMessage()
@@ -42,7 +42,7 @@ class Contact extends Component
             'message' => 'required|string|min:10',
             'recaptcha' => ['required', function ($attribute, $value, $fail) {
                 $response = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
-                    'secret' => env('RECAPTCHA_SECRET_KEY'),
+                    'secret' => config('services.recaptcha.secret'),
                     'response' => $value,
                 ]);
 

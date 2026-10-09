@@ -37,7 +37,7 @@ class AdminPanelProvider extends PanelProvider
         $logoUrl = null;
 
         if (! App::runningInConsole() && Schema::hasTable('site_settings')) {
-            $setting = SiteSetting::first();
+            $setting = SiteSetting::current();
 
             if ($setting) {
                 // ✅ favicon
@@ -61,7 +61,7 @@ class AdminPanelProvider extends PanelProvider
             ->breadcrumbs(false)
             ->id('admin')
             ->path('admin')
-            ->login()
+            ->login(\App\Filament\Pages\Auth\Login::class)
             ->brandName('Grupo Litesa')
             ->favicon($faviconUrl)
             ->brandLogo($logoUrl)
@@ -75,7 +75,7 @@ class AdminPanelProvider extends PanelProvider
                 ProductPhotoResource::class,
             ])
             ->colors([
-                'primary' => Color::Blue,
+                'primary' => Color::hex('#196BAC'),
             ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')

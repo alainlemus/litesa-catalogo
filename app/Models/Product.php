@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    protected $fillable = ['name', 'warranty', 'power_factor', 'base', 'certification', 'description', 'category_id', 'slug'];
+    protected $fillable = ['name', 'warranty', 'power_factor', 'base', 'certification', 'description', 'category_id', 'slug', 'meta_title', 'meta_description'];
 
     public function uses()
     {

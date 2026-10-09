@@ -42,6 +42,12 @@ class Catalog extends Component
         $this->resetPage();
     }
 
+    public function clearFilters()
+    {
+        $this->reset('search', 'selectedUse', 'selectedCategory');
+        $this->resetPage();
+    }
+
     #[Layout('layouts.app')]
     public function render()
     {

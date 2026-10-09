@@ -21,6 +21,8 @@ class MigrateToRemoteSeeder extends Seeder
             'lighting_pages',
             'media_files',
             'posts',
+            'faqs',
+            'services_page_settings',
             'products',
             'product_photos',
             'product_uses',

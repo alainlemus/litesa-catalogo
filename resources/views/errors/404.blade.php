@@ -1,33 +1,35 @@
-@extends('layouts.layout')
-@section('title', 'Página no encontrada')
+@extends('layouts.app')
+@section('title', 'Página no encontrada - Grupo Litesa')
+@section('meta_description', 'La página que buscas no existe. Visita nuestro catálogo de iluminación o regresa al inicio.')
+@section('robots', 'noindex, nofollow')
 @section('content')
 
-    <section class="bg-white dark:bg-gray-900 ">
-        <div class="container min-h-screen px-6 py-12 mx-auto lg:flex lg:items-center lg:gap-12">
+    <section class="bg-white dark:bg-gray-900">
+        <div class="container min-h-[70vh] px-6 py-12 mx-auto lg:flex lg:items-center lg:gap-12">
             <div class="wf-ull lg:w-1/2">
                 <p class="text-sm font-medium text-blue-500 dark:text-blue-400">Error 404</p>
-                <h1 class="mt-3 text-2xl font-semibold text-gray-800 dark:text-white md:text-3xl">Pagina no encontrada</h1>
-                <p class="mt-4 text-gray-500 dark:text-gray-400">La pagina que estas buscando no existe. Aqui hay unos links de ayuda:</p>
+                <h1 class="mt-3 text-2xl font-semibold text-gray-800 dark:text-white md:text-3xl">Página no encontrada</h1>
+                <p class="mt-4 text-gray-500 dark:text-gray-400">La página que estás buscando no existe. Aquí hay unos enlaces de ayuda:</p>
 
                 <div class="flex items-center mt-6 gap-x-3">
-                    <a href="{{ url()->previous() }}" class="flex items-center justify-center w-1/2 px-5 py-2 text-sm text-gray-700 transition-colors duration-200 bg-white border rounded-lg gap-x-2 sm:w-auto dark:hover:bg-gray-800 dark:bg-gray-900 hover:bg-gray-100 dark:text-gray-200 dark:border-gray-700">
+                    <a href="{{ route('ilumination.catalog') }}" class="flex items-center justify-center w-1/2 px-5 py-2 text-sm text-gray-700 transition-colors duration-200 bg-white border rounded-lg gap-x-2 sm:w-auto dark:hover:bg-gray-800 dark:bg-gray-900 hover:bg-gray-100 dark:text-gray-200 dark:border-gray-700">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 rtl:rotate-180">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18" />
                         </svg>
 
 
-                        <span>Regresar</span>
+                        <span>Ver catálogo</span>
                     </a>
 
                     <a href="{{ route("home") }}" class="w-1/2 px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 bg-blue-500 rounded-lg shrink-0 sm:w-auto hover:bg-blue-600 dark:hover:bg-blue-500 dark:bg-blue-600">
-                        Llevame a inicio
+                        Llévame al inicio
                     </a>
                 </div>
             </div>
 
             <div class="relative w-full mt-12 lg:w-1/2 lg:mt-0">
 
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-full max-w-lg lg:mx-auto" viewBox="0 0 514 164" fill="none"><script xmlns=""/><script xmlns=""/>
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-full max-w-lg lg:mx-auto" viewBox="0 0 514 164" fill="none">
                     <circle cx="101" cy="22" r="20" stroke="#667085" stroke-width="2"/>
                     <circle cx="101" cy="142" r="20" stroke="#667085" stroke-width="2"/>
                     <circle cx="21" cy="102" r="20" stroke="#667085" stroke-width="2"/>
@@ -50,7 +52,7 @@
                     <circle cx="253" cy="82" r="40" stroke="#667085" stroke-width="2"/>
                     <line x1="8.74228e-08" y1="1" x2="513" y2="1.00004" stroke="#667085" stroke-width="2"/>
                     <line x1="-8.74228e-08" y1="163" x2="513" y2="163" stroke="#667085" stroke-width="2"/>
-                    <script xmlns=""/><script xmlns=""/></svg>
+                    </svg>
             </div>
         </div>
     </section>

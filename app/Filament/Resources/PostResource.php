@@ -91,7 +91,9 @@ class PostResource extends Resource
                         ])
                         ->default('draft')
                         ->required(),
-                ])
+                ]),
+
+            \App\Filament\Support\SeoFields::section(),
         ]);
     }
 
